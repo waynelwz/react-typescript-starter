@@ -38,6 +38,7 @@
     "baseui": "^10.0.0",
     "classnames": "^2.3.1",
     "color": "^3.1.3",
+    "craco-alias": "^3.0.1",
     "generate-password": "^1.7.0",
     "i18next": "^20.3.5",
     "i18next-browser-languagedetector": "^6.1.2",
@@ -62,6 +63,7 @@
     "react-jss": "^10.7.1",
     "react-lazylog": "^4.5.3",
     "react-query": "^3.19.6",
+    "react-router": "5.2.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-syntax-highlighter": "^15.4.5",
@@ -73,7 +75,7 @@
     "styletron-react": "^6.0.1",
     "ts-auto-mock": "^3.5.0",
     "tsconfig-paths-webpack-plugin": "^3.5.2",
-    "typescript": "^4.1.2",
+    "typescript": "4.1.2",
     "uuid": "^8.3.2",
     "web-vitals": "^1.0.1",
     "xterm": "^4.14.1",
@@ -81,8 +83,8 @@
     "xterm-addon-web-links": "^0.4.0"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "craco build",
+    "start": "craco start --verbose",
+    "build": "craco build ",
     "test": "craco test",
     "eject": "craco eject",
     "typecheck": "tsc --noEmit",
@@ -95,16 +97,6 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ],
-    "overrides": [
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      }
     ]
   },
   "browserslist": {
@@ -135,8 +127,9 @@
     "eslint-config-airbnb-typescript": "^12.3.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-react": "^1.1.7",
+    "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-baseui": "^10.0.0",
-    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-jest": "^24.4.0",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-node": "^11.1.0",
@@ -148,5 +141,9 @@
     "prettier": "^2.3.2",
     "sass": "^1.49.0",
     "simple-progress-webpack-plugin": "^2.0.0"
+  },
+  "resolutions": {
+    "babel-loader": "8.1.0",
+    "webpack": "4.44.2"
   }
 }

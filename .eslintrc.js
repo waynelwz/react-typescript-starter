@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
     parser: '@typescript-eslint/parser',
     parserOptions: {
@@ -97,6 +99,22 @@ module.exports = {
     settings: {
         react: {
             version: 'detect',
+        },
+        'import/resolver': {
+            // webpack: {
+            //     config: {
+            //         resolve: {
+            //             alias: {
+            //                 '@': path.resolve('src'),
+            //             },
+            //             extensions: ['.js', '.jsx','ts','.tsx'],
+            //         },
+            //     },
+            // },
+            alias: {
+                map: [['@', './src']],
+                extensions: ['.tsx', '.ts', '.js', '.jsx'],
+            },
         },
     },
     globals: {

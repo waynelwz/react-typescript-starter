@@ -1,9 +1,20 @@
 const path = require('path')
 const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin')
 const CracoEsbuildPlugin = require('craco-esbuild');
-const apis = ['/api/', '/oauth', '/callback', '/logout', '/swagger', '/openapi.json']
+const CracoAlias = require('craco-alias');
+
 module.exports = {
-    plugins: [{ plugin: CracoEsbuildPlugin }],
+    plugins: [
+        { plugin: CracoEsbuildPlugin },
+        {
+            plugin: CracoAlias,
+            options: {
+                source: 'tsconfig',
+                baseUrl: '.',
+                tsConfigPath: "./tsconfig.paths.json"
+            }
+        }
+    ],
     webpack: {
         alias: {
             '@': path.resolve(__dirname, 'src'),
@@ -17,18 +28,5 @@ module.exports = {
             })
             return webpackConfig
         }
-    },
-    // devServer: {
-    //     proxy: {
-    //         '/ws': {
-    //             target: 'ws://127.0.0.1:7777',
-    //             ws: true
-    //         },
-    //         ...Object.values(apis).map(api => ({ 
-    //             [api] : {
-    //                 target: 'http://127.0.0.1:7777'
-    //             }
-    //         }))
-    //     },
-    // },
+    }
 }
