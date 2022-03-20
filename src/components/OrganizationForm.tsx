@@ -66,9 +66,9 @@ export default function OrganizationForm({ organization, onSubmit }: IOrganizati
             <FormItem name={['config', 's3', 'secret_key']} label='S3 Secret Key'>
                 <Input />
             </FormItem>
-            <FormItem name={['config', 's3', 'bentos_bucket_name']} label='S3 Bentos Bucket Name'>
+            {/* <FormItem name={['config', 's3', 'bucket_name']} label='S3 Bucket Name'>
                 <Input />
-            </FormItem>
+            </FormItem> */}
             <FormItem name={['config', 's3', 'models_bucket_name']} label='S3 Models Bucket Name'>
                 <Input />
             </FormItem>
@@ -78,12 +78,9 @@ export default function OrganizationForm({ organization, onSubmit }: IOrganizati
             <FormItem name={['config', 's3', 'secure']} label='S3 Secure'>
                 <Toggle />
             </FormItem>
-            <FormItem
-                name={['config', 'docker_registry', 'bentos_repository_uri']}
-                label='Docker Registry Bentos Repository URI'
-            >
+            {/* <FormItem name={['config', 'docker_registry', 'repository_uri']} label='Docker Registry Repository URI'>
                 <Input />
-            </FormItem>
+            </FormItem> */}
             <FormItem
                 name={['config', 'docker_registry', 'models_repository_uri']}
                 label='Docker Registry Models Repository URI'

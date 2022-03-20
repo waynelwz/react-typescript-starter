@@ -1,4 +1,3 @@
-import { YataiComponentType } from '@/schemas/yatai_component'
 import { ResourceType } from '@/schemas/resource'
 import type { IconType } from 'react-icons/lib'
 import { GrOrganization, GrServerCluster, GrDeploy, GrUser } from 'react-icons/gr'
@@ -21,19 +20,4 @@ export const resourceIconMapping: Record<ResourceType, IconType> = {
     user: GrUser,
     user_group: HiOutlineUserGroup,
     organization: GrOrganization,
-    cluster: GrServerCluster,
-    bento_repository: GoPackage,
-    bento: AiOutlineCodeSandbox,
-    deployment: GrDeploy,
-    deployment_revision: BiRevision,
-    yatai_component: BiExtension,
-    model_repository: VscFileBinary,
-    model: VscFileBinary,
-    api_token: HiOutlineKey,
-}
-
-export const yataiComponentIconMapping: Record<YataiComponentType, IconType> = {
-    deployment: GrDeploy,
-    logging: RiMistFill,
-    monitoring: AiOutlineDashboard,
 }

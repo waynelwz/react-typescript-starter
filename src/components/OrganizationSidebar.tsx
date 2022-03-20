@@ -30,34 +30,6 @@ export default function OrganizationSidebar({ style }: IComposedSidebarProps) {
                 path: '/',
                 icon: RiSurveyLine,
             },
-            {
-                title: t('models'),
-                path: '/models',
-                icon: resourceIconMapping.model,
-                activePathPattern: /^\/(models|model_repositories)\/?/,
-            },
-            {
-                title: t('bentos'),
-                path: '/bento_repositories',
-                icon: resourceIconMapping.bento,
-            },
-            {
-                title: t('deployments'),
-                path: '/deployments',
-                icon: resourceIconMapping.deployment,
-                activePathPattern:
-                    /^\/(deployments|new_deployment|clusters\/[^/]+\/namespaces\/[^/]+\/deployments\/[^/]+)\/?/,
-            },
-            {
-                title: t('clusters'),
-                path: '/clusters',
-                icon: resourceIconMapping.cluster,
-            },
-            {
-                title: t('events'),
-                path: '/events',
-                icon: FiActivity,
-            },
         ],
         [t]
     )

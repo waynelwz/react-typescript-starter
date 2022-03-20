@@ -1,49 +1,54 @@
-import Card from '@/components/Card'
-import { createForm } from '@/components/Form'
-import LoginLayout from '@/components/LoginLayout'
-import { useCurrentThemeType } from '@/hooks/useCurrentThemeType'
-import useTranslation from '@/hooks/useTranslation'
-import { ILoginUserSchema } from '@/schemas/user'
-import { loginUser } from '@/services/user'
-import { Button } from 'baseui/button'
-import { Input } from 'baseui/input'
-import qs from 'qs'
 import React, { useCallback, useState } from 'react'
-import logo from '@/assets/logo.svg'
-import logoDark from '@/assets/logo-dark.svg'
-import Text from '@/components/Text'
-import { useHistory, useLocation } from 'react-router-dom'
+import qs from 'qs'
 import { useStyletron } from 'baseui'
+import LoginLayout from '@/components/LoginLayout'
+import useTranslation from '@/hooks/useTranslation'
+import { createForm } from '@/components/Form'
+import Card from '@/components/Card'
+import { useCurrentThemeType } from '@/hooks/useCurrentThemeType'
+import logo from '@/assets/logo.svg'
+import Text from '@/components/Text'
+import logoDark from '@/assets/logo-dark.svg'
+import { useHistory, useLocation } from 'react-router-dom'
+import { Input } from 'baseui/input'
+import { Button } from 'baseui/button'
+import { setupSelfHost } from '@/services/setup'
+import { toaster } from 'baseui/toast'
+import { ISetupSelfHostSchema } from '@/schemas/setup'
 
-const { Form, FormItem } = createForm<ILoginUserSchema>()
+const { Form, FormItem } = createForm<ISetupSelfHostSchema>()
 
-export default function Login() {
+export default function Setup() {
     const currentThemeType = useCurrentThemeType()
     const [, theme] = useStyletron()
     const [t] = useTranslation()
-    const location = useLocation()
-    const history = useHistory()
     const [isLoading, setIsLoading] = useState(false)
-
+    const history = useHistory()
+    const location = useLocation()
+    const [values, setValues] = useState<ISetupSelfHostSchema | undefined>(undefined)
     const handleFinish = useCallback(
-        async (data: ILoginUserSchema) => {
+        async (data: ISetupSelfHostSchema) => {
             setIsLoading(true)
             try {
-                await loginUser(data)
                 const search = qs.parse(location.search, { ignoreQueryPrefix: true })
-                let { redirect } = search
-                if (redirect && typeof redirect === 'string') {
-                    redirect = decodeURI(redirect)
+                const { token } = search
+                if (token && typeof token === 'string') {
+                    await setupSelfHost({ ...data, token })
                 } else {
-                    redirect = '/'
+                    toaster.negative('missing token in the url', { autoHideDuration: 3000 })
+                    return
                 }
-                history.push(redirect)
+                toaster.positive('setup success', { autoHideDuration: 3000 })
+                history.push('/')
             } finally {
                 setIsLoading(false)
             }
         },
         [history, location.search]
     )
+    const handleValuesChange = useCallback((_changes, newValues) => {
+        setValues(newValues)
+    }, [])
 
     return (
         <LoginLayout
@@ -68,6 +73,9 @@ export default function Login() {
                     }}
                 >
                     <Card
+                        style={{
+                            flexShrink: 0,
+                        }}
                         bodyStyle={{
                             padding: 40,
                             width: 500,
@@ -80,6 +88,7 @@ export default function Login() {
                                 paddingBottom: 20,
                                 alignItems: 'center',
                                 gap: 10,
+                                minWidth: 400,
                             }}
                         >
                             <img
@@ -101,8 +110,22 @@ export default function Login() {
                                 LOGO
                             </Text>
                         </div>
-                        <Form onFinish={handleFinish}>
-                            <FormItem name='name_or_email' label={t('email')}>
+                        <div
+                            style={{
+                                flexShrink: 0,
+                                display: 'flex',
+                                paddingBottom: 10,
+                                alignItems: 'center',
+                                gap: 10,
+                            }}
+                        >
+                            {t('setup initial admin account')}
+                        </div>
+                        <Form initialValues={values} onValuesChange={handleValuesChange} onFinish={handleFinish}>
+                            <FormItem name='name' label={t('name')}>
+                                <Input />
+                            </FormItem>
+                            <FormItem name='email' label={t('email')}>
                                 <Input />
                             </FormItem>
                             <FormItem name='password' label={t('password')}>
@@ -110,10 +133,11 @@ export default function Login() {
                             </FormItem>
                             <FormItem>
                                 <div style={{ display: 'flex' }}>
-                                    <div style={{ flexGrow: 1 }} />
-                                    <Button isLoading={isLoading} size='compact'>
-                                        {t('login')}
-                                    </Button>
+                                    <div style={{ flexGrow: 1 }}>
+                                        <Button isLoading={isLoading} size='compact'>
+                                            {t('submit')}
+                                        </Button>
+                                    </div>
                                 </div>
                             </FormItem>
                         </Form>

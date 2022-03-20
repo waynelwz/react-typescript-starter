@@ -5,7 +5,6 @@ import { FitAddon } from 'xterm-addon-fit'
 import 'xterm/css/xterm.css'
 import qs from 'qs'
 import { decode } from 'js-base64'
-import { IKubePodSchema } from '@/schemas/kube_pod'
 import { IWsRespSchema } from '@/schemas/websocket'
 import { toaster } from 'baseui/toast'
 
@@ -20,7 +19,7 @@ interface ITerminalProps {
     height?: number
     debug?: boolean
     fork?: boolean
-    onGetGeneratedPod?: (pod: IKubePodSchema) => void
+    // onGetGeneratedPod?: (pod: IKubePodSchema) => void
 }
 
 export default function Terminal({
@@ -34,8 +33,8 @@ export default function Terminal({
     height,
     debug,
     fork,
-    onGetGeneratedPod,
-}: ITerminalProps) {
+}: // onGetGeneratedPod,
+ITerminalProps) {
     const elRef = useRef<null | HTMLDivElement>(null)
     const wsRef = useRef<null | WebSocket>(null)
     const fitRef = useRef<null | FitAddon>(null)
@@ -121,17 +120,18 @@ export default function Terminal({
             } catch {
                 //
             }
-            if (onGetGeneratedPod) {
-                try {
-                    const resp = JSON.parse(event.data)
-                    if (resp.is_mcd_msg && resp.pod) {
-                        onGetGeneratedPod(resp.pod)
-                        return
-                    }
-                } catch {
-                    //
-                }
-            }
+            // if (onGetGeneratedPod) {
+            //     try {
+            //         const resp = JSON.parse(event.data)
+            //         if (resp.is_mcd_msg && resp.pod) {
+            //             onGetGeneratedPod(resp.pod)
+            //             return
+            //         }
+            //     } catch {
+            //         //
+            //     }
+            // }
+
             const data = decode(event.data)
             terminal.write(data)
         }
@@ -155,7 +155,7 @@ export default function Terminal({
             window.removeEventListener('resize', resizeHandler)
             ws?.close()
         }
-    }, [clusterName, containerName, debug, deploymentName, fork, namespace, onGetGeneratedPod, open, podName])
+    }, [clusterName, containerName, debug, deploymentName, fork, namespace, open, podName])
 
     return (
         <div

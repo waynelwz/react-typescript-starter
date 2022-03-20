@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable import/no-cycle */
-import { IBentoSchema, ImageBuildStatus } from './bento'
 import { ILabelItemSchema } from './label'
 import { IModelRepositorySchema } from './model_repository'
 import { IResourceSchema } from './resource'
@@ -9,7 +8,6 @@ import { IUserSchema } from './user'
 export type ModelUploadStatus = 'pending' | 'uploading' | 'success' | 'failed'
 
 export interface IModelManifestSchema {
-    bentoml_version: string
     api_version: string
     module: string
     metadata: {
@@ -29,7 +27,6 @@ export interface IModelSchema extends IResourceSchema {
     version: string
     description?: string
     manifest: IModelManifestSchema
-    image_build_status: ImageBuildStatus
     upload_status: ModelUploadStatus
     upload_started_at?: string
     upload_finished_at?: string
@@ -42,9 +39,7 @@ export interface IModelWithRepositorySchema extends IModelSchema {
     repository: IModelRepositorySchema
 }
 
-export interface IModelFullSchema extends IModelWithRepositorySchema {
-    bentos: IBentoSchema[]
-}
+export interface IModelFullSchema extends IModelWithRepositorySchema {}
 
 export interface ICreateModelSchema {
     version: string

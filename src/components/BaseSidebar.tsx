@@ -14,7 +14,6 @@ import color from 'color'
 import Text from '@/components/Text'
 import useTranslation from '@/hooks/useTranslation'
 import { useQuery } from 'react-query'
-import { fetchVersion } from '@/services/version'
 import { formatDateTime } from '@/utils/datetime'
 import { StatefulTooltip } from 'baseui/tooltip'
 import { GrContact } from 'react-icons/gr'
@@ -70,7 +69,6 @@ export interface IBaseSideBarProps extends IComposedSidebarProps {
 }
 
 export default function BaseSidebar({ navItems, style, title, icon, settingsPath }: IBaseSideBarProps) {
-    const versionInfo = useQuery('version', fetchVersion)
     const width = useSidebarWidth()
     const ctx = useContext(SidebarContext)
 
@@ -282,7 +280,8 @@ export default function BaseSidebar({ navItems, style, title, icon, settingsPath
                                 width: ctx.expanded ? sidebarExpandedWidth - sidebarFoldedWidth : sidebarFoldedWidth,
                             }}
                         >
-                            <StatefulTooltip
+                            {/* todo version */}
+                            {/* <StatefulTooltip
                                 content={
                                     <div>
                                         Build at {versionInfo.data ? formatDateTime(versionInfo.data.build_date) : '-'}
@@ -300,7 +299,7 @@ export default function BaseSidebar({ navItems, style, title, icon, settingsPath
                                         ? '-'
                                         : `v${versionInfo.data?.version}-${versionInfo.data?.git_commit}`}
                                 </div>
-                            </StatefulTooltip>
+                            </StatefulTooltip> */}
                         </div>
                     )}
                     <div

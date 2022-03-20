@@ -11,13 +11,9 @@ import { Link, useLocation } from 'react-router-dom'
 import { useStyletron } from 'baseui'
 import { headerHeight, resourceIconMapping } from '@/consts'
 import { SidebarContext } from '@/contexts/SidebarContext'
-import logo from '@/assets/logo.svg'
-import logoDark from '@/assets/logo-dark.svg'
 import useTranslation from '@/hooks/useTranslation'
-import { createOrganization } from '@/services/organization'
 import { useOrganization } from '@/hooks/useOrganization'
 import OrganizationForm from '@/components/OrganizationForm'
-import { ICreateOrganizationSchema } from '@/schemas/organization'
 import { BiMoon, BiSun } from 'react-icons/bi'
 import color from 'color'
 import { createUseStyles } from 'react-jss'
@@ -27,11 +23,7 @@ import { useThemeType } from '@/hooks/useThemeType'
 import classNames from 'classnames'
 import User from '@/components/User'
 import Text from '@/components/Text'
-import { ICreateClusterSchema } from '@/schemas/cluster'
 import { IChangePasswordSchema } from '@/schemas/user'
-import { createCluster } from '@/services/cluster'
-import { useCluster } from '@/hooks/useCluster'
-import ClusterForm from '@/components/Cluster/ClusterForm'
 import i18n from '@/i18n'
 import { simulationJump } from '@/utils'
 import { colors } from '@/utils/theme'
@@ -192,17 +184,12 @@ const ThemeToggle = ({ className }: IThemeToggleProps) => {
     )
 }
 
-const clusterPathPattern = /\/clusters\/([^/]+).*/
-
 export default function Header() {
     const [css, theme] = useStyletron()
     const themeType = useCurrentThemeType()
     const styles = useStyles({ theme, themeType })
     const headerStyles = useHeaderStyles({ theme, themeType })
     const location = useLocation()
-    // FIXME: can not use useParams, because of Header is not under the Route component
-    const clusterMatch = useMemo(() => location.pathname.match(clusterPathPattern), [location.pathname])
-    const clusterName = clusterMatch ? clusterMatch[1] : undefined
 
     const errMsgExpireTimeSeconds = 5
     const lastErrMsgRef = useRef<Record<string, number>>({})
@@ -263,13 +250,6 @@ export default function Header() {
 
     const { organization } = useOrganization()
 
-    const { setCluster } = useCluster()
-    useEffect(() => {
-        if (!clusterName) {
-            setCluster(undefined)
-        }
-    }, [clusterName, setCluster])
-
     const ctx = useContext(SidebarContext)
     const [t] = useTranslation()
 
@@ -281,20 +261,6 @@ export default function Header() {
                 <span style={{ verticalAlign: 'middle' }}>{option.text}</span>
             </div>
         )
-    }, [])
-
-    const [isCreateOrgModalOpen, setIsCreateOrgModalOpen] = useState(false)
-
-    const handleCreateOrg = useCallback(async (data: ICreateOrganizationSchema) => {
-        await createOrganization(data)
-        setIsCreateOrgModalOpen(false)
-    }, [])
-
-    const [isCreateClusterModalOpen, setIsCreateClusterModalOpen] = useState(false)
-
-    const handleCreateCluster = useCallback(async (data: ICreateClusterSchema) => {
-        await createCluster(data)
-        setIsCreateClusterModalOpen(false)
     }, [])
 
     const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false)
@@ -309,7 +275,7 @@ export default function Header() {
     )
 
     const currentThemeType = useCurrentThemeType()
-    console.log(theme)
+
     return (
         <header className={headerStyles.headerWrapper}>
             <Link
@@ -420,14 +386,6 @@ export default function Header() {
                         <User user={currentUser} />
                     </div>
                     <div className={styles.userMenu}>
-                        <Link className={styles.userMenuItem} to='/members'>
-                            {React.createElement(resourceIconMapping.user_group, { size: 12 })}
-                            <span>{t('members')}</span>
-                        </Link>
-                        <Link className={styles.userMenuItem} to='/api_tokens'>
-                            {React.createElement(resourceIconMapping.api_token, { size: 12 })}
-                            <span>{t('api tokens')}</span>
-                        </Link>
                         <div
                             role='button'
                             tabIndex={0}
@@ -453,30 +411,6 @@ export default function Header() {
                     </div>
                 </div>
             )}
-            <Modal
-                isOpen={isCreateOrgModalOpen}
-                onClose={() => setIsCreateOrgModalOpen(false)}
-                closeable
-                animate
-                autoFocus
-            >
-                <ModalHeader>{t('create sth', [t('organization')])}</ModalHeader>
-                <ModalBody>
-                    <OrganizationForm onSubmit={handleCreateOrg} />
-                </ModalBody>
-            </Modal>
-            <Modal
-                isOpen={isCreateClusterModalOpen}
-                onClose={() => setIsCreateClusterModalOpen(false)}
-                closeable
-                animate
-                autoFocus
-            >
-                <ModalHeader>{t('create sth', [t('cluster')])}</ModalHeader>
-                <ModalBody>
-                    <ClusterForm onSubmit={handleCreateCluster} />
-                </ModalBody>
-            </Modal>
             <Modal
                 isOpen={isChangePasswordOpen}
                 onClose={() => setIsChangePasswordOpen(false)}
