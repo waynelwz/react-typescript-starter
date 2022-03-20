@@ -1,5 +1,5 @@
 import Card from '@/components/Card'
-import ClusterForm from '@/components/ClusterForm'
+import ClusterForm from '@/components/Cluster/ClusterForm'
 import { useCluster } from '@/hooks/useCluster'
 import useTranslation from '@/hooks/useTranslation'
 import { updateCluster } from '@/services/cluster'

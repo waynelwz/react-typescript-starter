@@ -8,7 +8,7 @@ import { IModelRepositorySchema } from '@/schemas/model_repository'
 import { IModelFullSchema } from '@/schemas/model'
 import { IBentoFullSchema } from '@/schemas/bento'
 
-export type BaseThemeType = 'light' | 'dark'
+export type BaseThemeType = 'light' | 'dark' | 'deep'
 export type ThemeType = BaseThemeType | 'followTheSystem'
 
 const initialState = {

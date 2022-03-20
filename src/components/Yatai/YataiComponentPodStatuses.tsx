@@ -3,7 +3,7 @@ import { IKubeResourceSchema } from '@/schemas/kube_resource'
 import { YataiComponentType } from '@/schemas/yatai_component'
 import { Skeleton } from 'baseui/skeleton'
 import { useState } from 'react'
-import KubeResourcePodStatuses from './KubeResourcePodStatuses'
+import KubeResourcePodStatuses from '../KubeResourcePodStatuses'
 
 interface IYataiComponentPodStatusesProps {
     clusterName: string

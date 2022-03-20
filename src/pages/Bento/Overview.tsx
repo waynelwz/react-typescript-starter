@@ -25,7 +25,7 @@ import { docco, dark } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 import { Notification } from 'baseui/notification'
 import List from '@/components/List'
 import { IDeploymentSchema } from '@/schemas/deployment'
-import DeploymentStatusTag from '@/components/DeploymentStatusTag'
+import DeploymentStatusTag from '@/components/Deployment/DeploymentStatusTag'
 import { useStyletron } from 'baseui'
 import { useCurrentThemeType } from '@/hooks/useCurrentThemeType'
 import ModelList from '@/components/ModelList'
@@ -43,7 +43,7 @@ const useStyles = createUseStyles({
     },
     itemsWrapper: {
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'column2',
         gap: 10,
     },
     item: {

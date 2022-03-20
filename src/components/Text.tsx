@@ -9,8 +9,8 @@ export interface ITextProps {
 
 const fontSizeMap: { [k in Exclude<ITextProps['size'], undefined>]: string } = {
     small: '12px',
-    medium: '13px',
-    large: '14px',
+    medium: '14px',
+    large: '16px',
 }
 
 export default function Text({ children, style, size = 'medium' }: ITextProps) {
@@ -20,7 +20,8 @@ export default function Text({ children, style, size = 'medium' }: ITextProps) {
             style={style}
             className={css({
                 fontSize: fontSizeMap[size],
-                color: theme.colors.contentPrimary,
+                // color: theme.colors.contentPrimary,
+                color: '#fff',
             })}
         >
             {children}

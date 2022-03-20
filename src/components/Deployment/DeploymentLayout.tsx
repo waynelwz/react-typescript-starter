@@ -21,12 +21,12 @@ import { RiSurveyLine } from 'react-icons/ri'
 import { VscServerProcess } from 'react-icons/vsc'
 import { useQueryClient } from 'react-query'
 import { useHistory, useParams } from 'react-router-dom'
-import { INavItem } from './BaseSidebar'
-import BaseSubLayout from './BaseSubLayout'
-import Card from './Card'
+import { INavItem } from '../BaseSidebar'
+import BaseSubLayout from '../BaseSubLayout'
+import Card from '../Card'
 import DeploymentForm from './DeploymentForm'
 import DeploymentStatusTag from './DeploymentStatusTag'
-import DoubleCheckForm from './DoubleCheckForm'
+import DoubleCheckForm from '../DoubleCheckForm'
 
 export interface IDeploymentLayoutProps {
     children: React.ReactNode

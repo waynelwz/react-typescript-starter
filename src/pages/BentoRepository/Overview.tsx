@@ -8,7 +8,7 @@ import { Skeleton } from 'baseui/skeleton'
 import { Button } from 'baseui/button'
 import { updateBentoRepository } from '@/services/bento_repository'
 import { useParams } from 'react-router-dom'
-import BentoListCard from '@/components/BentoListCard'
+import BentoListCard from '@/components/Bento/BentoListCard'
 
 export default function BentoRepositoryOverview() {
     const { bentoRepositoryName } = useParams<{ bentoRepositoryName: string }>()

@@ -190,6 +190,7 @@ export default function BaseSidebar({ navItems, style, title, icon, settingsPath
                         style: {
                             fontSize: '14px',
                             flexGrow: 1,
+                            fontWeight: 700,
                         },
                     },
                 }}
@@ -201,24 +202,25 @@ export default function BaseSidebar({ navItems, style, title, icon, settingsPath
                 }}
             />
             <div>
-                <div style={bottomItemStyle}>
+                {/* todo fixme */}
+                {/* <div style={bottomItemStyle}>
                     <CgCommunity />
-                    <Link href='https://join.slack.bentoml.org' target='_blank'>
+                    <Link href='https://join.slack.xxx.org' target='_blank'>
                         {t('community')}
                     </Link>
                 </div>
                 <div style={bottomItemStyle}>
                     <CgFileDocument />
-                    <Link href='https://docs.bentoml.org' target='_blank'>
+                    <Link href='https://docs.xxx.org' target='_blank'>
                         {t('docs')}
                     </Link>
                 </div>
                 <div style={bottomItemStyle}>
                     <GrContact />
-                    <Link href='mailto:contact@bentoml.ai' target='_blank'>
+                    <Link href='mailto:contact@xxx.ai' target='_blank'>
                         {t('contact')}
                     </Link>
-                </div>
+                </div> */}
                 <div
                     style={{
                         display: 'flex',

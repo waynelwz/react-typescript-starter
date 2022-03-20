@@ -3,7 +3,7 @@ import Card from '@/components/Card'
 import { createCluster } from '@/services/cluster'
 import { usePage } from '@/hooks/usePage'
 import { ICreateClusterSchema } from '@/schemas/cluster'
-import ClusterForm from '@/components/ClusterForm'
+import ClusterForm from '@/components/Cluster/ClusterForm'
 import { formatDateTime } from '@/utils/datetime'
 import useTranslation from '@/hooks/useTranslation'
 import { Button, SIZE as ButtonSize } from 'baseui/button'
@@ -12,7 +12,7 @@ import { Modal, ModalHeader, ModalBody } from 'baseui/modal'
 import Table from '@/components/Table'
 import { useFetchClusters } from '@/hooks/useFetchClusters'
 import { resourceIconMapping } from '@/consts'
-import Link from './Link'
+import Link from '../Link'
 
 export default function ClusterListCard() {
     const [page] = usePage()

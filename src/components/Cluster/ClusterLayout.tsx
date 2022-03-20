@@ -9,7 +9,7 @@ import { fetchCluster } from '@/services/cluster'
 import { useOrganization } from '@/hooks/useOrganization'
 import { resourceIconMapping } from '@/consts'
 import { AiOutlineSetting } from 'react-icons/ai'
-import BaseSubLayout from './BaseSubLayout'
+import BaseSubLayout from '../BaseSubLayout'
 
 export interface IClusterLayoutProps {
     children: React.ReactNode

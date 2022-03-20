@@ -2,7 +2,7 @@ import React from 'react'
 import useTranslation from '@/hooks/useTranslation'
 import { createUseStyles } from 'react-jss'
 import { IDeploymentTargetSchema } from '@/schemas/deployment_target'
-import Label from './Label'
+import Label from '../Label'
 
 const useStyles = createUseStyles({
     rulesWrapper: {

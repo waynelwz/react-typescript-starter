@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import Card from '@/components/Card'
-import DeploymentMonitor from '@/components/DeploymentMonitor'
+import DeploymentMonitor from '@/components/Deployment/DeploymentMonitor'
 import { useDeployment } from '@/hooks/useDeployment'
 import { useFetchYataiComponents } from '@/hooks/useFetchYataiComponents'
 import useTranslation from '@/hooks/useTranslation'

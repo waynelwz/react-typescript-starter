@@ -1,4 +1,4 @@
-import DeploymentForm from '@/components/DeploymentForm'
+import DeploymentForm from '@/components/Deployment/DeploymentForm'
 import { useCallback } from 'react'
 import { IUpdateDeploymentSchema } from '@/schemas/deployment'
 import { useParams } from 'react-router-dom'

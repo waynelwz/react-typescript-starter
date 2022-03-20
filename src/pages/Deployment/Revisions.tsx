@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import DeploymentRevisionListCard from '@/components/DeploymentRevisionListCard'
+import DeploymentRevisionListCard from '@/components/Deployment/DeploymentRevisionListCard'
 import KubePodEvents from '@/components/KubePodEvents'
 import Card from '@/components/Card'
 import useTranslation from '@/hooks/useTranslation'

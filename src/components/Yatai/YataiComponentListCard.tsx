@@ -8,7 +8,7 @@ import {
     YataiComponentReleaseStatus,
     YataiComponentType,
 } from '@/schemas/yatai_component'
-import YataiComponentForm from '@/components/YataiComponentForm'
+import YataiComponentForm from '@/components/Yatai/YataiComponentForm'
 import { formatDateTime } from '@/utils/datetime'
 import useTranslation from '@/hooks/useTranslation'
 import { Button, SIZE as ButtonSize } from 'baseui/button'

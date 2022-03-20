@@ -10,7 +10,7 @@ import { AiOutlineHistory } from 'react-icons/ai'
 import { useParams } from 'react-router-dom'
 import { Button } from 'baseui/button'
 import { Modal, ModalBody, ModalHeader } from 'baseui/modal'
-import DeploymentTerminalRecordList from '@/components/DeploymentTerminalRecordList'
+import DeploymentTerminalRecordList from '@/components/Deployment/DeploymentTerminalRecordList'
 import Link from '@/components/Link'
 
 export default function DeploymentOverview() {

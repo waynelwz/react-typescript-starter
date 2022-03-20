@@ -1,7 +1,9 @@
+// @flow
 import React from 'react'
 import { Client as Styletron } from 'styletron-engine-atomic'
 import { Provider as StyletronProvider } from 'styletron-react'
-import { LightTheme, BaseProvider, DarkTheme } from 'baseui'
+import { BaseProvider, DarkTheme, createTheme } from 'baseui'
+import type { LightTheme as LightThemeType } from 'baseui'
 import { ToasterContainer } from 'baseui/toast'
 import { SidebarContext } from '@/contexts/SidebarContext'
 import { useSidebar } from '@/hooks/useSidebar'
@@ -11,6 +13,15 @@ import { useCurrentThemeType } from '@/hooks/useCurrentThemeType'
 
 const engine = new Styletron()
 const queryClient = new QueryClient()
+// todo refact
+const primitives = {
+    primaryFontFamily: 'Inter',
+}
+const overrides = {
+    colors: {},
+    typography: {},
+}
+const theme = createTheme(primitives, overrides)
 
 export default function Hello() {
     const sidebarData = useSidebar()
@@ -19,7 +30,7 @@ export default function Hello() {
     return (
         <QueryClientProvider client={queryClient}>
             <StyletronProvider value={engine}>
-                <BaseProvider theme={themeType === 'dark' ? DarkTheme : LightTheme}>
+                <BaseProvider theme={themeType === 'dark' ? DarkTheme : theme}>
                     <ToasterContainer autoHideDuration={5000}>
                         <SidebarContext.Provider value={sidebarData}>
                             <Routes />

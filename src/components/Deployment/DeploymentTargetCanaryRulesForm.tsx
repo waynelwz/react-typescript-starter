@@ -8,7 +8,7 @@ import { Modal, ModalBody, ModalHeader } from 'baseui/modal'
 import { Slider } from 'baseui/slider'
 import { Input } from 'baseui/input'
 import AppDeploymentCanaryRuleTypeSelector from './DeploymentTargetCanaryRuleTypeSelector'
-import Text from './Text'
+import Text from '../Text'
 
 interface IDeploymentTargetCanaryRulesFormProps {
     value?: IDeploymentTargetCanaryRule[]

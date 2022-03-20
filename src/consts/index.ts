@@ -9,7 +9,7 @@ import { GoPackage } from 'react-icons/go'
 import { VscFileBinary } from 'react-icons/vsc'
 import { RiMistFill } from 'react-icons/ri'
 
-export const headerHeight = 55
+export const headerHeight = 70
 export const sidebarExpandedWidth = 220
 export const sidebarFoldedWidth = 68
 export const textVariant = 'smallPlus'

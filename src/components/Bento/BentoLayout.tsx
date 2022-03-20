@@ -5,7 +5,7 @@ import React, { useEffect, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import { INavItem } from '@/components/BaseSidebar'
 import { resourceIconMapping } from '@/consts'
-import BaseSubLayout from './BaseSubLayout'
+import BaseSubLayout from '../BaseSubLayout'
 
 export interface IBentoLayoutProps {
     children: React.ReactNode

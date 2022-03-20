@@ -1,4 +1,4 @@
-import DeploymentForm from '@/components/DeploymentForm'
+import DeploymentForm from '@/components/Deployment/DeploymentForm'
 import { ICreateDeploymentSchema } from '@/schemas/deployment'
 import { createDeployment } from '@/services/deployment'
 import React, { useCallback } from 'react'

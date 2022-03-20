@@ -15,7 +15,6 @@ import logo from '@/assets/logo.svg'
 import logoDark from '@/assets/logo-dark.svg'
 import useTranslation from '@/hooks/useTranslation'
 import { createOrganization } from '@/services/organization'
-import { Select } from 'baseui/select'
 import { useOrganization } from '@/hooks/useOrganization'
 import OrganizationForm from '@/components/OrganizationForm'
 import { ICreateOrganizationSchema } from '@/schemas/organization'
@@ -33,13 +32,12 @@ import { IChangePasswordSchema } from '@/schemas/user'
 import { createCluster } from '@/services/cluster'
 import { useCluster } from '@/hooks/useCluster'
 import ClusterForm from '@/components/Cluster/ClusterForm'
-import ReactCountryFlag from 'react-country-flag'
 import i18n from '@/i18n'
 import { simulationJump } from '@/utils'
 import { colors } from '@/utils/theme'
 import { FiLogOut } from 'react-icons/fi'
 import { MdPassword } from 'react-icons/md'
-import PasswordForm from './PasswordForm'
+import PasswordForm from '@/components/PasswordForm'
 
 const useHeaderStyles = createUseStyles({
     headerWrapper: (props: IThemedStyleProps) => ({
@@ -328,7 +326,8 @@ export default function Header() {
                 }}
                 to='/'
             >
-                <div
+                {/* todo logo */}
+                {/* <div
                     style={{
                         flexShrink: 0,
                         display: 'flex',
@@ -345,7 +344,7 @@ export default function Header() {
                         src={currentThemeType === 'light' ? logo : logoDark}
                         alt='logo'
                     />
-                </div>
+                </div> */}
                 {ctx.expanded && (
                     <Text
                         size='large'
@@ -414,65 +413,6 @@ export default function Header() {
                 })}
             >
                 <ThemeToggle />
-                <div
-                    style={{
-                        width: 140,
-                    }}
-                >
-                    <Select
-                        overrides={{
-                            ControlContainer: {
-                                style: {
-                                    fontSize: 12,
-                                },
-                            },
-                            InputContainer: {
-                                style: {
-                                    fontSize: 12,
-                                },
-                            },
-                        }}
-                        clearable={false}
-                        searchable={false}
-                        size='mini'
-                        value={[{ id: i18n.language ? i18n.language.split('-')[0] : '' }]}
-                        onChange={(params) => {
-                            if (!params.option?.id) {
-                                return
-                            }
-                            i18n.changeLanguage(params.option?.id as string)
-                        }}
-                        getOptionLabel={handleRenderLanguageOption}
-                        getValueLabel={handleRenderLanguageOption}
-                        options={[
-                            {
-                                id: 'en',
-                                text: 'English',
-                                flag: <ReactCountryFlag countryCode='US' svg />,
-                            },
-                            {
-                                id: 'zh',
-                                text: '中文',
-                                flag: <ReactCountryFlag countryCode='CN' svg />,
-                            },
-                            {
-                                id: 'ja',
-                                text: '日本語',
-                                flag: <ReactCountryFlag countryCode='JP' svg />,
-                            },
-                            {
-                                id: 'ko',
-                                text: '한국어',
-                                flag: <ReactCountryFlag countryCode='KR' svg />,
-                            },
-                            {
-                                id: 'vi',
-                                text: 'Tiếng Việt',
-                                flag: <ReactCountryFlag countryCode='VN' svg />,
-                            },
-                        ]}
-                    />
-                </div>
             </div>
             {currentUser && (
                 <div className={styles.userWrapper}>

@@ -5,8 +5,8 @@ import { MonoParagraphXSmall } from 'baseui/typography'
 import _ from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
-import ImageBuildStatusIcon from './ImageBuildStatusIcon'
-import Time from './Time'
+import ImageBuildStatusIcon from '../ImageBuildStatusIcon'
+import Time from '../Time'
 
 export interface IBentoSelectorProps {
     bentoRepositoryName: string

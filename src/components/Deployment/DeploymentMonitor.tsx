@@ -1,7 +1,7 @@
 import { useCluster } from '@/hooks/useCluster'
 import { IDeploymentSchema } from '@/schemas/deployment'
 import React from 'react'
-import GrafanaIFrame from './GrafanaIFrame'
+import GrafanaIFrame from '../GrafanaIFrame'
 
 interface IDeploymentMonitorProps {
     deployment: IDeploymentSchema
@@ -28,7 +28,7 @@ export default function DeploymentMonitor({ deployment }: IDeploymentMonitorProp
         'to': 'now',
         'var-datasource': 'Prometheus',
         'var-namespace': deployment.kube_namespace,
-        'var-pod': `yatai-${deployment.name}-stb`,
+        'var-pod': deployment.name,
         'var-container': 'All',
         'fullscreen': true,
         'refresh': '30s',

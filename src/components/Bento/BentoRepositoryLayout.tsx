@@ -9,7 +9,7 @@ import { useOrganization } from '@/hooks/useOrganization'
 import { resourceIconMapping } from '@/consts'
 import { Button } from 'baseui/button'
 import qs from 'qs'
-import BaseSubLayout from './BaseSubLayout'
+import BaseSubLayout from '../BaseSubLayout'
 
 export interface IBentoRepositoryLayoutProps {
     children: React.ReactNode

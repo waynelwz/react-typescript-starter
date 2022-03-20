@@ -1,5 +1,5 @@
 import React from 'react'
-import BaseLayout from './BaseLayout'
+import BaseLayout from '../BaseLayout'
 
 export interface IYataiLayoutProps {
     children: React.ReactNode

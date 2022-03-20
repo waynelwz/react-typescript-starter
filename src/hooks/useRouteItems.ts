@@ -1,5 +1,5 @@
 import useTranslation from '@/hooks/useTranslation'
-import Home from '@/pages/Yatai/Home'
+import Home from '@/pages/Dashboard/Home'
 import { useMemo } from 'react'
 
 export interface IRouteItem {

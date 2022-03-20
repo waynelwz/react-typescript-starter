@@ -1,6 +1,6 @@
 import Card from '@/components/Card'
 import { createForm } from '@/components/Form'
-import YataiLayout from '@/components/YataiLayout'
+import YataiLayout from '@/components/Yatai/YataiLayout'
 import { useCurrentThemeType } from '@/hooks/useCurrentThemeType'
 import useTranslation from '@/hooks/useTranslation'
 import { ILoginUserSchema } from '@/schemas/user'
