@@ -19,7 +19,6 @@ import color from 'color'
 import { createUseStyles } from 'react-jss'
 import { IThemedStyleProps } from '@/interfaces/IThemedStyle'
 import { useCurrentThemeType } from '@/hooks/useCurrentThemeType'
-import { useThemeType } from '@/hooks/useThemeType'
 import classNames from 'classnames'
 import User from '@/components/User'
 import Text from '@/components/Text'
@@ -30,6 +29,8 @@ import { colors } from '@/utils/theme'
 import { FiLogOut } from 'react-icons/fi'
 import { MdPassword } from 'react-icons/md'
 import PasswordForm from '@/components/PasswordForm'
+import ThemeToggle from './ThemeToggle'
+import HeaderLeftMenu from './HeaderLeftMenu'
 
 const useHeaderStyles = createUseStyles({
     headerWrapper: (props: IThemedStyleProps) => ({
@@ -114,76 +115,6 @@ const useStyles = createUseStyles({
     }),
 })
 
-const useThemeToggleStyles = createUseStyles({
-    root: ({ theme }: IThemedStyleProps) => ({
-        position: 'relative',
-        cursor: 'pointer',
-        border: `1px solid ${theme.borders.border300.borderColor}`,
-        borderRadius: 18,
-        height: 18,
-    }),
-    track: () => ({
-        height: 18,
-        padding: '0 4px',
-        transition: 'all 0.2s ease',
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-    }),
-    thumb: ({ theme }: IThemedStyleProps) => ({
-        position: 'absolute',
-        height: 18,
-        width: 18,
-        padding: 1,
-        top: -1,
-        left: -2,
-        borderRadius: '50%',
-        background: theme.colors.contentPrimary,
-        color: theme.colors.backgroundPrimary,
-        transition: 'all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0ms',
-        transform: 'translateX(0)',
-        textAlign: 'center',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    }),
-    checked: () => ({
-        transform: 'translateX(24px)',
-    }),
-})
-
-interface IThemeToggleProps {
-    className?: string
-}
-
-const ThemeToggle = ({ className }: IThemeToggleProps) => {
-    const [, theme] = useStyletron()
-    const themeType = useCurrentThemeType()
-    const styles = useThemeToggleStyles({ theme, themeType })
-    const { setThemeType } = useThemeType()
-    const checked = themeType === 'dark'
-
-    return (
-        <div
-            role='button'
-            tabIndex={0}
-            className={classNames(className, styles.root)}
-            onClick={() => {
-                const newThemeType = themeType === 'dark' ? 'light' : 'dark'
-                setThemeType(newThemeType)
-            }}
-        >
-            <div className={styles.track}>
-                <BiSun />
-                <BiMoon style={{ marginLeft: 4 }} />
-            </div>
-            <div className={classNames({ [styles.thumb]: true, [styles.checked]: checked })}>
-                {!checked ? <BiSun /> : <BiMoon />}
-            </div>
-        </div>
-    )
-}
-
 export default function Header() {
     const [css, theme] = useStyletron()
     const themeType = useCurrentThemeType()
@@ -253,16 +184,6 @@ export default function Header() {
     const ctx = useContext(SidebarContext)
     const [t] = useTranslation()
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const handleRenderLanguageOption = useCallback(({ option }: any) => {
-        return (
-            <div>
-                {option.flag && <span style={{ marginRight: 8, verticalAlign: 'middle' }}>{option.flag}</span>}
-                <span style={{ verticalAlign: 'middle' }}>{option.text}</span>
-            </div>
-        )
-    }, [])
-
     const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false)
 
     const handleChangePassword = useCallback(
@@ -274,7 +195,7 @@ export default function Header() {
         [t]
     )
 
-    const currentThemeType = useCurrentThemeType()
+    // const currentThemeType = useCurrentThemeType()
 
     return (
         <header className={headerStyles.headerWrapper}>
@@ -366,6 +287,9 @@ export default function Header() {
                     </div>
                 </>
             )}
+            <div>
+                <HeaderLeftMenu />
+            </div>
             <div style={{ flexGrow: 1 }} />
             <div
                 className={css({

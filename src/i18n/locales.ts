@@ -1869,6 +1869,21 @@ const locales0 = {
         ko: '',
         vi: '',
     },
+    // --------------------
+    'Project': {
+        en: 'Project',
+        zh: '',
+        ja: '',
+        ko: '',
+        vi: '',
+    },
+    'User': {
+        en: 'User',
+        zh: '',
+        ja: '',
+        ko: '',
+        vi: '',
+    },
 }
 
 export const locales: { [key in keyof typeof locales0]: ILocaleItem } = locales0
