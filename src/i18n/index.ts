@@ -29,38 +29,38 @@ i18n.use(LanguageDetector)
                     }
                 }, {}),
             },
-            zh: {
-                translations: Object.entries(locales).reduce((p, [k, v]) => {
-                    return {
-                        ...p,
-                        [k]: v.zh,
-                    }
-                }, {}),
-            },
-            ja: {
-                translations: Object.entries(locales).reduce((p, [k, v]) => {
-                    return {
-                        ...p,
-                        [k]: v.ja,
-                    }
-                }, {}),
-            },
-            ko: {
-                translations: Object.entries(locales).reduce((p, [k, v]) => {
-                    return {
-                        ...p,
-                        [k]: v.ko,
-                    }
-                }, {}),
-            },
-            vi: {
-                translations: Object.entries(locales).reduce((p, [k, v]) => {
-                    return {
-                        ...p,
-                        [k]: v.vi,
-                    }
-                }, {}),
-            },
+            // zh: {
+            //     translations: Object.entries(locales).reduce((p, [k, v]) => {
+            //         return {
+            //             ...p,
+            //             [k]: v.zh,
+            //         }
+            //     }, {}),
+            // },
+            // ja: {
+            //     translations: Object.entries(locales).reduce((p, [k, v]) => {
+            //         return {
+            //             ...p,
+            //             [k]: v.ja,
+            //         }
+            //     }, {}),
+            // },
+            // ko: {
+            //     translations: Object.entries(locales).reduce((p, [k, v]) => {
+            //         return {
+            //             ...p,
+            //             [k]: v.ko,
+            //         }
+            //     }, {}),
+            // },
+            // vi: {
+            //     translations: Object.entries(locales).reduce((p, [k, v]) => {
+            //         return {
+            //             ...p,
+            //             [k]: v.vi,
+            //         }
+            //     }, {}),
+            // },
         },
         fallbackLng: 'en',
         debug: false,

@@ -73,36 +73,8 @@ export default function Login() {
                             width: 500,
                         }}
                     >
-                        <div
-                            style={{
-                                flexShrink: 0,
-                                display: 'flex',
-                                paddingBottom: 20,
-                                alignItems: 'center',
-                                gap: 10,
-                            }}
-                        >
-                            <img
-                                style={{
-                                    width: 46,
-                                    height: 46,
-                                    display: 'inline-flex',
-                                    transition: 'all 250ms cubic-bezier(0.7, 0.1, 0.33, 1) 0ms',
-                                }}
-                                src={currentThemeType === 'light' ? logo : logoDark}
-                                alt='logo'
-                            />
-                            <Text
-                                style={{
-                                    fontSize: '18px',
-                                    fontFamily: 'Zen Tokyo Zoo',
-                                }}
-                            >
-                                LOGO
-                            </Text>
-                        </div>
                         <Form onFinish={handleFinish}>
-                            <FormItem name='name_or_email' label={t('email')}>
+                            <FormItem name='name_or_email' label={t('Username')}>
                                 <Input />
                             </FormItem>
                             <FormItem name='password' label={t('password')}>

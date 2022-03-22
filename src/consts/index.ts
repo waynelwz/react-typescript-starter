@@ -9,7 +9,7 @@ import { VscFileBinary } from 'react-icons/vsc'
 import { RiMistFill } from 'react-icons/ri'
 
 export const headerHeight = 70
-export const sidebarExpandedWidth = 220
+export const sidebarExpandedWidth = 200
 export const sidebarFoldedWidth = 68
 export const textVariant = 'smallPlus'
 export const dateFormat = 'YYYY-MM-DD'

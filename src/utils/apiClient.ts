@@ -5,13 +5,13 @@ import qs from 'qs'
 
 // Define possible endpoints
 const endPoints = {
-    test: 'https://60b2643d62ab150017ae21de.mockapi.io/',
+    test: 'https://virtserver.swaggerhub.com/dreamlandliu/test-mvp/1.0.0/',
     prod: 'https://prod.myapi.io/',
     staging: 'https://staging.myapi.io/',
 }
 
 // Create an axios instnce
-const instance = axios.create({
+const api = axios.create({
     // in real case, determine it dynamically
     baseURL: endPoints.test,
     timeout: 30000,
@@ -20,7 +20,7 @@ const instance = axios.create({
 })
 
 // Define interceptors to handle all requests.
-instance.interceptors.response.use(
+api.interceptors.response.use(
     (response) => {
         // You can add special logic for successful requests
         return response
@@ -53,4 +53,4 @@ instance.interceptors.response.use(
     }
 )
 
-export default instance
+export default api

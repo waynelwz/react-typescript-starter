@@ -1,9 +1,5 @@
 export interface ILocaleItem {
-    zh: string
     en: string
-    ja: string
-    ko: string
-    vi: string
 }
 
 const locales0 = {
@@ -1869,20 +1865,33 @@ const locales0 = {
         ko: '',
         vi: '',
     },
-    // --------------------
+    // --------------------\
+    'PROJECT': {
+        en: 'PROJECT',
+    },
     'Project': {
         en: 'Project',
-        zh: '',
-        ja: '',
-        ko: '',
-        vi: '',
+    },
+    'Create Project': {
+        en: 'Create Project',
+    },
+    'Project List': {
+        en: 'Project List',
+    },
+    'USER': {
+        en: 'USER',
     },
     'User': {
         en: 'User',
-        zh: '',
-        ja: '',
-        ko: '',
-        vi: '',
+    },
+    'Create User': {
+        en: 'Create User',
+    },
+    'User List': {
+        en: 'User List',
+    },
+    'Username': {
+        en: 'Username',
     },
 }
 

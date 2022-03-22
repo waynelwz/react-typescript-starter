@@ -4,6 +4,6 @@ export interface IColors {
 }
 
 export const colors: IColors = {
-    brand1: '#0C1B3E',
-    brand2: '#7D86A9',
+    brand1: '#007fff',
+    brand2: '#36425D',
 }

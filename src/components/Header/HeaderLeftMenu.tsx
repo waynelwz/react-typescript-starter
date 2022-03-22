@@ -6,11 +6,17 @@ import { AiFillCaretDown } from 'react-icons/ai'
 import { createUseStyles } from 'react-jss'
 import useTranslation from '@/hooks/useTranslation'
 
-const ITEMS = [{ label: 'Item One' }, { label: 'Item Two' }]
-const USER_ITEMS = [{ label: 'Item One' }, { label: 'Item Two' }]
-
 export default function HeaderLeftMenu() {
     const [t] = useTranslation()
+
+    const PROJECT_ITEMS = [
+        { label: t('Create Project'), type: 'create' },
+        { label: t('Project List'), type: 'list' },
+    ]
+    const USER_ITEMS = [
+        { label: t('Create User'), type: 'create' },
+        { label: t('User List'), type: 'list' },
+    ]
 
     return (
         <div>
@@ -19,7 +25,7 @@ export default function HeaderLeftMenu() {
                 placement={PLACEMENT.bottomLeft}
                 content={({ close }) => (
                     <StatefulMenu
-                        items={ITEMS}
+                        items={PROJECT_ITEMS}
                         onItemSelect={({ item }) => {
                             console.log(item)
                             close()
@@ -43,7 +49,7 @@ export default function HeaderLeftMenu() {
                     }}
                     endEnhancer={() => <AiFillCaretDown size={24} />}
                 >
-                    {t('Project')}
+                    {t('PROJECT')}
                 </Button>
             </StatefulPopover>
             <StatefulPopover
@@ -53,7 +59,7 @@ export default function HeaderLeftMenu() {
                         items={USER_ITEMS}
                         onItemSelect={() => close()}
                         overrides={{
-                            List: { style: { height: '150px', width: '138px' } },
+                            List: { style: { height: '100px', width: '125px' } },
                         }}
                     />
                 )}
@@ -71,7 +77,7 @@ export default function HeaderLeftMenu() {
                     }}
                     endEnhancer={() => <AiFillCaretDown size={24} />}
                 >
-                    {t('User')}
+                    {t('USER')}
                 </Button>
             </StatefulPopover>
         </div>

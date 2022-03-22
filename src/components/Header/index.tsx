@@ -34,9 +34,9 @@ import HeaderLeftMenu from './HeaderLeftMenu'
 
 const useHeaderStyles = createUseStyles({
     headerWrapper: (props: IThemedStyleProps) => ({
-        padding: '0 23px',
+        padding: '0 32px 0 0',
         position: 'fixed',
-        background: color(props.themeType === 'light' ? colors.brand1 : props.theme.colors.backgroundPrimary)
+        background: color(props.themeType === 'light' ? colors.brand2 : props.theme.colors.backgroundPrimary)
             .fade(props.themeType === 'light' ? 0 : 0.5)
             .string(),
         borderBottom: `1px solid ${props.theme.borders.border300.borderColor}`,
@@ -139,6 +139,8 @@ export default function Header() {
         if ((axios.interceptors.response as any).handlers.length > 0) {
             return
         }
+        // todo fix as a const
+        axios.defaults.baseURL = 'https://virtserver.swaggerhub.com/dreamlandliu/test-mvp/1.0.0/'
         axios.interceptors.response.use(
             (response) => {
                 return response
@@ -161,7 +163,7 @@ export default function Header() {
                         }/login?redirect=${encodeURIComponent(redirect)}`
                     }
                 } else if (Date.now() - (lastErrMsgRef.current[errMsg] || 0) > errMsgExpireTimeSeconds * 1000) {
-                    toaster.negative(errMsg, { autoHideDuration: (errMsgExpireTimeSeconds + 1) * 1000 })
+                    // toaster.negative(errMsg, { autoHideDuration: (errMsgExpireTimeSeconds + 1) * 1000 })
                     lastErrMsgRef.current[errMsg] = Date.now()
                 }
                 return Promise.reject(error)
@@ -201,12 +203,12 @@ export default function Header() {
         <header className={headerStyles.headerWrapper}>
             <Link
                 style={{
-                    flex: '0 0 auto',
+                    flex: '0 0 200px',
                     display: 'flex',
                     flexDirection: 'row',
                     textDecoration: 'none',
                     alignItems: 'center',
-                    justifyContent: 'start',
+                    justifyContent: 'center',
                     boxSizing: 'border-box',
                     transition: 'width 200ms cubic-bezier(0.7, 0.1, 0.33, 1) 0ms',
                     gap: 12,
@@ -237,59 +239,15 @@ export default function Header() {
                         size='large'
                         style={{
                             display: 'flex',
-                            fontSize: '16px',
-                            fontFamily: 'Zen Tokyo Zoo',
+                            fontSize: '34px',
+                            fontFamily: 'Inter',
                         }}
                     >
                         LOGO
                     </Text>
                 )}
             </Link>
-            {organization && (
-                <>
-                    <div
-                        style={{
-                            flexBasis: 1,
-                            flexShrink: 0,
-                            height: 20,
-                            background: theme.colors.borderAlt,
-                            margin: '0 20px',
-                        }}
-                    />
-                    <div
-                        style={{
-                            flexShrink: 0,
-                            display: 'flex',
-                            gap: 10,
-                            alignItems: 'center',
-                        }}
-                    >
-                        <Link
-                            style={{
-                                display: 'flex',
-                                flexShrink: 0,
-                                textDecoration: 'none',
-                                gap: 6,
-                                alignItems: 'center',
-                            }}
-                            to='/'
-                        >
-                            {React.createElement(resourceIconMapping.organization, { size: 12 })}
-                            <Text
-                                style={{
-                                    fontFamily: 'Teko',
-                                    fontSize: '18px',
-                                }}
-                            >
-                                {organization?.name}
-                            </Text>
-                        </Link>
-                    </div>
-                </>
-            )}
-            <div>
-                <HeaderLeftMenu />
-            </div>
+            <div>{currentUser && <HeaderLeftMenu />}</div>
             <div style={{ flexGrow: 1 }} />
             <div
                 className={css({
