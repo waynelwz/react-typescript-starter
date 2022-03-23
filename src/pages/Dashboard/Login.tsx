@@ -11,19 +11,24 @@ import qs from 'qs'
 import React, { useCallback, useState } from 'react'
 import logo from '@/assets/logo.svg'
 import logoDark from '@/assets/logo-dark.svg'
-import Text from '@/components/Text'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useStyletron } from 'baseui'
+import Text from '@/components/Text'
+import { createUseStyles } from 'react-jss'
+import { IThemedStyleProps } from '@/interfaces/IThemedStyle'
+import ZButton from '@/components/ZButton'
 
 const { Form, FormItem } = createForm<ILoginUserSchema>()
 
 export default function Login() {
-    const currentThemeType = useCurrentThemeType()
-    const [, theme] = useStyletron()
     const [t] = useTranslation()
     const location = useLocation()
     const history = useHistory()
     const [isLoading, setIsLoading] = useState(false)
+
+    // todo
+    const [, theme] = useStyletron()
+    // const currentThemeType = useCurrentThemeType()
 
     const handleFinish = useCallback(
         async (data: ILoginUserSchema) => {
@@ -48,7 +53,9 @@ export default function Login() {
     return (
         <LoginLayout
             style={{
-                background: theme.colors.background,
+                // TODO
+                background: '#efeFEF',
+                color: theme.colors.contentPrimary,
             }}
         >
             <div
@@ -69,11 +76,24 @@ export default function Login() {
                 >
                     <Card
                         bodyStyle={{
-                            padding: 40,
-                            width: 500,
+                            padding: 24,
+                            width: 480,
+                            borderRadius: 12,
+                            boxShadow: 'none',
                         }}
                     >
                         <Form onFinish={handleFinish}>
+                            <div
+                                style={{
+                                    color: theme.colors.contentPrimary,
+                                    fontSize: '20px',
+                                    fontWeight: 600,
+                                    lineHeight: '24px',
+                                    marginBottom: '36px',
+                                }}
+                            >
+                                {t('LOGIN')}
+                            </div>
                             <FormItem name='name_or_email' label={t('Username')}>
                                 <Input />
                             </FormItem>
@@ -83,9 +103,9 @@ export default function Login() {
                             <FormItem>
                                 <div style={{ display: 'flex' }}>
                                     <div style={{ flexGrow: 1 }} />
-                                    <Button isLoading={isLoading} size='compact'>
+                                    <ZButton isLoading={isLoading} size='compact'>
                                         {t('login')}
-                                    </Button>
+                                    </ZButton>
                                 </div>
                             </FormItem>
                         </Form>
