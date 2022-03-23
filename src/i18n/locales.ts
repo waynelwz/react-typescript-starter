@@ -1878,6 +1878,12 @@ const locales0 = {
     'Project List': {
         en: 'Project List',
     },
+    'Project Name': {
+        en: 'Project Name',
+    },
+    'project created': {
+        en: 'project created',
+    },
     'USER': {
         en: 'USER',
     },
@@ -1895,6 +1901,12 @@ const locales0 = {
     },
     'LOGIN': {
         en: 'LOGIN',
+    },
+    'Created': {
+        en: 'Created',
+    },
+    'Owner': {
+        en: 'Owner',
     },
 }
 

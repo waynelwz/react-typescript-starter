@@ -2,6 +2,6 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "noFallthroughCasesInSwitch": true,
-    "jsx": "react-jsx",
+    "jsx": "react-jsx"
   }
 }

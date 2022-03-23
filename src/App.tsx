@@ -1,5 +1,5 @@
 // @flow
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Client as Styletron } from 'styletron-engine-atomic'
 import { Provider as StyletronProvider } from 'styletron-react'
 import { BaseProvider, DarkTheme, createTheme } from 'baseui'
@@ -18,10 +18,17 @@ const primitives = {
     primaryFontFamily: 'Inter',
 }
 const overrides = {
-    colors: { buttonPrimaryHover: '#fff' },
+    colors: {
+        buttonPrimaryFill: '#007FFF',
+        // buttonPrimaryHover: '#FFFFFF',
+        buttonBorderRadius: '14px',
+    },
     typography: {},
 }
 const theme = createTheme(primitives, overrides)
+
+// todo
+console.log(process.env)
 
 export default function Hello() {
     const sidebarData = useSidebar()

@@ -1,16 +1,11 @@
 import axios from 'axios'
-import {
-    ICreateProjectSchema,
-    IProjectFullSchema,
-    IProjectSchema,
-    IUpdateProjectSchema,
-} from '../schemas/project'
+import { ICreateProjectSchema, IProjectFullSchema, IProjectSchema, IUpdateProjectSchema } from '../schemas/project'
 import { IListQuerySchema, IListSchema } from '@/schemas/list'
 import { IEventSchema } from '@/schemas/event'
 import { ResourceType } from '@/schemas/resource'
 
 export async function listProjects(query: IListQuerySchema): Promise<IListSchema<IProjectSchema>> {
-    const resp = await axios.get<IListSchema<IProjectSchema>>('/api/v1/orgs', { params: query })
+    const resp = await axios.get<IListSchema<IProjectSchema>>('/project', { params: query })
     return resp.data
 }
 

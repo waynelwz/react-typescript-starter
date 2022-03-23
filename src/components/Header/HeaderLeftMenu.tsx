@@ -17,7 +17,7 @@ export default function HeaderLeftMenu() {
     const handleCreateProject = useCallback(async (data: ICreateProjectSchema) => {
         await createProject(data)
         setIsCreateProjectModalOpen(false)
-        toaster.positive(t('password changed'), { autoHideDuration: 2000 })
+        toaster.positive(t('project created'), { autoHideDuration: 2000 })
     }, [])
 
     const PROJECT_ITEMS = [

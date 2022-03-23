@@ -7,5 +7,5 @@ export interface IProjectLayoutProps {
 }
 
 export default function ProjectLayout({ children }: IProjectLayoutProps) {
-    return <BaseLayout sidebar={ProjectSidebar}>{children}</BaseLayout>
+    return <BaseLayout sidebar={undefined}>{children}</BaseLayout>
 }

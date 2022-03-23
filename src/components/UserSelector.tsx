@@ -1,4 +1,4 @@
-import { listUsers } from '@/services/user'
+import { listUsers } from '@user/services/user'
 import { Select } from 'baseui/select'
 import _ from 'lodash'
 import React, { useEffect, useState } from 'react'

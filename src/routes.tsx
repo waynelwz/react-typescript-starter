@@ -8,6 +8,7 @@ import { useStyletron } from 'baseui'
 import { createUseStyles } from 'react-jss'
 import Login from '@/pages/Home/Login'
 import Home from '@/pages/Home/Home'
+import ProjectOverview from './pages/Project/Overview'
 
 const useStyles = createUseStyles({
     'root': ({ theme }: IThemedStyleProps) => ({
@@ -56,6 +57,7 @@ const Routes = () => {
                         <ProjectLayout>
                             <Switch>
                                 <Route exact path='/' component={Home} />
+                                <Route exact path='/project' component={ProjectOverview} />
                             </Switch>
                         </ProjectLayout>
                     </Route>

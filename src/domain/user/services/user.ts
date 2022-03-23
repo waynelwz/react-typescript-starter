@@ -8,7 +8,6 @@ import {
 } from '../schemas/user'
 import { IListQuerySchema, IListSchema } from '@/schemas/list'
 
-
 export async function loginUser(data: ILoginUserSchema): Promise<IUserSchema> {
     const resp = await axios.post<IUserSchema>('/api/v1/auth/login', data)
     return resp.data
@@ -20,7 +19,7 @@ export async function fetchUser(userName: string): Promise<IUserSchema> {
 }
 
 export async function fetchCurrentUser(): Promise<IUserSchema> {
-    const resp = await axios.get<IUserSchema>('/api/v1/auth/current')
+    const resp = await axios.get<IUserSchema>('/user/current')
     return resp.data
 }
 
