@@ -41,7 +41,7 @@ export async function listUsers(query: IListQuerySchema): Promise<IListSchema<IU
 //     return resp.data
 // }
 
-// export async function changePassword(data: IChangePasswordSchema): Promise<IUserSchema> {
-//     const resp = await axios.patch('/api/v1/auth/reset_password', data)
-//     return resp.data
-// }
+export async function changePassword(data: IChangePasswordSchema): Promise<IUserSchema> {
+    const resp = await axios.patch('/api/v1/auth/reset_password', data)
+    return resp.data
+}

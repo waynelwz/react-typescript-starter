@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
-import { changePassword, fetchCurrentUser } from '@/services/user'
+import { changePassword, fetchCurrentUser } from '@user/services/user'
 import { useQuery } from 'react-query'
 import { useCurrentUser } from '@/hooks/useCurrentUser'
 import axios from 'axios'
