@@ -102,10 +102,10 @@ export default function Login() {
                             </Text>
                         </div>
                         <Form onFinish={handleFinish}>
-                            <FormItem name='name_or_email' label={t('email')}>
+                            <FormItem name='userName' label={t('email')}>
                                 <Input />
                             </FormItem>
-                            <FormItem name='password' label={t('password')}>
+                            <FormItem name='userPwd' label={t('password')}>
                                 <Input type='password' />
                             </FormItem>
                             <FormItem>

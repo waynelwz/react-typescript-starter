@@ -20,9 +20,10 @@ export async function fetchUser(userName: string): Promise<IUserSchema> {
     return resp.data
 }
 
-export async function fetchCurrentUser(): Promise<IUserSchema> {
-    const resp = await axios.get<IUserSchema>('/api/v1/auth/current')
-    return resp.data
+export async function fetchCurrentUser(): Promise<any> {
+    return Promise.resolve({})
+    // const resp = await axios.get<IUserSchema>('/api/v1/auth/current')
+    // return resp.data
 }
 
 export async function registerUser(data: IRegisterUserSchema): Promise<IUserSchema> {
@@ -31,7 +32,9 @@ export async function registerUser(data: IRegisterUserSchema): Promise<IUserSche
 }
 
 export async function loginUser(data: ILoginUserSchema): Promise<IUserSchema> {
-    const resp = await axios.post<IUserSchema>('/api/v1/auth/login', data)
+    const resp = await axios.post<IUserSchema>('/login', data)
+    console.log(resp)
+    console.log(resp.headers['Authorization'])
     return resp.data
 }
 

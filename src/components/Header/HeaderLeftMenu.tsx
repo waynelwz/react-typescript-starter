@@ -1,16 +1,27 @@
-import React from 'react'
-import { Button, KIND } from 'baseui/button'
+import React, { useCallback, useState } from 'react'
+import { Button } from 'baseui/button'
+import { toaster } from 'baseui/toast'
 import { StatefulPopover, PLACEMENT } from 'baseui/popover'
 import { StatefulMenu } from 'baseui/menu'
 import { AiFillCaretDown } from 'react-icons/ai'
 import { createUseStyles } from 'react-jss'
 import useTranslation from '@/hooks/useTranslation'
+import { Modal, ModalBody, ModalHeader } from 'baseui/modal'
+import ProjectFrom, { IProjectFormProps } from '@/domain/Project/ProjectForm'
+import { createProject } from '@/domain/Project/services/project'
+import { ICreateProjectSchema } from '@/domain/Project/schemas/project'
 
 const ITEMS = [{ label: 'Item One' }, { label: 'Item Two' }]
 const USER_ITEMS = [{ label: 'Item One' }, { label: 'Item Two' }]
 
 export default function HeaderLeftMenu() {
     const [t] = useTranslation()
+    const [isCreateProjectModalOpen, setIsCreateProjectModalOpen] = useState(false)
+    const handleCreateProject = useCallback(async (data: ICreateProjectSchema) => {
+        await createProject(data)
+        setIsCreateProjectModalOpen(false)
+        toaster.positive(t('password changed'), { autoHideDuration: 2000 })
+    }, [])
 
     return (
         <div>
@@ -21,7 +32,7 @@ export default function HeaderLeftMenu() {
                     <StatefulMenu
                         items={ITEMS}
                         onItemSelect={({ item }) => {
-                            console.log(item)
+                            setIsCreateProjectModalOpen(true)
                             close()
                         }}
                         overrides={{
@@ -74,6 +85,19 @@ export default function HeaderLeftMenu() {
                     {t('User')}
                 </Button>
             </StatefulPopover>
+            <Modal
+                isOpen={isCreateProjectModalOpen}
+                onClose={() => setIsCreateProjectModalOpen(false)}
+                closeable
+                animate
+                autoFocus
+                unstable_ModalBackdropScroll
+            >
+                <ModalHeader>{t('Project')}</ModalHeader>
+                <ModalBody>
+                    <ProjectFrom onSubmit={handleCreateProject} />
+                </ModalBody>
+            </Modal>
         </div>
     )
 }

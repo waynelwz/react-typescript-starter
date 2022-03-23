@@ -139,6 +139,8 @@ export default function Header() {
         if ((axios.interceptors.response as any).handlers.length > 0) {
             return
         }
+        // todo fixit
+        axios.defaults.baseURL = 'https://virtserver.swaggerhub.com/dreamlandliu/test-mvp/1.0.0/'
         axios.interceptors.response.use(
             (response) => {
                 return response
@@ -245,48 +247,6 @@ export default function Header() {
                     </Text>
                 )}
             </Link>
-            {organization && (
-                <>
-                    <div
-                        style={{
-                            flexBasis: 1,
-                            flexShrink: 0,
-                            height: 20,
-                            background: theme.colors.borderAlt,
-                            margin: '0 20px',
-                        }}
-                    />
-                    <div
-                        style={{
-                            flexShrink: 0,
-                            display: 'flex',
-                            gap: 10,
-                            alignItems: 'center',
-                        }}
-                    >
-                        <Link
-                            style={{
-                                display: 'flex',
-                                flexShrink: 0,
-                                textDecoration: 'none',
-                                gap: 6,
-                                alignItems: 'center',
-                            }}
-                            to='/'
-                        >
-                            {React.createElement(resourceIconMapping.organization, { size: 12 })}
-                            <Text
-                                style={{
-                                    fontFamily: 'Teko',
-                                    fontSize: '18px',
-                                }}
-                            >
-                                {organization?.name}
-                            </Text>
-                        </Link>
-                    </div>
-                </>
-            )}
             <div>
                 <HeaderLeftMenu />
             </div>
@@ -341,6 +301,7 @@ export default function Header() {
                 closeable
                 animate
                 autoFocus
+                unstable_ModalBackdropScroll
             >
                 <ModalHeader>{t('change password')}</ModalHeader>
                 <ModalBody>

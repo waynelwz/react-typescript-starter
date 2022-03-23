@@ -15,9 +15,10 @@ export async function listOrganizations(query: IListQuerySchema): Promise<IListS
     return resp.data
 }
 
-export async function fetchOrganization(): Promise<IOrganizationFullSchema> {
-    const resp = await axios.get<IOrganizationFullSchema>('/api/v1/current_org')
-    return resp.data
+export async function fetchOrganization(): Promise<any> {
+    return Promise.resolve({})
+    // const resp = await axios.get<IOrganizationFullSchema>('/api/v1/current_org')
+    // return resp.data
 }
 
 export async function listOrganizationModelModules(): Promise<string[]> {
