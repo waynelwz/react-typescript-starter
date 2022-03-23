@@ -94,10 +94,10 @@ export default function Login() {
                             >
                                 {t('LOGIN')}
                             </div>
-                            <FormItem name='name_or_email' label={t('Username')}>
+                            <FormItem name='userName' label={t('Username')}>
                                 <Input />
                             </FormItem>
-                            <FormItem name='password' label={t('password')}>
+                            <FormItem name='userPwd' label={t('password')}>
                                 <Input type='password' />
                             </FormItem>
                             <FormItem>

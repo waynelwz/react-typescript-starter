@@ -299,6 +299,7 @@ export default function Header() {
                 closeable
                 animate
                 autoFocus
+                unstable_ModalBackdropScroll
             >
                 <ModalHeader>{t('change password')}</ModalHeader>
                 <ModalBody>

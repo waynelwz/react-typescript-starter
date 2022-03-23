@@ -18,8 +18,8 @@ export interface IRegisterUserSchema {
 }
 
 export interface ILoginUserSchema {
-    name_or_email: string
-    password: string
+    userName: string
+    userPwd: string
 }
 
 export interface IUpdateUserSchema {
