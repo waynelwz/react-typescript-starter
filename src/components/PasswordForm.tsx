@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react' // eslint-disable-line
 import { toaster } from 'baseui/toast'
 import { createForm } from '@/components/Form'
-import { IChangePasswordSchema } from '@/schemas/user'
+import { IChangePasswordSchema } from '@user/schemas/user'
 import { Button, SIZE as ButtonSize } from 'baseui/button'
 import useTranslation from '@/hooks/useTranslation'
 import { Input } from 'baseui/input'

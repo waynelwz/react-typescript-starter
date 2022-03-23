@@ -18,7 +18,7 @@ const primitives = {
     primaryFontFamily: 'Inter',
 }
 const overrides = {
-    colors: {},
+    colors: { buttonPrimaryHover: '#fff' },
     typography: {},
 }
 const theme = createTheme(primitives, overrides)

@@ -12,8 +12,6 @@ import { useStyletron } from 'baseui'
 import { headerHeight, resourceIconMapping } from '@/consts'
 import { SidebarContext } from '@/contexts/SidebarContext'
 import useTranslation from '@/hooks/useTranslation'
-import { useOrganization } from '@/hooks/useOrganization'
-import OrganizationForm from '@/components/OrganizationForm'
 import { BiMoon, BiSun } from 'react-icons/bi'
 import color from 'color'
 import { createUseStyles } from 'react-jss'
@@ -22,7 +20,7 @@ import { useCurrentThemeType } from '@/hooks/useCurrentThemeType'
 import classNames from 'classnames'
 import User from '@/components/User'
 import Text from '@/components/Text'
-import { IChangePasswordSchema } from '@/schemas/user'
+import { IChangePasswordSchema } from '@/domain/user/schemas/user'
 import i18n from '@/i18n'
 import { simulationJump } from '@/utils'
 import { colors } from '@/consts/theme'
@@ -181,8 +179,6 @@ export default function Header() {
         }
     }, [userInfo.data, userInfo.isSuccess, setCurrentUser])
 
-    const { organization } = useOrganization()
-
     const ctx = useContext(SidebarContext)
     const [t] = useTranslation()
 
@@ -197,7 +193,11 @@ export default function Header() {
         [t]
     )
 
+    console.log(currentUser)
     // const currentThemeType = useCurrentThemeType()
+    if (!!!currentUser) {
+        return <></>
+    }
 
     return (
         <header className={headerStyles.headerWrapper}>

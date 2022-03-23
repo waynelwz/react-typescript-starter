@@ -7,9 +7,9 @@ import { AiFillCaretDown } from 'react-icons/ai'
 import { createUseStyles } from 'react-jss'
 import useTranslation from '@/hooks/useTranslation'
 import { Modal, ModalBody, ModalHeader } from 'baseui/modal'
-import ProjectFrom, { IProjectFormProps } from '@/domain/Project/ProjectForm'
-import { createProject } from '@/domain/Project/services/project'
-import { ICreateProjectSchema } from '@/domain/Project/schemas/project'
+import ProjectFrom, { IProjectFormProps } from '@/domain/project/ProjectForm'
+import { createProject } from '@/domain/project/services/project'
+import { ICreateProjectSchema } from '@/domain/project/schemas/project'
 
 export default function HeaderLeftMenu() {
     const [t] = useTranslation()

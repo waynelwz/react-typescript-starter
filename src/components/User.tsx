@@ -1,5 +1,5 @@
 import React from 'react'
-import { IUserSchema } from '@/schemas/user'
+import { IUserSchema } from '@user/schemas/user'
 import { Avatar } from 'baseui/avatar'
 import Text from './Text'
 
@@ -10,7 +10,7 @@ export interface IUserProps {
 }
 
 export default function User({ user, size = 'scale800', style }: IUserProps) {
-    const name = !user.first_name && !user.last_name ? user.name : `${user.first_name} ${user.last_name}`
+    const name = user.name
 
     return (
         <div
@@ -21,7 +21,7 @@ export default function User({ user, size = 'scale800', style }: IUserProps) {
                 ...style,
             }}
         >
-            <Avatar size={size} name={name} src={user.avatar_url} />
+            {/* <Avatar size={size} name={name} src={user.avatar_url} /> */}
             <Text>{name}</Text>
         </div>
     )

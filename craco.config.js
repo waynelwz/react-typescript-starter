@@ -1,23 +1,17 @@
 const path = require('path')
 const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin')
 const CracoEsbuildPlugin = require('craco-esbuild');
-const CracoAlias = require('craco-alias');
 
 module.exports = {
     plugins: [
         { plugin: CracoEsbuildPlugin },
-        {
-            plugin: CracoAlias,
-            options: {
-                source: 'tsconfig',
-                baseUrl: '.',
-                tsConfigPath: "./tsconfig.paths.json"
-            }
-        }
     ],
     webpack: {
         alias: {
-            '@': path.resolve(__dirname, 'src'),
+            '@user': path.resolve(__dirname, 'src/domain/user'),
+            '@model': path.resolve(__dirname, 'src/domain/model'),
+            '@project': path.resolve(__dirname, 'src/domain/project'),
+            '@': path.resolve(__dirname, 'src/'),
         },
         plugins: [new SimpleProgressWebpackPlugin()],
         configure: (webpackConfig, { env, paths }) => {

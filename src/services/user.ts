@@ -5,7 +5,7 @@ import {
     ILoginUserSchema,
     ICreateUserSchema,
     IChangePasswordSchema,
-} from '@/schemas/user'
+} from '@user/schemas/user'
 import { IListQuerySchema, IListSchema } from '@/schemas/list'
 
 export async function listUsers(query: IListQuerySchema): Promise<IListSchema<IUserSchema>> {
@@ -21,7 +21,8 @@ export async function fetchUser(userName: string): Promise<IUserSchema> {
 }
 
 export async function fetchCurrentUser(): Promise<any> {
-    return Promise.resolve({})
+    return Promise.reject({})
+    // return Promise.resolve({})
     // const resp = await axios.get<IUserSchema>('/api/v1/auth/current')
     // return resp.data
 }

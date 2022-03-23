@@ -1,10 +1,10 @@
-import { ICreateUserSchema } from '@/schemas/user'
+import { ICreateUserSchema } from '@user/schemas/user'
 import React, { useCallback, useEffect, useState } from 'react' // eslint-disable-line
 import { createForm } from '@/components/Form'
 import useTranslation from '@/hooks/useTranslation'
 import { Button, SIZE as ButtonSize } from 'baseui/button'
 import { Input } from 'baseui/input'
-import MemberRoleSelector from './MemberRoleSelector'
+// import MemberRoleSelector from '@user//MemberRoleSelector'
 
 const { Form, FormItem } = createForm<ICreateUserSchema>()
 
@@ -13,11 +13,11 @@ export interface ICreateUserSchemaProps {
 }
 
 export default function UserForm({ onSubmit }: ICreateUserSchemaProps) {
-    const [initialValue, setInitialValue] = useState<ICreateUserSchema>({  // eslint-disable-line
-        name: '',
-        email: '',
-        role: 'guest',
-        password: '',
+    const [initialValue, setInitialValue] = useState<ICreateUserSchema>({
+        // eslint-disable-line
+        userName: '',
+        // role: 'guest',
+        userPwd: '',
     })
 
     const [loading, setLoading] = useState(false)
@@ -37,15 +37,12 @@ export default function UserForm({ onSubmit }: ICreateUserSchemaProps) {
 
     return (
         <Form initialValues={initialValue} onFinish={handleFinish}>
-            <FormItem required name='name' label={t('name')}>
+            <FormItem required name='userName' label={t('name')}>
                 <Input />
             </FormItem>
-            <FormItem name='role' label={t('role')}>
+            {/* <FormItem name='role' label={t('role')}>
                 <MemberRoleSelector />
-            </FormItem>
-            <FormItem required name='email' label={t('email')}>
-                <Input />
-            </FormItem>
+            </FormItem> */}
             <FormItem>
                 <div style={{ display: 'flex' }}>
                     <div style={{ flexGrow: 1 }} />

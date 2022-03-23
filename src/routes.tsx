@@ -1,14 +1,13 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Header from '@/components/Header'
-import OrganizationLayout from '@/components/OrganizationLayout'
+import ProjectLayout from '@/pages/Project/ProjectLayout'
 import { useCurrentThemeType } from '@/hooks/useCurrentThemeType'
 import { IThemedStyleProps } from '@/interfaces/IThemedStyle'
 import { useStyletron } from 'baseui'
 import { createUseStyles } from 'react-jss'
-import Login from '@/pages/Dashboard/Login'
-import OrganizationSettings from '@/pages/Organization/Settings'
-import Home from '@/pages/Dashboard/Home'
+import Login from '@/pages/Home/Login'
+import Home from '@/pages/Home/Home'
 
 const useStyles = createUseStyles({
     'root': ({ theme }: IThemedStyleProps) => ({
@@ -54,12 +53,11 @@ const Routes = () => {
                 <Switch>
                     <Route exact path='/login' component={Login} />
                     <Route>
-                        <OrganizationLayout>
+                        <ProjectLayout>
                             <Switch>
                                 <Route exact path='/' component={Home} />
-                                <Route exact path='/settings' component={OrganizationSettings} />
                             </Switch>
-                        </OrganizationLayout>
+                        </ProjectLayout>
                     </Route>
                 </Switch>
             </div>
