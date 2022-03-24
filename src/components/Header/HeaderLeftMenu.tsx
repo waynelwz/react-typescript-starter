@@ -7,9 +7,10 @@ import { AiFillCaretDown } from 'react-icons/ai'
 import { createUseStyles } from 'react-jss'
 import useTranslation from '@/hooks/useTranslation'
 import { Modal, ModalBody, ModalHeader } from 'baseui/modal'
-import ProjectFrom, { IProjectFormProps } from '@/domain/project/ProjectForm'
-import { createProject } from '@/domain/project/services/project'
-import { ICreateProjectSchema } from '@/domain/project/schemas/project'
+import ProjectFrom, { IProjectFormProps } from '@project/components/ProjectForm'
+import { createProject } from '@project/services/project'
+import { ICreateProjectSchema } from '@project/schemas/project'
+import { useHistory } from 'react-router-dom'
 
 export default function HeaderLeftMenu() {
     const [t] = useTranslation()
@@ -19,6 +20,8 @@ export default function HeaderLeftMenu() {
         setIsCreateProjectModalOpen(false)
         toaster.positive(t('project created'), { autoHideDuration: 2000 })
     }, [])
+
+    const history = useHistory()
 
     const PROJECT_ITEMS = [
         { label: t('Create Project'), type: 'create' },
@@ -38,7 +41,11 @@ export default function HeaderLeftMenu() {
                     <StatefulMenu
                         items={PROJECT_ITEMS}
                         onItemSelect={({ item }) => {
-                            setIsCreateProjectModalOpen(true)
+                            if (item.type == 'create') {
+                                setIsCreateProjectModalOpen(true)
+                            } else if (item.type == 'list') {
+                                history.push('/projects')
+                            }
                             close()
                         }}
                         overrides={{
@@ -68,7 +75,13 @@ export default function HeaderLeftMenu() {
                 content={({ close }) => (
                     <StatefulMenu
                         items={USER_ITEMS}
-                        onItemSelect={() => close()}
+                        onItemSelect={({ item }) => {
+                            if (item.type == 'create') {
+                            } else if (item.type == 'list') {
+                                history.push('/users')
+                            }
+                            close()
+                        }}
                         overrides={{
                             List: { style: { height: '100px', width: '125px' } },
                         }}

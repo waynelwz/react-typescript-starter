@@ -193,7 +193,6 @@ export default function Header() {
         [t]
     )
 
-    console.log(currentUser)
     // const currentThemeType = useCurrentThemeType()
     if (!!!currentUser) {
         return <></>

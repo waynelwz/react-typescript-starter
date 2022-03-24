@@ -76,7 +76,6 @@ export default function BaseSidebar({ navItems, style, title, icon, settingsPath
     const location = useLocation()
 
     const baseuiNavItems = useMemo(() => transformNavItems(navItems, ctx.expanded), [ctx.expanded, navItems])
-
     const checkIsSettingsPage = useCallback(
         (currentPath: string) => {
             if (!settingsPath) {

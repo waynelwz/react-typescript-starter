@@ -9,6 +9,8 @@ import { createUseStyles } from 'react-jss'
 import Login from '@/pages/Home/Login'
 import Home from '@/pages/Home/Home'
 import ProjectOverview from './pages/Project/Overview'
+import ProjectListCard from './pages/Project/ProjectListCard'
+import BaseLayout from './pages/BaseLayout'
 
 const useStyles = createUseStyles({
     'root': ({ theme }: IThemedStyleProps) => ({
@@ -52,14 +54,21 @@ const Routes = () => {
             >
                 <Header />
                 <Switch>
-                    <Route exact path='/login' component={Login} />
-                    <Route>
+                    <Route exact path='/projects/:projectId/:path?'>
                         <ProjectLayout>
                             <Switch>
-                                <Route exact path='/' component={Home} />
-                                <Route exact path='/project' component={ProjectOverview} />
+                                <Route exact path='/projects/:projectId' component={ProjectOverview} />
                             </Switch>
                         </ProjectLayout>
+                    </Route>
+                    <Route exact path='/login' component={Login} />
+                    <Route>
+                        <BaseLayout sidebar={undefined}>
+                            <Switch>
+                                <Route exact path='/' component={Home} />
+                                <Route exact path='/projects' component={ProjectListCard} />
+                            </Switch>
+                        </BaseLayout>
                     </Route>
                 </Switch>
             </div>

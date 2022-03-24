@@ -2,8 +2,6 @@ import React from 'react'
 import { ComponentStory, ComponentMeta, Story } from '@storybook/react'
 // import { Story, Meta } from '@storybook/react/types-6-0'
 
-import { createMock } from 'ts-auto-mock'
-
 import { Button, ButtonProps } from 'baseui/button'
 
 // import { Button } from './Button'
@@ -21,8 +19,6 @@ export default {
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />
 
 export const Primary = Template.bind({})
-
-console.log(createMock<ButtonProps>())
 
 Primary.args = {
     isLoading: false,

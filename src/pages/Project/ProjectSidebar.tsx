@@ -9,24 +9,13 @@ import { resourceIconMapping } from '@/consts'
 import { FiActivity } from 'react-icons/fi'
 
 export default function ProjectSidebar({ style }: IComposedSidebarProps) {
-    const orgInfo = useQuery('fetchOrg', () => fetchProject())
-    const { project, setProject } = useProject()
-    const { setProjectLoading } = useProjectLoading()
-    useEffect(() => {
-        setProjectLoading(orgInfo.isLoading)
-        if (orgInfo.isSuccess && orgInfo.data.uid !== project?.uid) {
-            setProject(orgInfo.data)
-        } else if (orgInfo.isLoading) {
-            setProject(undefined)
-        }
-    }, [orgInfo.data, orgInfo.isLoading, orgInfo.isSuccess, project?.uid, setProject, setProjectLoading])
-
     const [t] = useTranslation()
+    const { project, setProject } = useProject()
 
     const navItems: INavItem[] = useMemo(
         () => [
             {
-                title: t('overview'),
+                title: project?.name ?? t('overview'),
                 path: '/',
                 icon: RiSurveyLine,
             },
@@ -37,7 +26,7 @@ export default function ProjectSidebar({ style }: IComposedSidebarProps) {
                 activePathPattern: /^\/(models|model_repositories)\/?/,
             },
         ],
-        [t]
+        [project, t]
     )
     return <BaseSidebar navItems={navItems} style={style} />
 }

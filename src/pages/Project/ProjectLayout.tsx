@@ -1,5 +1,14 @@
-import React from 'react'
-import BaseLayout from '../BaseLayout'
+import { useProject, useProjectLoading } from '@project/hooks/useProject'
+import useTranslation from '@/hooks/useTranslation'
+import { RiSurveyLine } from 'react-icons/ri'
+import React, { useEffect, useMemo } from 'react'
+import { useQuery } from 'react-query'
+import { useParams } from 'react-router-dom'
+import { INavItem } from '@/components/BaseSidebar'
+import { fetchProject } from '@project/services/project'
+import { resourceIconMapping } from '@/consts'
+import { AiOutlineSetting } from 'react-icons/ai'
+import BaseSubLayout from '@/pages/BaseSubLayout'
 import ProjectSidebar from './ProjectSidebar'
 
 export interface IProjectLayoutProps {
@@ -7,5 +16,52 @@ export interface IProjectLayoutProps {
 }
 
 export default function ProjectLayout({ children }: IProjectLayoutProps) {
-    return <BaseLayout sidebar={undefined}>{children}</BaseLayout>
+    const { projectId } = useParams<{ projectId: string }>()
+    const projectInfo = useQuery(`fetchProject:${projectId}`, () => fetchProject(projectId))
+    const { project, setProject } = useProject()
+    const { setProjectLoading } = useProjectLoading()
+    useEffect(() => {
+        setProjectLoading(projectInfo.isLoading)
+        if (projectInfo.isSuccess) {
+            if (projectInfo.data.id !== project?.id) {
+                setProject(projectInfo.data)
+            }
+        } else if (projectInfo.isLoading) {
+            setProject(undefined)
+        }
+    }, [project?.id, projectInfo.data, projectInfo.isLoading, projectInfo.isSuccess, setProject, setProjectLoading])
+
+    const [t] = useTranslation()
+    const projectName = project?.name ?? '-'
+
+    const breadcrumbItems: INavItem[] = useMemo(
+        () => [
+            {
+                title: t('projects'),
+                path: '/projects',
+                // icon: resourceIconMapping.project,
+            },
+            {
+                title: projectName,
+                path: `/projects/${projectName}`,
+            },
+        ],
+        [projectName, t]
+    )
+
+    const navItems: INavItem[] = useMemo(
+        () => [
+            // {
+            //     title: projectName ?? t('overview'),
+            //     path: `/projects/${projectId}`,
+            //     icon: RiSurveyLine,
+            // },
+        ],
+        [projectName, t]
+    )
+    return (
+        <BaseSubLayout breadcrumbItems={breadcrumbItems} navItems={navItems}>
+            {children}
+        </BaseSubLayout>
+    )
 }

@@ -20,6 +20,8 @@ module.exports = {
             '@user': path.resolve(__dirname, 'src/domain/user'),
             '@model': path.resolve(__dirname, 'src/domain/model'),
             '@project': path.resolve(__dirname, 'src/domain/project'),
+            '@dataset': path.resolve(__dirname, 'src/domain/dataset'),
+            '@job': path.resolve(__dirname, 'src/domain/job'),
             '@': path.resolve(__dirname, 'src/'),
         },
         plugins: [new SimpleProgressWebpackPlugin(),new webpack.DefinePlugin({

@@ -25,7 +25,7 @@ export default function UserSelector({ value, onChange }: IUserSelectorProps) {
     useEffect(() => {
         if (usersInfo.isSuccess) {
             setOptions(
-                usersInfo.data?.items.map((item) => ({
+                usersInfo.data?.list.map((item) => ({
                     id: item.name,
                     label: <User key={item.uid} user={item} />,
                 })) ?? []
@@ -33,7 +33,7 @@ export default function UserSelector({ value, onChange }: IUserSelectorProps) {
         } else {
             setOptions([])
         }
-    }, [usersInfo.data?.items, usersInfo.isSuccess])
+    }, [usersInfo.data?.list, usersInfo.isSuccess])
 
     return (
         <Select

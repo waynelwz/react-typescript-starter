@@ -129,20 +129,6 @@ const locales0 = {
         ko: '멤버',
         vi: 'Thành viên',
     },
-    'create sth': {
-        en: 'Create {{0}}',
-        zh: '创建{{0}}',
-        ja: '{{0}}を作成',
-        ko: '{{0}}을 생성',
-        vi: 'Tạo {{0}}',
-    },
-    'select sth': {
-        en: 'Select {{0}}',
-        zh: '选择{{0}}',
-        ja: '{{0}}を選択',
-        ko: '{{0}}을 선택',
-        vi: 'Chọn {{0}}',
-    },
     'organization': {
         en: 'Organization',
         zh: '组织',
@@ -1866,8 +1852,19 @@ const locales0 = {
         vi: '',
     },
     // --------------------\
+    'create sth': {
+        en: 'Create {{0}}',
+        // zh: '创建{{0}}',
+    },
+    'select sth': {
+        en: 'Select {{0}}',
+        // zh: '选择{{0}}',
+    },
     'PROJECT': {
         en: 'PROJECT',
+    },
+    'projects': {
+        en: 'projects',
     },
     'Project': {
         en: 'Project',

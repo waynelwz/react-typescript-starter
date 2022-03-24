@@ -27,9 +27,6 @@ const overrides = {
 }
 const theme = createTheme(primitives, overrides)
 
-// todo
-console.log(process.env)
-
 export default function Hello() {
     const sidebarData = useSidebar()
     const themeType = useCurrentThemeType()

@@ -1,17 +1,4 @@
-import { MemberRole } from '@user/schemas/member_role'
 import { IResourceSchema } from '@/schemas/resource'
-
-// {
-//     "id": "string",
-//     "name": "string",
-//     "isEnabled": true,
-//     "role":
-//     {
-//         "id": "string",
-//         "name": "string",
-//         "nameEn": "string"
-//     }
-// }
 
 export interface IUserSchema extends IResourceSchema {
     name: string

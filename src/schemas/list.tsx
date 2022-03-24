@@ -1,8 +1,8 @@
 export interface IListSchema<T> {
     total: number
-    start: number
-    count: number
-    items: T[]
+    pageNum: number
+    size: number
+    list: T[]
 }
 
 export interface IListQuerySchema {

@@ -9,7 +9,7 @@ import {
 import { IListQuerySchema, IListSchema } from '@/schemas/list'
 
 export async function loginUser(data: ILoginUserSchema): Promise<IUserSchema> {
-    const resp = await axios.post<IUserSchema>('/api/v1/auth/login', data)
+    const resp = await axios.post<IUserSchema>('/login', data)
     return resp.data
 }
 
