@@ -13,19 +13,22 @@ export default function ProjectSidebar({ style }: IComposedSidebarProps) {
     const { project, setProject } = useProject()
 
     const navItems: INavItem[] = useMemo(
-        () => [
-            {
-                title: project?.name ?? t('overview'),
-                path: '/',
-                icon: RiSurveyLine,
-            },
-            {
-                title: t('models'),
-                path: '/models',
-                // icon: resourceIconMapping.model,
-                activePathPattern: /^\/(models|model_repositories)\/?/,
-            },
-        ],
+        () =>
+            project
+                ? [
+                      {
+                          title: project?.name ?? t('overview'),
+                          path: `/projects/${project?.id}`,
+                          icon: RiSurveyLine,
+                      },
+                      {
+                          title: t('models'),
+                          path: `/projects/${project.id}/models`,
+                          // icon: resourceIconMapping.model,
+                          activePathPattern: /^\/(models|model_repositories)\/?/,
+                      },
+                  ]
+                : [],
         [project, t]
     )
     return <BaseSidebar navItems={navItems} style={style} />

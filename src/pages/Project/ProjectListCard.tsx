@@ -31,7 +31,7 @@ export default function ProjectListCard() {
     return (
         <Card
             title={t('projects')}
-            // titleIcon={resourceIconMapping.project}
+            titleIcon={undefined}
             extra={
                 <Button size={ButtonSize.compact} onClick={() => setIsCreateProjectOpen(true)}>
                     {t('create')}

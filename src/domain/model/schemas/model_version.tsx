@@ -1,9 +1,11 @@
 import { IResourceSchema } from '@/schemas/resource'
 import { IUserSchema } from '@user/schemas/user'
 
-export interface IModelSchema extends IResourceSchema {
+export interface IModelVersionSchema extends IResourceSchema {
     name: string
+    tag: string
     createTime: string
+    meta: object
     owner?: IUserSchema
     // description: string
 }

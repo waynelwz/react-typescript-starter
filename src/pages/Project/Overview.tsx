@@ -6,7 +6,7 @@ import { useProject, useProjectLoading } from '@project/hooks/useProject'
 import Card from '@/components/Card'
 import { formatDateTime } from '@/utils/datetime'
 import User from '@/components/User'
-import { Button } from 'baseui/button'
+import { Button, SIZE as ButtonSize } from 'baseui/button'
 import { ICreateProjectSchema } from '@project/schemas/project'
 import { createProject } from '@project/services/project'
 import { Modal, ModalBody, ModalHeader } from 'baseui/modal'
@@ -18,7 +18,7 @@ export default function ProjectOverview() {
     const { project } = useProject()
     const { projectLoading } = useProjectLoading()
     const [page] = usePage()
-    console.log(project)
+
     const [isCreateProjectModalOpen, setIsCreateProjectModalOpen] = useState(false)
     const handleCreateProject = useCallback(async (data: ICreateProjectSchema) => {
         await createProject(data)
@@ -28,10 +28,15 @@ export default function ProjectOverview() {
     const [t] = useTranslation()
 
     return (
-        <Card title={t('overview')} titleIcon={RiSurveyLine}>
-            <Button size='mini' onClick={() => setIsCreateProjectModalOpen(true)}>
-                {t('create sth', [t('Project')])}
-            </Button>
+        <Card
+            title={t('overview')}
+            titleIcon={undefined}
+            extra={
+                <Button size={ButtonSize.compact} onClick={() => setIsCreateProjectModalOpen(true)}>
+                    {t('create')}
+                </Button>
+            }
+        >
             <Table
                 isLoading={projectLoading}
                 columns={[t('Project Name'), t('Created'), t('Owner')]}

@@ -103,7 +103,8 @@ export default function Card({
                     style={{
                         ...headStyle,
                         color: theme.colors.contentPrimary,
-                        borderBottomColor: theme.borders.border300.borderColor,
+                        // borderBottomColor: theme.borders.border300.borderColor,
+                        borderBottom: 'none',
                     }}
                 >
                     <div className={styles.cardHead}>
@@ -112,9 +113,11 @@ export default function Card({
                                 {TitleIcon && <TitleIcon size={13} />}
                                 {typeof title === 'string' ? (
                                     <Text
-                                        size='large'
+                                        // size='large'
                                         style={{
-                                            fontWeight: 500,
+                                            fontSize: 30,
+                                            fontWeight: 400,
+                                            fontFamily: 'Inter',
                                         }}
                                     >
                                         {title}

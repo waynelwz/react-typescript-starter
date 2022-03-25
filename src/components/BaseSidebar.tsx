@@ -191,7 +191,7 @@ export default function BaseSidebar({ navItems, style, title, icon, settingsPath
                         },
                     },
                 }}
-                activeItemId={activeItemId ?? (!isSettingsPage ? baseuiNavItems[0].itemId : '') ?? ''}
+                activeItemId={activeItemId ?? (!isSettingsPage ? baseuiNavItems[0]?.itemId : '') ?? ''}
                 items={baseuiNavItems}
                 onChange={({ event, item }) => {
                     event.preventDefault()

@@ -21,7 +21,7 @@ export default function Text({ children, style, size = 'medium' }: ITextProps) {
             className={css({
                 fontSize: fontSizeMap[size],
                 // color: theme.colors.contentPrimary,
-                color: '#fff',
+                // color: '#fff',
             })}
         >
             {children}

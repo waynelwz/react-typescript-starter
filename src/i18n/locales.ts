@@ -1473,13 +1473,6 @@ const locales0 = {
         ko: '라벨',
         vi: 'Nhãn',
     },
-    'models': {
-        en: 'Models',
-        zh: '模型列表',
-        ja: 'モデル',
-        ko: '모델',
-        vi: 'Mô hình',
-    },
     'deployments': {
         en: 'Deployments',
         zh: '部署列表',
@@ -1858,7 +1851,15 @@ const locales0 = {
     },
     'select sth': {
         en: 'Select {{0}}',
-        // zh: '选择{{0}}',
+    },
+    'sth name': {
+        en: '{{0}} Name',
+    },
+    'Model': {
+        en: 'Model',
+    },
+    'models': {
+        en: 'models',
     },
     'PROJECT': {
         en: 'PROJECT',

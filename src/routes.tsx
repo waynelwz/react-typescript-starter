@@ -11,6 +11,10 @@ import Home from '@/pages/Home/Home'
 import ProjectOverview from './pages/Project/Overview'
 import ProjectListCard from './pages/Project/ProjectListCard'
 import BaseLayout from './pages/BaseLayout'
+import ModelListCard from './pages/Model/ModelListCard'
+import ModelLayout from './pages/Model/ModelLayout'
+import ModelOverview from './pages/Model/Overview'
+import ProjectModels from './pages/Project/Models'
 
 const useStyles = createUseStyles({
     'root': ({ theme }: IThemedStyleProps) => ({
@@ -58,8 +62,16 @@ const Routes = () => {
                         <ProjectLayout>
                             <Switch>
                                 <Route exact path='/projects/:projectId' component={ProjectOverview} />
+                                <Route exact path='/projects/:projectId/models' component={ProjectModels} />
                             </Switch>
                         </ProjectLayout>
+                    </Route>
+                    <Route exact path='/projects/:projectId/models/:modelId/:path?'>
+                        <ModelLayout>
+                            <Switch>
+                                <Route exact path='/projects/:projectId/models/:modelId' component={ModelOverview} />
+                            </Switch>
+                        </ModelLayout>
                     </Route>
                     <Route exact path='/login' component={Login} />
                     <Route>

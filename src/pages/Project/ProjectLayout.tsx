@@ -49,19 +49,15 @@ export default function ProjectLayout({ children }: IProjectLayoutProps) {
         [projectName, t]
     )
 
-    const navItems: INavItem[] = useMemo(
-        () => [
-            // {
-            //     title: projectName ?? t('overview'),
-            //     path: `/projects/${projectId}`,
-            //     icon: RiSurveyLine,
-            // },
-        ],
-        [projectName, t]
-    )
-    return (
-        <BaseSubLayout breadcrumbItems={breadcrumbItems} navItems={navItems}>
-            {children}
-        </BaseSubLayout>
-    )
+    // const navItems: INavItem[] = useMemo(
+    //     () => [
+    //         // {
+    //         //     title: projectName ?? t('overview'),
+    //         //     path: `/projects/${projectId}`,
+    //         //     icon: RiSurveyLine,
+    //         // },
+    //     ],
+    //     [projectName, t]
+    // )
+    return <BaseSubLayout breadcrumbItems={breadcrumbItems}>{children}</BaseSubLayout>
 }

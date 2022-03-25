@@ -7,7 +7,7 @@ import { toaster } from 'baseui/toast'
 import { getErrMsg } from '@/utils/error'
 import qs from 'qs'
 import { Modal, ModalHeader, ModalBody } from 'baseui/modal'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import { useStyletron } from 'baseui'
 import { headerHeight, resourceIconMapping } from '@/consts'
 import { SidebarContext } from '@/contexts/SidebarContext'
@@ -29,6 +29,8 @@ import { MdPassword } from 'react-icons/md'
 import PasswordForm from '@/components/PasswordForm'
 import ThemeToggle from './ThemeToggle'
 import HeaderLeftMenu from './HeaderLeftMenu'
+import { useProject, useProjectLoading } from '@/domain/project/hooks/useProject'
+import { fetchProject } from '@/domain/project/services/project'
 
 const useHeaderStyles = createUseStyles({
     headerWrapper: (props: IThemedStyleProps) => ({
@@ -141,6 +143,7 @@ export default function Header() {
         axios.defaults.baseURL = 'https://virtserver.swaggerhub.com/dreamlandliu/test-mvp/1.0.0/'
         axios.interceptors.response.use(
             (response) => {
+                console.log(response)
                 return response
             },
             (error) => {
@@ -179,11 +182,28 @@ export default function Header() {
         }
     }, [userInfo.data, userInfo.isSuccess, setCurrentUser])
 
+    const { projectId } = useParams<{ projectId: string }>()
+    const { project, setProject } = useProject()
+    const { setProjectLoading } = useProjectLoading()
+    const projectInfo = useQuery(`fetchProject:${projectId}`, () => fetchProject(projectId), { enabled: false })
+    useEffect(() => {
+        // projectInfo.
+        if (!projectId) return
+        projectInfo.refetch()
+        setProjectLoading(projectInfo.isLoading)
+        if (projectInfo.isSuccess) {
+            if (projectInfo.data.id !== project?.id) {
+                setProject(projectInfo.data)
+            }
+        } else if (projectInfo.isLoading) {
+            setProject(undefined)
+        }
+    }, [projectId, projectInfo.data, projectInfo.isLoading, projectInfo.isSuccess, , setProject, setProjectLoading])
+
     const ctx = useContext(SidebarContext)
     const [t] = useTranslation()
 
     const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false)
-
     const handleChangePassword = useCallback(
         async (data: IChangePasswordSchema) => {
             await changePassword(data)
@@ -240,6 +260,7 @@ export default function Header() {
                             display: 'flex',
                             fontSize: '34px',
                             fontFamily: 'Inter',
+                            color: '#fff',
                         }}
                     >
                         LOGO
@@ -307,4 +328,7 @@ export default function Header() {
             </Modal>
         </header>
     )
+}
+function setProjectLoading(isLoading: boolean) {
+    throw new Error('Function not implemented.')
 }
