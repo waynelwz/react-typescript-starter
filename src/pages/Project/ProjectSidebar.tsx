@@ -7,10 +7,15 @@ import { useQuery } from 'react-query'
 import BaseSidebar, { IComposedSidebarProps, INavItem } from '@/components/BaseSidebar'
 import { resourceIconMapping } from '@/consts'
 import { FiActivity } from 'react-icons/fi'
+import { useParams } from 'react-router'
+import { useFetchProject } from '@/domain/project/hooks/useFetchProject'
 
 export default function ProjectSidebar({ style }: IComposedSidebarProps) {
     const [t] = useTranslation()
-    const { project, setProject } = useProject()
+    // const { project, setProject } = useProject()
+    const { projectId, modelId } = useParams<{ modelId: string; projectId: string }>()
+    const projectInfo = useFetchProject(projectId)
+    const project = projectInfo.data
 
     const navItems: INavItem[] = useMemo(
         () =>

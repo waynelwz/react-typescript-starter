@@ -1,4 +1,4 @@
-import { ICreateModelSchema, IModelSchema } from '../schemas/model'
+import { ICreateModelVersionSchema, IModelVersionSchema } from '../schemas/modelVersion'
 import React, { useCallback, useEffect, useState } from 'react'
 import { createForm } from '@/components/Form'
 import { Input } from 'baseui/input'
@@ -9,15 +9,15 @@ import { isModified } from '@/utils'
 import { RadioGroup, Radio, ALIGN } from 'baseui/radio'
 import { FileUploader } from 'baseui/file-uploader'
 
-const { Form, FormItem } = createForm<ICreateModelSchema>()
+const { Form, FormItem } = createForm<ICreateModelVersionSchema>()
 
-export interface IModelFormProps {
-    model?: IModelSchema
-    onSubmit: (data: ICreateModelSchema) => Promise<void>
+export interface IModelVersionFormProps {
+    model?: IModelVersionSchema
+    onSubmit: (data: ICreateModelVersionSchema) => Promise<void>
 }
 
-export default function ModelForm({ model, onSubmit }: IModelFormProps) {
-    const [values, setValues] = useState<ICreateModelSchema | undefined>(undefined)
+export default function ModelVersionForm({ model, onSubmit }: IModelVersionFormProps) {
+    const [values, setValues] = useState<ICreateModelVersionSchema | undefined>(undefined)
     const [importBy, setImportBy] = useState('upload')
 
     useEffect(() => {
@@ -54,9 +54,10 @@ export default function ModelForm({ model, onSubmit }: IModelFormProps) {
 
     return (
         <Form initialValues={values} onFinish={handleFinish} onValuesChange={handleValuesChange}>
-            <FormItem name='modelName' label={t('sth name', [t('Model')])}>
+            {/* todo display curret model name */}
+            {/* <FormItem name='modelName' label={t('sth name', [t('Model Version')])}>
                 <Input disabled={model !== undefined ? true : undefined} />
-            </FormItem>
+            </FormItem> */}
             <div style={{ marginBottom: 20 }}>
                 <RadioGroup
                     name='number'

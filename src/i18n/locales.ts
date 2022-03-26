@@ -927,20 +927,6 @@ const locales0 = {
         ko: 'HELM Chart 세부 정보',
         vi: 'HELM Chart chi tiết',
     },
-    'model': {
-        zh: '模型',
-        en: 'Model',
-        ja: 'モデル',
-        ko: '모델',
-        vi: 'Mô hình',
-    },
-    'model versions': {
-        zh: '模型版本',
-        en: 'Model Versions',
-        ja: 'モデルバージョン',
-        ko: '모델 버전',
-        vi: 'Phiên bản mô hình',
-    },
     'name or email': {
         zh: '用户名或者邮箱地址',
         en: 'Name or Email',
@@ -1858,6 +1844,12 @@ const locales0 = {
     'Model': {
         en: 'Model',
     },
+    'Model Version': {
+        en: 'Model Version',
+    },
+    'model versions': {
+        en: 'model versions',
+    },
     'models': {
         en: 'models',
     },
@@ -1905,6 +1897,33 @@ const locales0 = {
     },
     'Owner': {
         en: 'Owner',
+    },
+    'File': {
+        en: 'File',
+    },
+    'Size': {
+        en: 'Size',
+    },
+    'Import Path': {
+        en: 'Import Path',
+    },
+    'Import from server': {
+        en: 'Import from server',
+    },
+    'Upload': {
+        en: 'Upload',
+    },
+    'Version History': {
+        en: 'Version History',
+    },
+    'Action': {
+        en: 'Action',
+    },
+    'Tag': {
+        en: 'Tag',
+    },
+    'Revert': {
+        en: 'Revert',
     },
 }
 

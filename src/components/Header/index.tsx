@@ -182,24 +182,6 @@ export default function Header() {
         }
     }, [userInfo.data, userInfo.isSuccess, setCurrentUser])
 
-    const { projectId } = useParams<{ projectId: string }>()
-    const { project, setProject } = useProject()
-    const { setProjectLoading } = useProjectLoading()
-    const projectInfo = useQuery(`fetchProject:${projectId}`, () => fetchProject(projectId), { enabled: false })
-    useEffect(() => {
-        // projectInfo.
-        if (!projectId) return
-        projectInfo.refetch()
-        setProjectLoading(projectInfo.isLoading)
-        if (projectInfo.isSuccess) {
-            if (projectInfo.data.id !== project?.id) {
-                setProject(projectInfo.data)
-            }
-        } else if (projectInfo.isLoading) {
-            setProject(undefined)
-        }
-    }, [projectId, projectInfo.data, projectInfo.isLoading, projectInfo.isSuccess, , setProject, setProjectLoading])
-
     const ctx = useContext(SidebarContext)
     const [t] = useTranslation()
 

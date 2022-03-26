@@ -16,7 +16,7 @@ export interface IModelLayoutProps {
     children: React.ReactNode
 }
 
-export default function ModelLayout({ children }: IModelLayoutProps) {
+export default function ModelVersionLayout({ children }: IModelLayoutProps) {
     const { projectId, modelId } = useParams<{ modelId: string; projectId: string }>()
     const modelInfo = useQuery(`fetchModel:${projectId}:${modelId}`, () => fetchModel(projectId, modelId))
     const { model, setModel } = useModel()
@@ -40,14 +40,6 @@ export default function ModelLayout({ children }: IModelLayoutProps) {
 
     const breadcrumbItems: INavItem[] = useMemo(() => {
         const items = [
-            // {
-            //     title: t('projects'),
-            //     path: '/projects',
-            // },
-            // {
-            //     title: project?.name ?? '-',
-            //     path: `/projects/${project?.id}`,
-            // },
             {
                 title: t('models'),
                 path: `/projects/${project?.id}/models`,
@@ -56,19 +48,13 @@ export default function ModelLayout({ children }: IModelLayoutProps) {
                 title: modelName,
                 path: `/projects/${project?.id}/models/${modelId}`,
             },
+            {
+                title: t('model versions'),
+                path: `/projects/${project?.id}/models/${modelId}/versions`,
+            },
         ]
         return items
     }, [projectName, modelName, t])
 
-    // const navItems: INavItem[] = useMemo(
-    //     () => [
-    //         // {
-    //         //     title: modelName ?? t('overview'),
-    //         //     path: `/models/${modelId}`,
-    //         //     icon: RiSurveyLine,
-    //         // },
-    //     ],
-    //     [modelName, t]
-    // )
     return <BaseSubLayout breadcrumbItems={breadcrumbItems}>{children}</BaseSubLayout>
 }

@@ -7,7 +7,7 @@ import Card from '@/components/Card'
 import { formatDateTime } from '@/utils/datetime'
 import User from '@/components/User'
 import { Button, SIZE as ButtonSize } from 'baseui/button'
-import { ICreateModelSchema } from '@model/schemas/model'
+import { ICreateModelSchema, IModelFileSchema } from '@model/schemas/model'
 import { createModel } from '@model/services/model'
 import { Modal, ModalBody, ModalHeader } from 'baseui/modal'
 import ModelForm from '@model/components/ModelForm'
@@ -20,18 +20,14 @@ export default function ModelOverview() {
 
     const [t] = useTranslation()
 
+    const modelName = model?.name ?? ''
+
     return (
-        <Card title={t('overview')} titleIcon={undefined}>
+        <Card title={`${t('sth name', [t('Model')])}: ${modelName}`}>
             <Table
                 isLoading={modelLoading}
-                columns={[t('sth name', [t('Model')]), t('Created'), t('Owner')]}
-                data={[
-                    [
-                        model?.name,
-                        model?.owner && <User user={model?.owner} />,
-                        model?.createTime && formatDateTime(model.createTime),
-                    ],
-                ]}
+                columns={[t('File'), t('Size')]}
+                data={model?.files?.map((file: IModelFileSchema) => [file?.name, file?.size]) ?? []}
             />
         </Card>
     )

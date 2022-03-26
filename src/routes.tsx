@@ -15,6 +15,8 @@ import ModelListCard from './pages/Model/ModelListCard'
 import ModelLayout from './pages/Model/ModelLayout'
 import ModelOverview from './pages/Model/Overview'
 import ProjectModels from './pages/Project/Models'
+import ModelVersionListCard from './pages/Model/ModelVersionListCard'
+import ModelVersionLayout from './pages/Model/ModelVersionLayout'
 
 const useStyles = createUseStyles({
     'root': ({ theme }: IThemedStyleProps) => ({
@@ -66,7 +68,18 @@ const Routes = () => {
                             </Switch>
                         </ProjectLayout>
                     </Route>
-                    <Route exact path='/projects/:projectId/models/:modelId/:path?'>
+                    <Route exact path='/projects/:projectId/models/:modelId/versions'>
+                        <ModelVersionLayout>
+                            <Switch>
+                                <Route
+                                    exact
+                                    path='/projects/:projectId/models/:modelId/versions'
+                                    component={ModelVersionListCard}
+                                />
+                            </Switch>
+                        </ModelVersionLayout>
+                    </Route>
+                    <Route exact path='/projects/:projectId/models/:modelId/:path?/:path?'>
                         <ModelLayout>
                             <Switch>
                                 <Route exact path='/projects/:projectId/models/:modelId' component={ModelOverview} />

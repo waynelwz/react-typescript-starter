@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from 'react'
 import Card from '@/components/Card'
-import { createModel } from '@model/services/model'
+import { createModelVersion } from '@model/services/modelVersion'
 import { usePage } from '@/hooks/usePage'
-import { ICreateModelSchema } from '@model/schemas/model'
-import ModelForm from '@model/components/ModelForm'
+import { ICreateModelVersionSchema } from '@model/schemas/modelVersion'
+import ModelVersionForm from '@model/components/ModelVersionForm'
 import { formatDateTime } from '@/utils/datetime'
 import useTranslation from '@/hooks/useTranslation'
 import { Button, SIZE as ButtonSize } from 'baseui/button'
@@ -11,20 +11,22 @@ import User from '@/components/User'
 import { Modal, ModalHeader, ModalBody } from 'baseui/modal'
 import Table from '@/components/Table'
 import { Link, useParams } from 'react-router-dom'
-import { useFetchModels } from '@model/hooks/useFetchModels'
+import { useFetchModelVersions } from '@model/hooks/useFetchModelVersions'
 import { resourceIconMapping } from '@/consts'
+import { useModel } from '@model/hooks/useModel'
 
-export default function ModelListCard() {
+export default function ModelVersionListCard() {
     const [page] = usePage()
     const { modelId, projectId } = useParams<{ modelId: string; projectId: string }>()
+    const { model } = useModel()
 
-    const modelsInfo = useFetchModels(projectId, page)
-    const [isCreateModelOpen, setIsCreateModelOpen] = useState(false)
-    const handleCreateModel = useCallback(
-        async (data: ICreateModelSchema) => {
-            await createModel(projectId, data)
+    const modelsInfo = useFetchModelVersions(projectId, modelId, page)
+    const [isCreateModelVersionOpen, setIsCreateModelVersionOpen] = useState(false)
+    const handleCreateModelVersion = useCallback(
+        async (data: ICreateModelVersionSchema) => {
+            await createModelVersion(projectId, modelId, data)
             await modelsInfo.refetch()
-            setIsCreateModelOpen(false)
+            setIsCreateModelVersionOpen(false)
         },
         [modelsInfo]
     )
@@ -32,27 +34,27 @@ export default function ModelListCard() {
 
     return (
         <Card
-            title={t('models')}
+            title={t('model versions')}
             extra={
-                <Button size={ButtonSize.compact} onClick={() => setIsCreateModelOpen(true)}>
+                <Button size={ButtonSize.compact} onClick={() => setIsCreateModelVersionOpen(true)}>
                     {t('create')}
                 </Button>
             }
         >
             <Table
                 isLoading={modelsInfo.isLoading}
-                columns={[t('sth name', [t('Model')]), t('Owner'), t('Created'), t('Action')]}
+                // t('sth name', [t('Model Version')]),
+                columns={[t('Tag'), t('Created'), t('Owner'), t('Action')]}
                 data={
                     modelsInfo.data?.list.map((model) => {
                         return [
-                            <Link key={model.id} to={`/projects/${projectId}/models/${model.id}`}>
-                                {model.name}
-                            </Link>,
-                            model.owner && <User user={model.owner} />,
+                            // model.Version,
+                            model.tag,
                             model.createTime && formatDateTime(model.createTime),
-                            <Link key={model.id} to={`/projects/${projectId}/models/${model.id}/versions`}>
-                                {t('Version History')}
-                            </Link>,
+                            model.owner && <User user={model.owner} />,
+                            <Button size='mini' key={model.id} onClick={() => {}}>
+                                {t('Revert')}
+                            </Button>,
                         ]
                     }) ?? []
                 }
@@ -66,16 +68,16 @@ export default function ModelListCard() {
                 }}
             />
             <Modal
-                isOpen={isCreateModelOpen}
-                onClose={() => setIsCreateModelOpen(false)}
+                isOpen={isCreateModelVersionOpen}
+                onClose={() => setIsCreateModelVersionOpen(false)}
                 closeable
                 animate
                 autoFocus
                 unstable_ModalBackdropScroll
             >
-                <ModalHeader>{t('create sth', [t('Model')])}</ModalHeader>
+                <ModalHeader>{t('create sth', [t('Model Version')])}</ModalHeader>
                 <ModalBody>
-                    <ModelForm onSubmit={handleCreateModel} />
+                    <ModelVersionForm onSubmit={handleCreateModelVersion} />
                 </ModalBody>
             </Modal>
         </Card>
