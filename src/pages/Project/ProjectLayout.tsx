@@ -59,5 +59,5 @@ export default function ProjectLayout({ children }: IProjectLayoutProps) {
     //     ],
     //     [projectName, t]
     // )
-    return <BaseSubLayout breadcrumbItems={breadcrumbItems}>{children}</BaseSubLayout>
+    return <BaseSubLayout>{children}</BaseSubLayout>
 }

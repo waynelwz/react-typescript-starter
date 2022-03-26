@@ -1853,6 +1853,18 @@ const locales0 = {
     'models': {
         en: 'models',
     },
+    'Dataset': {
+        en: 'Dataset',
+    },
+    'Dataset Version': {
+        en: 'Dataset Version',
+    },
+    'dataset versions': {
+        en: 'dataset versions',
+    },
+    'datasets': {
+        en: 'datasets',
+    },
     'PROJECT': {
         en: 'PROJECT',
     },

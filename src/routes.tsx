@@ -15,8 +15,13 @@ import ModelListCard from './pages/Model/ModelListCard'
 import ModelLayout from './pages/Model/ModelLayout'
 import ModelOverview from './pages/Model/Overview'
 import ProjectModels from './pages/Project/Models'
+import ProjectDatasets from './pages/Project/Datasets'
 import ModelVersionListCard from './pages/Model/ModelVersionListCard'
 import ModelVersionLayout from './pages/Model/ModelVersionLayout'
+import DatasetVersionListCard from './pages/Dataset/DatasetVersionListCard'
+import DatasetVersionLayout from './pages/Dataset/DatasetVersionLayout'
+import DatasetLayout from './pages/Dataset/DatasetLayout'
+import DatasetOverview from './pages/Dataset/Overview'
 
 const useStyles = createUseStyles({
     'root': ({ theme }: IThemedStyleProps) => ({
@@ -65,8 +70,31 @@ const Routes = () => {
                             <Switch>
                                 <Route exact path='/projects/:projectId' component={ProjectOverview} />
                                 <Route exact path='/projects/:projectId/models' component={ProjectModels} />
+                                <Route exact path='/projects/:projectId/datasets' component={ProjectDatasets} />
                             </Switch>
                         </ProjectLayout>
+                    </Route>
+                    <Route exact path='/projects/:projectId/datasets/:datasetId/versions'>
+                        <DatasetVersionLayout>
+                            <Switch>
+                                <Route
+                                    exact
+                                    path='/projects/:projectId/datasets/:datasetId/versions'
+                                    component={DatasetVersionListCard}
+                                />
+                            </Switch>
+                        </DatasetVersionLayout>
+                    </Route>
+                    <Route exact path='/projects/:projectId/datasets/:datasetId/:path?/:path?'>
+                        <DatasetLayout>
+                            <Switch>
+                                <Route
+                                    exact
+                                    path='/projects/:projectId/datasets/:datasetId'
+                                    component={DatasetOverview}
+                                />
+                            </Switch>
+                        </DatasetLayout>
                     </Route>
                     <Route exact path='/projects/:projectId/models/:modelId/versions'>
                         <ModelVersionLayout>
