@@ -43,3 +43,10 @@ export interface ICreateJobSchema {
     deviceId?: string
     deviceCount?: number
 }
+
+export interface IJobFormSchema extends IJobSchema {
+    modelId: string
+}
+export interface ICreateJobFormSchema extends ICreateJobSchema {
+    modelId: string
+}

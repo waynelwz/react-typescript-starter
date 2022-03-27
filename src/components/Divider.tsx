@@ -8,7 +8,7 @@ import { createUseStyles } from 'react-jss'
 const useStyles = createUseStyles({
     wrapper: (props: IThemedStyleProps) => {
         return {
-            'margin': '28px 0',
+            'margin': '10px 0',
             'fontSize': '18px',
             'display': 'flex',
             'alignItems': 'center',

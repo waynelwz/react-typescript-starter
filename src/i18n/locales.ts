@@ -1853,6 +1853,9 @@ const locales0 = {
     'models': {
         en: 'models',
     },
+    'Model Information': {
+        en: 'Model Information',
+    },
     'Dataset': {
         en: 'Dataset',
     },
@@ -1864,6 +1867,9 @@ const locales0 = {
     },
     'datasets': {
         en: 'datasets',
+    },
+    'Datasets': {
+        en: 'Datasets',
     },
     'Job': {
         en: 'Job',
@@ -1942,6 +1948,9 @@ const locales0 = {
     },
     'Version History': {
         en: 'Version History',
+    },
+    'Version': {
+        en: 'Version',
     },
     'Action': {
         en: 'Action',
