@@ -35,8 +35,12 @@ export default function ProjectSidebar({ style }: IComposedSidebarProps) {
                       {
                           title: t('datasets'),
                           path: `/projects/${project.id}/datasets`,
-                          // icon: resourceIconMapping.model,
                           activePathPattern: /^\/(datasets)\/?/,
+                      },
+                      {
+                          title: t('jobs'),
+                          path: `/projects/${project.id}/jobs`,
+                          activePathPattern: /^\/(jobs|new_job)\/?/,
                       },
                   ]
                 : [],

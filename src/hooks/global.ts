@@ -5,6 +5,8 @@ import { IModelDetailSchema } from '@model/schemas/model'
 import { IModelVersionDetailSchema } from '@model/schemas/modelVersion'
 import { IDatasetDetailSchema } from '@/domain/dataset/schemas/dataset'
 import { IDatasetVersionDetailSchema } from '@/domain/dataset/schemas/datasetVersion'
+import { IJobSchema } from '@/domain/job/schemas/job'
+import { ITaskDetailSchema } from '@/domain/job/schemas/task'
 
 export type BaseThemeType = 'light' | 'dark' | 'deep'
 export type ThemeType = BaseThemeType | 'followTheSystem'
@@ -24,6 +26,10 @@ const initialState = {
     datasetLoading: false,
     datasetVersion: undefined as IDatasetVersionDetailSchema | undefined,
     datasetVersionLoading: false,
+    job: undefined as IJobSchema | undefined,
+    jobLoading: false,
+    task: undefined as ITaskDetailSchema | undefined,
+    taskLoading: false,
 }
 
 const { useGlobalState } = createGlobalState(initialState)

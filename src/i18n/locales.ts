@@ -1865,6 +1865,21 @@ const locales0 = {
     'datasets': {
         en: 'datasets',
     },
+    'Job': {
+        en: 'Job',
+    },
+    'Run Model': {
+        en: 'Run Model',
+    },
+    'Task': {
+        en: 'Task',
+    },
+    'tasks': {
+        en: 'tasks',
+    },
+    'jobs': {
+        en: 'jobs',
+    },
     'PROJECT': {
         en: 'PROJECT',
     },

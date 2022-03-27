@@ -7,9 +7,10 @@ import {
     IChangePasswordSchema,
 } from '../schemas/user'
 import { IListQuerySchema, IListSchema } from '@/schemas/list'
+import qs from 'qs'
 
 export async function loginUser(data: ILoginUserSchema): Promise<IUserSchema> {
-    const resp = await axios.post<IUserSchema>('/login', data)
+    const resp = await axios.post<IUserSchema>(`/api/v1/login?${qs.stringify(data)}`, data)
     return resp.data
 }
 
