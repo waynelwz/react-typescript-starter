@@ -6,6 +6,7 @@ import { LightTheme, BaseProvider, DarkTheme } from 'baseui'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { useCurrentThemeType } from '@/hooks/useCurrentThemeType'
 // import { configure, addDecorator } from "@storybook/react"
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 const engine = new Styletron()
 const queryClient = new QueryClient()
@@ -17,7 +18,9 @@ const ThemeDecorator = storyFn => {
         <QueryClientProvider client={queryClient}>
             <StyletronProvider value={engine}>
                 <BaseProvider theme={themeType === 'dark' ? DarkTheme : LightTheme}>
-                    {storyFn()}                        
+                  <BrowserRouter>
+                    {storyFn()}
+                  </BrowserRouter>                   
                 </BaseProvider>
             </StyletronProvider>
         </QueryClientProvider>

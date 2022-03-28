@@ -6,7 +6,7 @@ export interface IResourceLabelsProps {
     resource: IResourceSchema
 }
 
-export function ResourceLabels({ resource }: IResourceLabelsProps) {
+export default function ResourceLabels({ resource }: IResourceLabelsProps) {
     return (
         <div
             style={{
