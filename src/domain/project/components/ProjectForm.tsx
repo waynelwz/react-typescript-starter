@@ -15,14 +15,16 @@ export interface IProjectFormProps {
 }
 
 export default function ProjectForm({ project, onSubmit }: IProjectFormProps) {
-    const [values, setValues] = useState<ICreateProjectSchema | undefined>(project)
+    const [values, setValues] = useState<ICreateProjectSchema | undefined>({
+        projectName: '',
+    })
 
     useEffect(() => {
         if (!project) {
             return
         }
         setValues({
-            name: project.name,
+            projectName: project.name,
             // description: project.description,
             // config: project.config,
         })
@@ -50,7 +52,7 @@ export default function ProjectForm({ project, onSubmit }: IProjectFormProps) {
 
     return (
         <Form initialValues={values} onFinish={handleFinish} onValuesChange={handleValuesChange}>
-            <FormItem name='name' label={t('name')}>
+            <FormItem name='projectName' label={t('name')}>
                 <Input disabled={project !== undefined ? true : undefined} />
             </FormItem>
             <FormItem>

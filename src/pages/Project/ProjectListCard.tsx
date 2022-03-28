@@ -4,7 +4,7 @@ import { createProject } from '@project/services/project'
 import { usePage } from '@/hooks/usePage'
 import { ICreateProjectSchema } from '@project/schemas/project'
 import ProjectForm from '@project/components/ProjectForm'
-import { formatDateTime } from '@/utils/datetime'
+import { formatTimestampDateTime } from '@/utils/datetime'
 import useTranslation from '@/hooks/useTranslation'
 import { Button, SIZE as ButtonSize } from 'baseui/button'
 import User from '@/components/User'
@@ -27,7 +27,7 @@ export default function ProjectListCard() {
         [projectsInfo]
     )
     const [t] = useTranslation()
-
+    console.log('data', projectsInfo.data)
     return (
         <Card
             title={t('projects')}
@@ -42,13 +42,14 @@ export default function ProjectListCard() {
                 isLoading={projectsInfo.isLoading}
                 columns={[t('Project Name'), t('Owner'), t('Created')]}
                 data={
-                    projectsInfo.data?.list.map((project) => {
+                    projectsInfo.data?.list?.map((project) => {
+                        console.log(project)
                         return [
                             <Link key={project.id} to={`/projects/${project.id}`}>
                                 {project.name}
                             </Link>,
                             project.owner && <User user={project.owner} />,
-                            project.createTime && formatDateTime(project.createTime),
+                            project.createTime && formatTimestampDateTime(project.createTime),
                         ]
                     }) ?? []
                 }

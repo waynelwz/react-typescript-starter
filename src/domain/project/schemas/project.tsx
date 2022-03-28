@@ -3,22 +3,15 @@ import { IUserSchema } from '@user/schemas/user'
 
 export interface IProjectSchema extends IResourceSchema {
     name: string
-    createTime: string
+    createTime: number
     owner?: IUserSchema
-    // description: string
 }
-
-// export interface IProjectFullSchema extends IProjectSchema {
-//     config?: IProjectConfigSchema
-// }
 
 export interface IUpdateProjectSchema {
     description?: string
-    // config?: IProjectConfigSchema
 }
 
 export interface ICreateProjectSchema {
-    name: string
+    projectName: string
     description?: string
-    // config?: IProjectConfigSchema
 }

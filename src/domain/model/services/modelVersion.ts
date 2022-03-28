@@ -14,15 +14,18 @@ export async function listModelVersions(
     modelId: string,
     query: IListQuerySchema
 ): Promise<IListSchema<IModelVersionSchema>> {
-    const resp = await axios.get<IListSchema<IModelVersionSchema>>(`/project/${projectId}/model/${modelId}/version`, {
-        params: query,
-    })
+    const resp = await axios.get<IListSchema<IModelVersionSchema>>(
+        `/api/v1/project/${projectId}/model/${modelId}/version`,
+        {
+            params: query,
+        }
+    )
     return resp.data
 }
 
 export async function fetchModelVersion(projectId: string, modelId: string, modelVersionId: string): Promise<any> {
     const resp = await axios.get<IModelVersionDetailSchema>(
-        `/project/${projectId}/model/${modelId}/version/${modelVersionId}`
+        `/api/v1/project/${projectId}/model/${modelId}/version/${modelVersionId}`
     )
     return resp.data
 }
@@ -38,7 +41,7 @@ export async function createModelVersion(
 
     const resp = await axios({
         method: 'post',
-        url: `/project/${projectId}/model/${modelId}`,
+        url: `/api/v1/project/${projectId}/model/${modelId}`,
         data: bodyFormData,
         headers: { 'Content-Type': 'multipart/form-data' },
     })
@@ -52,7 +55,7 @@ export async function updateModelVersion(
     data: IUpdateModelVersionSchema
 ): Promise<IModelVersionSchema> {
     const resp = await axios.patch<IModelVersionSchema>(
-        `/project/${projectId}/model/${modelId}/version/${modelVersionId}`,
+        `/api/v1/project/${projectId}/model/${modelId}/version/${modelVersionId}`,
         data
     )
     return resp.data
@@ -64,7 +67,7 @@ export async function revertModelVersion(
     modelVersionId: string
 ): Promise<IModelVersionSchema> {
     const resp = await axios.patch<IModelVersionSchema>(
-        `/project/${projectId}/model/${modelId}/version/${modelVersionId}/revert`
+        `/api/v1/project/${projectId}/model/${modelId}/version/${modelVersionId}/revert`
     )
     return resp.data
 }

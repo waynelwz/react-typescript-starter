@@ -46,7 +46,11 @@ export interface ICreateJobSchema {
 
 export interface IJobFormSchema extends IJobSchema {
     modelId: string
+    datasetId: string
+    datasetVersionId: string
 }
 export interface ICreateJobFormSchema extends ICreateJobSchema {
     modelId: string
+    datasetId: string
+    datasetVersionId: string
 }

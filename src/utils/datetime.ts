@@ -5,6 +5,10 @@ export function formatDateTime(s: string, format = 'YYYY-MM-DDTHH:mm:ssZ'): stri
     return moment(s, format).format(dateTimeFormat)
 }
 
+export function formatTimestampDateTime(s: number, format = 'YYYY-MM-DDTHH:mm:ssZ'): string {
+    return moment.unix(s / 1000).format(dateTimeFormat)
+}
+
 export function durationToStr(v: number) {
     const units = ['μs', 'ms', 's', 'm', 'h', 'd']
     let basic = 1000

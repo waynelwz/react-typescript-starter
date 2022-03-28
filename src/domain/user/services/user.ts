@@ -10,7 +10,8 @@ import { IListQuerySchema, IListSchema } from '@/schemas/list'
 import qs from 'qs'
 
 export async function loginUser(data: ILoginUserSchema): Promise<IUserSchema> {
-    const resp = await axios.post<IUserSchema>(`/api/v1/login?${qs.stringify(data)}`, data)
+    const resp = await axios.post<IUserSchema>(`/api/v1/login`, data)
+    console.log(resp)
     return resp.data
 }
 
@@ -20,7 +21,7 @@ export async function fetchUser(userName: string): Promise<IUserSchema> {
 }
 
 export async function fetchCurrentUser(): Promise<IUserSchema> {
-    const resp = await axios.get<IUserSchema>('/user/current')
+    const resp = await axios.get<IUserSchema>('/api/v1/user/current')
     return resp.data
 }
 

@@ -14,6 +14,9 @@ import { Label1, Label2 } from 'baseui/typography'
 import Divider from '@/components/Divider'
 import { useParams } from 'react-router'
 import ModelVersionSelector from '@/domain/model/components/ModelVersionSelector'
+import MultiTags from '@/components/Tag/MultiTags'
+import DatasetSelector from '@/domain/dataset/components/DatasetSelector'
+import DatasetVersionSelector from '@/domain/dataset/components/DatasetVersionSelector'
 
 const { Form, FormItem } = createForm<ICreateJobFormSchema>()
 
@@ -27,6 +30,8 @@ export default function JobForm({ job, onSubmit }: IJobFormProps) {
     const [datasetVersionIds, setDatasetVersionIds] = useState<Value>([])
     const { projectId } = useParams<{ projectId: string }>()
     const [modelId, setModelId] = useState('')
+    const [datasetId, setDatasetId] = useState('')
+    const [datasetIds, setDatasetIds] = useState([])
 
     useEffect(() => {
         if (!job) {
@@ -42,6 +47,7 @@ export default function JobForm({ job, onSubmit }: IJobFormProps) {
     const handleValuesChange = useCallback((_changes, values_) => {
         setValues(values_)
         values_.modelId && setModelId(values_.modelId)
+        values_.datasetId && setDatasetId(values_.datasetId)
     }, [])
 
     const handleFinish = useCallback(
@@ -55,6 +61,8 @@ export default function JobForm({ job, onSubmit }: IJobFormProps) {
         },
         [onSubmit]
     )
+
+    const handleAddDataset = useCallback(() => {}, [])
 
     const [t] = useTranslation()
 
@@ -95,6 +103,39 @@ export default function JobForm({ job, onSubmit }: IJobFormProps) {
             <Divider orientation='left'>
                 <Label1>{t('Datasets')}</Label1>
             </Divider>
+            <div style={{ display: 'flex', alignItems: 'left', gap: 20 }}>
+                <FormItem label={t('sth name', [t('Dataset')])} name='datasetId' required>
+                    <DatasetSelector
+                        projectId={projectId}
+                        overrides={{
+                            Root: {
+                                style: {
+                                    width: '144px',
+                                },
+                            },
+                        }}
+                    ></DatasetSelector>
+                </FormItem>
+                {datasetId && (
+                    <FormItem label={t('Version')} required name='datasetVersionId'>
+                        <DatasetVersionSelector
+                            projectId={projectId}
+                            datasetId={datasetId}
+                            overrides={{
+                                Root: {
+                                    style: {
+                                        width: '144px',
+                                    },
+                                },
+                            }}
+                        ></DatasetVersionSelector>
+                    </FormItem>
+                )}
+                <Button size='mini' onClick={handleAddDataset}>
+                    Add
+                </Button>
+            </div>
+            <MultiTags></MultiTags>
             <FormItem>
                 <div style={{ display: 'flex' }}>
                     <div style={{ flexGrow: 1 }} />

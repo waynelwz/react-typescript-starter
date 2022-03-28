@@ -9,14 +9,14 @@ export async function listTasks(
     jobId: string,
     query: IListQuerySchema
 ): Promise<IListSchema<ITaskSchema>> {
-    const resp = await axios.get<IListSchema<ITaskSchema>>(`/project/${projectId}/job/${jobId}/version`, {
+    const resp = await axios.get<IListSchema<ITaskSchema>>(`/api/v1/project/${projectId}/job/${jobId}/version`, {
         params: query,
     })
     return resp.data
 }
 
 export async function fetchTask(projectId: string, jobId: string, taskId: string): Promise<any> {
-    const resp = await axios.get<ITaskDetailSchema>(`/project/${projectId}/job/${jobId}/version/${taskId}`)
+    const resp = await axios.get<ITaskDetailSchema>(`/api/v1/project/${projectId}/job/${jobId}/version/${taskId}`)
     return resp.data
 }
 
@@ -26,11 +26,11 @@ export async function updateTask(
     taskId: string,
     data: IUpdateTaskSchema
 ): Promise<ITaskSchema> {
-    const resp = await axios.patch<ITaskSchema>(`/project/${projectId}/job/${jobId}/version/${taskId}`, data)
+    const resp = await axios.patch<ITaskSchema>(`/api/v1/project/${projectId}/job/${jobId}/version/${taskId}`, data)
     return resp.data
 }
 
 export async function revertTask(projectId: string, jobId: string, taskId: string): Promise<ITaskSchema> {
-    const resp = await axios.patch<ITaskSchema>(`/project/${projectId}/job/${jobId}/version/${taskId}/revert`)
+    const resp = await axios.patch<ITaskSchema>(`/api/v1/project/${projectId}/job/${jobId}/version/${taskId}/revert`)
     return resp.data
 }

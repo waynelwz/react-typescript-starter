@@ -140,11 +140,13 @@ export default function Header() {
             return
         }
         // todo fix as a const
-        axios.defaults.baseURL = 'https://virtserver.swaggerhub.com/dreamlandliu/test-mvp/1.0.0/'
+        // axios.defaults.baseURL = 'https://virtserver.swaggerhub.com/dreamlandliu/test-mvp/1.0.0/'
         axios.interceptors.response.use(
             (response) => {
                 console.log(response)
-                return response
+                response.headers.authorization &&
+                    (axios.defaults.headers.Authorization = response.headers.authorization)
+                return response.data
             },
             (error) => {
                 const errMsg = getErrMsg(error)
