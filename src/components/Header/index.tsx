@@ -31,6 +31,7 @@ import ThemeToggle from './ThemeToggle'
 import HeaderLeftMenu from './HeaderLeftMenu'
 import { useProject, useProjectLoading } from '@/domain/project/hooks/useProject'
 import { fetchProject } from '@/domain/project/services/project'
+import { useToken } from '../../hooks/useToken'
 
 const useHeaderStyles = createUseStyles({
     headerWrapper: (props: IThemedStyleProps) => ({
@@ -121,7 +122,7 @@ export default function Header() {
     const styles = useStyles({ theme, themeType })
     const headerStyles = useHeaderStyles({ theme, themeType })
     const location = useLocation()
-
+    const { token, setToken } = useToken()
     const errMsgExpireTimeSeconds = 5
     const lastErrMsgRef = useRef<Record<string, number>>({})
     const lastLocationPathRef = useRef(location.pathname)
@@ -139,14 +140,12 @@ export default function Header() {
         if ((axios.interceptors.response as any).handlers.length > 0) {
             return
         }
-        // todo fix as a const
-        // axios.defaults.baseURL = 'https://virtserver.swaggerhub.com/dreamlandliu/test-mvp/1.0.0/'
+        // todo refact
         axios.interceptors.response.use(
             (response) => {
                 console.log(response)
-                response.headers.authorization &&
-                    (axios.defaults.headers.Authorization = response.headers.authorization)
                 // return response.data
+                response.headers.authorization && setToken(response.headers.authorization)
                 return response
             },
             (error) => {
@@ -167,13 +166,12 @@ export default function Header() {
                         }/login?redirect=${encodeURIComponent(redirect)}`
                     }
                 } else if (Date.now() - (lastErrMsgRef.current[errMsg] || 0) > errMsgExpireTimeSeconds * 1000) {
-                    // toaster.negative(errMsg, { autoHideDuration: (errMsgExpireTimeSeconds + 1) * 1000 })
+                    toaster.negative(errMsg, { autoHideDuration: (errMsgExpireTimeSeconds + 1) * 1000 })
                     lastErrMsgRef.current[errMsg] = Date.now()
                 }
                 return Promise.reject(error)
             }
         )
-        fetchCurrentUser()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 

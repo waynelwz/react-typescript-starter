@@ -12,6 +12,7 @@ export type BaseThemeType = 'light' | 'dark' | 'deep'
 export type ThemeType = BaseThemeType | 'followTheSystem'
 
 const initialState = {
+    token: '',
     themeType: 'light' as ThemeType,
     currentUser: undefined as IUserSchema | undefined,
     user: undefined as IUserSchema | undefined,

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Header from '@/components/Header'
 import ProjectLayout from '@/pages/Project/ProjectLayout'
@@ -29,6 +29,7 @@ import JobOverview from './pages/Job/Overview'
 import TaskListCard from './pages/Job/TaskListCard'
 import JobForm from './domain/job/components/JobForm'
 import JobNewCard from './pages/Project/JobNewCard'
+import axios from 'axios'
 
 const useStyles = createUseStyles({
     'root': ({ theme }: IThemedStyleProps) => ({
@@ -53,6 +54,13 @@ const useStyles = createUseStyles({
             background: 'var(--color-backgroundPrimary)',
         },
     },
+})
+
+// todo refact
+axios.interceptors.request.use(function (config) {
+    const token = sessionStorage?.token
+    config.headers.Authorization = token
+    return config
 })
 
 const Routes = () => {
