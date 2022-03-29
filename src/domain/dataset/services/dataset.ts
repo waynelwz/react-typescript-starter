@@ -5,14 +5,14 @@ import { IEventSchema } from '@/schemas/event'
 import { ResourceType } from '@/schemas/resource'
 
 export async function listDatasets(projectId: string, query: IListQuerySchema): Promise<IListSchema<IDatasetSchema>> {
-    const resp = await axios.get<IListSchema<IDatasetSchema>>(`/project/${projectId}/dataset`, {
+    const resp = await axios.get<IListSchema<IDatasetSchema>>(`/api/v1/project/${projectId}/dataset`, {
         params: query,
     })
     return resp.data
 }
 
 export async function fetchDataset(projectId: string, datasetId: string): Promise<any> {
-    const resp = await axios.get<IDatasetDetailSchema>(`/project/${projectId}/dataset/${datasetId}`)
+    const resp = await axios.get<IDatasetDetailSchema>(`/api/v1/project/${projectId}/dataset/${datasetId}`)
     return resp.data
 }
 
@@ -24,7 +24,7 @@ export async function createDataset(projectId: string, data: ICreateDatasetSchem
 
     const resp = await axios({
         method: 'post',
-        url: `/project/${projectId}/dataset`,
+        url: `/api/v1/project/${projectId}/dataset`,
         data: bodyFormData,
         headers: { 'Content-Type': 'multipart/form-data' },
     })

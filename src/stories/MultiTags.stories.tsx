@@ -13,16 +13,8 @@ export default {
 const Template: ComponentStory<typeof MultiTags> = (args) => <MultiTags {...args} />
 export const Primary = Template.bind({})
 Primary.args = {
-    resource: {
-        labels: [
-            {
-                key: 'key',
-                value: 2,
-            },
-            {
-                key: 'key',
-                value: 3,
-            },
-        ],
+    value: ['a', 'b', 'c'],
+    getValueLabel(v) {
+        return v.option.id + ':label'
     },
 }

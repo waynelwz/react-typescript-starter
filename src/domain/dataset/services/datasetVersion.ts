@@ -15,7 +15,7 @@ export async function listDatasetVersions(
     query: IListQuerySchema
 ): Promise<IListSchema<IDatasetVersionSchema>> {
     const resp = await axios.get<IListSchema<IDatasetVersionSchema>>(
-        `/project/${projectId}/dataset/${datasetId}/version`,
+        `/api/v1/project/${projectId}/dataset/${datasetId}/version`,
         {
             params: query,
         }
@@ -29,7 +29,7 @@ export async function fetchDatasetVersion(
     datasetVersionId: string
 ): Promise<any> {
     const resp = await axios.get<IDatasetVersionDetailSchema>(
-        `/project/${projectId}/dataset/${datasetId}/version/${datasetVersionId}`
+        `/api/v1/project/${projectId}/dataset/${datasetId}/version/${datasetVersionId}`
     )
     return resp.data
 }
@@ -45,7 +45,7 @@ export async function createDatasetVersion(
 
     const resp = await axios({
         method: 'post',
-        url: `/project/${projectId}/dataset/${datasetId}`,
+        url: `/api/v1/project/${projectId}/dataset/${datasetId}`,
         data: bodyFormData,
         headers: { 'Content-Type': 'multipart/form-data' },
     })
@@ -59,7 +59,7 @@ export async function updateDatasetVersion(
     data: IUpdateDatasetVersionSchema
 ): Promise<IDatasetVersionSchema> {
     const resp = await axios.patch<IDatasetVersionSchema>(
-        `/project/${projectId}/dataset/${datasetId}/version/${datasetVersionId}`,
+        `/api/v1/project/${projectId}/dataset/${datasetId}/version/${datasetVersionId}`,
         data
     )
     return resp.data
@@ -71,7 +71,7 @@ export async function revertDatasetVersion(
     datasetVersionId: string
 ): Promise<IDatasetVersionSchema> {
     const resp = await axios.patch<IDatasetVersionSchema>(
-        `/project/${projectId}/dataset/${datasetId}/version/${datasetVersionId}/revert`
+        `/api/v1/project/${projectId}/dataset/${datasetId}/version/${datasetVersionId}/revert`
     )
     return resp.data
 }

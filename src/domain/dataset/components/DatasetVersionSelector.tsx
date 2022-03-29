@@ -1,5 +1,5 @@
 import { listDatasetVersions } from '../services/datasetVersion'
-import { Select, SelectProps } from 'baseui/select'
+import { Select, SelectProps, OnChangeParams } from 'baseui/select'
 import _ from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
@@ -7,17 +7,11 @@ import { useParams } from 'react-router-dom'
 
 export interface IDatasetVersionSelectorProps {
     projectId: string
+    datasetId: string
     value?: string
     onChange?: (newValue: string) => void
     overrides?: SelectProps['overrides']
     disabled?: boolean
-}
-
-export interface IDatasetVersionSelectorWithDatasetIdProps extends IDatasetVersionSelectorProps {
-    datasetId: string
-}
-export interface IDatasetVersionSelectorWithoutDatasetIdProps extends IDatasetVersionSelectorProps {
-    datasetId?: string
 }
 
 export default function DatasetVersionSelector({
@@ -27,13 +21,13 @@ export default function DatasetVersionSelector({
     onChange,
     overrides,
     disabled,
-}: IDatasetVersionSelectorWithDatasetIdProps | IDatasetVersionSelectorWithoutDatasetIdProps) {
+}: IDatasetVersionSelectorProps) {
     const [keyword, setKeyword] = useState<string>()
     const [options, setOptions] = useState<{ id: string; label: React.ReactNode }[]>([])
     const datasetVersionsInfo = useQuery(
         `listDatasetVersions:${keyword}`,
         // todo the right way of datasetId ?? ''
-        () => listDatasetVersions(projectId, datasetId ?? '', { start: 0, count: 100, search: keyword }),
+        () => listDatasetVersions(projectId, datasetId, { start: 0, count: 100, search: keyword }),
         { enabled: !!datasetId }
     )
 
@@ -50,7 +44,7 @@ export default function DatasetVersionSelector({
             setOptions(
                 datasetVersionsInfo.data?.list.map((item) => ({
                     id: item.name,
-                    label: item.name,
+                    label: item.name + '/' + item.tag,
                 })) ?? []
             )
         } else {

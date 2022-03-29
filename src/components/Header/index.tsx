@@ -146,7 +146,8 @@ export default function Header() {
                 console.log(response)
                 response.headers.authorization &&
                     (axios.defaults.headers.Authorization = response.headers.authorization)
-                return response.data
+                // return response.data
+                return response
             },
             (error) => {
                 const errMsg = getErrMsg(error)
