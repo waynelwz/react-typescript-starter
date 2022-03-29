@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react'
 import Card from '@/components/Card'
 import { usePage } from '@/hooks/usePage'
 import { ICreateTaskSchema } from '@job/schemas/task'
-import { formatDateTime } from '@/utils/datetime'
+import { formatTimestampDateTime } from '@/utils/datetime'
 import useTranslation from '@/hooks/useTranslation'
 import { Button, SIZE as ButtonSize } from 'baseui/button'
 import User from '@/components/User'
@@ -32,7 +32,7 @@ export default function TaskListCard() {
                     //     return [
                     //         // job.Version,
                     //         job.tag,
-                    //         job.createTime && formatDateTime(job.createTime),
+                    //         job.createTime && formatTimestampDateTime(job.createTime),
                     //         job.owner && <User user={job.owner} />,
                     //         <Button size='mini' key={job.id} onClick={() => {}}>
                     //             {t('Revert')}

@@ -3,7 +3,7 @@ import { IUserSchema } from '@user/schemas/user'
 // todo fix model & model detail has different attrs
 export interface IModelSchema extends IResourceSchema {
     name: string
-    createTime: string
+    createTime: number
     owner?: IUserSchema
 }
 
@@ -22,7 +22,7 @@ export interface IUpdateModelSchema {
 
 export interface ICreateModelSchema {
     modelName: string
-    zipFile?: File
+    zipFile?: FileList
     importPath?: string
 }
 

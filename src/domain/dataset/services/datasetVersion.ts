@@ -40,8 +40,8 @@ export async function createDatasetVersion(
     data: ICreateDatasetVersionSchema
 ): Promise<IDatasetVersionSchema> {
     var bodyFormData = new FormData()
-    data.importPath && bodyFormData.append('importPath', data.importPath)
-    data.zipFile && bodyFormData.append('zipFile', data.zipFile)
+    bodyFormData.append('importPath', data.importPath ?? '')
+    if (data.zipFile && data.zipFile.length > 0) bodyFormData.append('zipFile', data.zipFile[0] as File)
 
     const resp = await axios({
         method: 'post',

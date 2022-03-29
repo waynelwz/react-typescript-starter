@@ -19,8 +19,8 @@ export async function fetchDataset(projectId: string, datasetId: string): Promis
 export async function createDataset(projectId: string, data: ICreateDatasetSchema): Promise<IDatasetSchema> {
     var bodyFormData = new FormData()
     bodyFormData.append('datasetName', data.datasetName)
-    data.importPath && bodyFormData.append('importPath', data.importPath)
-    data.zipFile && bodyFormData.append('zipFile', data.zipFile)
+    bodyFormData.append('importPath', data.importPath ?? '')
+    if (data.zipFile && data.zipFile.length > 0) bodyFormData.append('zipFile', data.zipFile[0] as File)
 
     const resp = await axios({
         method: 'post',

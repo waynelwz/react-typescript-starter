@@ -4,7 +4,7 @@ import { createJob } from '@job/services/job'
 import { usePage } from '@/hooks/usePage'
 import { ICreateJobSchema } from '@job/schemas/job'
 import JobForm from '@job/components/JobForm'
-import { formatDateTime } from '@/utils/datetime'
+import { formatTimestampDateTime } from '@/utils/datetime'
 import useTranslation from '@/hooks/useTranslation'
 import { Button, SIZE as ButtonSize } from 'baseui/button'
 import User from '@/components/User'
@@ -67,7 +67,7 @@ export default function JobListCard() {
                                 {job.uuid}
                             </Link>,
                             job.owner && <User user={job.owner} />,
-                            job.createTime && formatDateTime(job.createTime),
+                            job.createTime && formatTimestampDateTime(job.createTime),
                             <Link key={job.id} to={`/projects/${projectId}/jobs/${job.id}/versions`}>
                                 {t('Version History')}
                             </Link>,

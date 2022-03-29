@@ -4,7 +4,7 @@ import { createModelVersion } from '@model/services/modelVersion'
 import { usePage } from '@/hooks/usePage'
 import { ICreateModelVersionSchema } from '@model/schemas/modelVersion'
 import ModelVersionForm from '@model/components/ModelVersionForm'
-import { formatDateTime } from '@/utils/datetime'
+import { formatTimestampDateTime } from '@/utils/datetime'
 import useTranslation from '@/hooks/useTranslation'
 import { Button, SIZE as ButtonSize } from 'baseui/button'
 import User from '@/components/User'
@@ -50,7 +50,7 @@ export default function ModelVersionListCard() {
                         return [
                             // model.Version,
                             model.tag,
-                            model.createTime && formatDateTime(model.createTime),
+                            model.createTime && formatTimestampDateTime(model.createTime),
                             model.owner && <User user={model.owner} />,
                             <Button size='mini' key={model.id} onClick={() => {}}>
                                 {t('Revert')}

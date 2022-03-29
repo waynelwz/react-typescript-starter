@@ -3,7 +3,7 @@ import { IUserSchema } from '@user/schemas/user'
 // todo fix dataset & dataset detail has different attrs
 export interface IDatasetSchema extends IResourceSchema {
     name: string
-    createTime: string
+    createTime: number
     owner?: IUserSchema
 }
 
@@ -23,7 +23,7 @@ export interface IUpdateDatasetSchema {
 
 export interface ICreateDatasetSchema {
     datasetName: string
-    zipFile?: File
+    zipFile?: FileList
     importPath?: string
 }
 

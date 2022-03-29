@@ -4,7 +4,7 @@ import { createDataset } from '@dataset/services/dataset'
 import { usePage } from '@/hooks/usePage'
 import { ICreateDatasetSchema } from '@dataset/schemas/dataset'
 import DatasetForm from '@dataset/components/DatasetForm'
-import { formatDateTime } from '@/utils/datetime'
+import { formatTimestampDateTime } from '@/utils/datetime'
 import useTranslation from '@/hooks/useTranslation'
 import { Button, SIZE as ButtonSize } from 'baseui/button'
 import User from '@/components/User'
@@ -49,7 +49,7 @@ export default function DatasetListCard() {
                                 {dataset.name}
                             </Link>,
                             dataset.owner && <User user={dataset.owner} />,
-                            dataset.createTime && formatDateTime(dataset.createTime),
+                            dataset.createTime && formatTimestampDateTime(dataset.createTime),
                             <Link key={dataset.id} to={`/projects/${projectId}/datasets/${dataset.id}/versions`}>
                                 {t('Version History')}
                             </Link>,

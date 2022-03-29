@@ -4,7 +4,7 @@ import { IUserSchema } from '@user/schemas/user'
 export interface IDatasetVersionSchema extends IResourceSchema {
     name: string
     tag: string
-    createTime: string
+    createTime: number
     meta: object
     owner?: IUserSchema
 }
@@ -19,6 +19,6 @@ export interface IUpdateDatasetVersionSchema {
 
 export interface ICreateDatasetVersionSchema {
     datasetName: string
-    zipFile?: File
+    zipFile?: FileList
     importPath?: string
 }

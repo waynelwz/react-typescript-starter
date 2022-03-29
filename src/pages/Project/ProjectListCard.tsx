@@ -27,7 +27,7 @@ export default function ProjectListCard() {
         [projectsInfo]
     )
     const [t] = useTranslation()
-    console.log('data', projectsInfo.data)
+
     return (
         <Card
             title={t('projects')}

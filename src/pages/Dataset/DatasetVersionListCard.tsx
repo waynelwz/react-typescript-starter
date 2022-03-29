@@ -4,7 +4,7 @@ import { createDatasetVersion } from '@dataset/services/datasetVersion'
 import { usePage } from '@/hooks/usePage'
 import { ICreateDatasetVersionSchema } from '@dataset/schemas/datasetVersion'
 import DatasetVersionForm from '@dataset/components/DatasetVersionForm'
-import { formatDateTime } from '@/utils/datetime'
+import { formatTimestampDateTime } from '@/utils/datetime'
 import useTranslation from '@/hooks/useTranslation'
 import { Button, SIZE as ButtonSize } from 'baseui/button'
 import User from '@/components/User'
@@ -50,7 +50,7 @@ export default function DatasetVersionListCard() {
                         return [
                             // dataset.Version,
                             dataset.tag,
-                            dataset.createTime && formatDateTime(dataset.createTime),
+                            dataset.createTime && formatTimestampDateTime(dataset.createTime),
                             dataset.owner && <User user={dataset.owner} />,
                             <Button size='mini' key={dataset.id} onClick={() => {}}>
                                 {t('Revert')}

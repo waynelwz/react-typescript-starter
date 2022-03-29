@@ -19,8 +19,8 @@ export async function fetchModel(projectId: string, modelId: string): Promise<an
 export async function createModel(projectId: string, data: ICreateModelSchema): Promise<IModelSchema> {
     var bodyFormData = new FormData()
     bodyFormData.append('modelName', data.modelName)
-    data.importPath && bodyFormData.append('importPath', data.importPath)
-    data.zipFile && bodyFormData.append('zipFile', data.zipFile)
+    bodyFormData.append('importPath', data.importPath ?? '')
+    if (data.zipFile && data.zipFile.length > 0) bodyFormData.append('zipFile', data.zipFile[0] as File)
 
     const resp = await axios({
         method: 'post',

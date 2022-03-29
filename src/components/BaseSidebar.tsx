@@ -14,7 +14,7 @@ import color from 'color'
 import Text from '@/components/Text'
 import useTranslation from '@/hooks/useTranslation'
 import { useQuery } from 'react-query'
-import { formatDateTime } from '@/utils/datetime'
+import { formatTimestampDateTime } from '@/utils/datetime'
 import { StatefulTooltip } from 'baseui/tooltip'
 import { GrContact } from 'react-icons/gr'
 import Link from './Link'
@@ -283,7 +283,7 @@ export default function BaseSidebar({ navItems, style, title, icon, settingsPath
                             {/* <StatefulTooltip
                                 content={
                                     <div>
-                                        Build at {versionInfo.data ? formatDateTime(versionInfo.data.build_date) : '-'}
+                                        Build at {versionInfo.data ? formatTimestampDateTime(versionInfo.data.build_date) : '-'}
                                     </div>
                                 }
                             >

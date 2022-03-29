@@ -34,6 +34,7 @@ export default function ModelForm({ model, onSubmit }: IModelFormProps) {
     const [loading, setLoading] = useState(false)
 
     const handleValuesChange = useCallback((_changes, values_) => {
+        console.log(values_)
         setValues(values_)
     }, [])
 

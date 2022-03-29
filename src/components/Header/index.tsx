@@ -146,7 +146,7 @@ export default function Header() {
                 console.log(response)
                 // return response.data
                 response.headers.authorization && setToken(response.headers.authorization)
-                return response
+                return response.data?.data ? response.data : response
             },
             (error) => {
                 const errMsg = getErrMsg(error)

@@ -27,7 +27,7 @@ export interface IJobSchema extends IResourceSchema {
     device?: IDeviceSchema
     deviceCount: number
     duration: string
-    createTime: string
+    createTime: number
     stopTime: string
     status: JobStatusType
 }

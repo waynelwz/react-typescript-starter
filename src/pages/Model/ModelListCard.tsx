@@ -4,7 +4,7 @@ import { createModel } from '@model/services/model'
 import { usePage } from '@/hooks/usePage'
 import { ICreateModelSchema } from '@model/schemas/model'
 import ModelForm from '@model/components/ModelForm'
-import { formatDateTime } from '@/utils/datetime'
+import { formatTimestampDateTime } from '@/utils/datetime'
 import useTranslation from '@/hooks/useTranslation'
 import { Button, SIZE as ButtonSize } from 'baseui/button'
 import User from '@/components/User'
@@ -49,7 +49,7 @@ export default function ModelListCard() {
                                 {model.name}
                             </Link>,
                             model.owner && <User user={model.owner} />,
-                            model.createTime && formatDateTime(model.createTime),
+                            model.createTime && formatTimestampDateTime(model.createTime),
                             <Link key={model.id} to={`/projects/${projectId}/models/${model.id}/versions`}>
                                 {t('Version History')}
                             </Link>,

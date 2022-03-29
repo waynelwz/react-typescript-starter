@@ -4,7 +4,7 @@ import { IUserSchema } from '@user/schemas/user'
 export interface IModelVersionSchema extends IResourceSchema {
     name: string
     tag: string
-    createTime: string
+    createTime: number
     meta: object
     owner?: IUserSchema
 }
@@ -19,6 +19,6 @@ export interface IUpdateModelVersionSchema {
 
 export interface ICreateModelVersionSchema {
     modelName: string
-    zipFile?: File
+    zipFile?: FileList
     importPath?: string
 }
