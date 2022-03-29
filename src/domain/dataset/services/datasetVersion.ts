@@ -45,7 +45,7 @@ export async function createDatasetVersion(
 
     const resp = await axios({
         method: 'post',
-        url: `/api/v1/project/${projectId}/dataset/${datasetId}`,
+        url: `/api/v1/project/${projectId}/dataset/${datasetId}/version`,
         data: bodyFormData,
         headers: { 'Content-Type': 'multipart/form-data' },
     })

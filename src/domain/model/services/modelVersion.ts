@@ -41,7 +41,7 @@ export async function createModelVersion(
 
     const resp = await axios({
         method: 'post',
-        url: `/api/v1/project/${projectId}/model/${modelId}`,
+        url: `/api/v1/project/${projectId}/model/${modelId}/version`,
         data: bodyFormData,
         headers: { 'Content-Type': 'multipart/form-data' },
     })

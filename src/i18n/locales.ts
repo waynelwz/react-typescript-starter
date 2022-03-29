@@ -1961,6 +1961,9 @@ const locales0 = {
     'Revert': {
         en: 'Revert',
     },
+    'Environment': {
+        en: 'Environment',
+    },
 }
 
 export const locales: { [key in keyof typeof locales0]: ILocaleItem } = locales0

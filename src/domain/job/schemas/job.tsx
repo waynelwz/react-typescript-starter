@@ -3,18 +3,9 @@ import { IUserSchema } from '@user/schemas/user'
 import { IModelSchema } from '@model/schemas/model'
 import { IDatasetSchema } from '@dataset/schemas/dataset'
 import { IModelVersionSchema } from '@/domain/model/schemas/modelVersion'
+import { IBaseImageSchema, IDeviceSchema } from '../../env/schemas/env'
 
 export type JobStatusType = 'preparing' | 'runnning' | 'completed' | 'cancelling' | 'cancelled' | 'failed'
-
-export interface IImageSchema extends IResourceSchema {
-    id: string
-    name: string
-}
-
-export interface IDeviceSchema extends IResourceSchema {
-    id: string
-    name: string
-}
 
 export interface IJobSchema extends IResourceSchema {
     uuid: string
@@ -23,7 +14,7 @@ export interface IJobSchema extends IResourceSchema {
     model?: IModelSchema
     modelVersion?: IModelVersionSchema
     dataset?: IDatasetSchema
-    baseImage?: IImageSchema
+    baseImage?: IBaseImageSchema
     device?: IDeviceSchema
     deviceCount: number
     duration: string

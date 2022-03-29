@@ -163,6 +163,9 @@ export default function JobForm({ job, onSubmit }: IJobFormProps) {
                     onChange={handleResetDataset}
                 />
             </div>
+            <Divider orientation='left'>
+                <Label1>{t('Environment')}</Label1>
+            </Divider>
             <FormItem>
                 <div style={{ display: 'flex' }}>
                     <div style={{ flexGrow: 1 }} />
