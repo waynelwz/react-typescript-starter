@@ -107,6 +107,7 @@ const useStyles = createUseStyles({
         'display': 'flex',
         'align-items': 'center',
         'gap': '10px',
+        'color': props.theme.colors.contentPrimary,
         '&:hover': {
             background: color(props.theme.colors.background)
                 .darken(props.themeType === 'light' ? 0.06 : 0.2)
@@ -271,7 +272,7 @@ export default function Header() {
                         <User user={currentUser} />
                     </div>
                     <div className={styles.userMenu}>
-                        <div
+                        {/* <div
                             role='button'
                             tabIndex={0}
                             className={styles.userMenuItem}
@@ -281,12 +282,13 @@ export default function Header() {
                         >
                             <MdPassword size={12} />
                             <span>{t('password')}</span>
-                        </div>
+                        </div> */}
                         <div
                             role='button'
                             tabIndex={0}
                             className={styles.userMenuItem}
                             onClick={() => {
+                                setToken(undefined)
                                 simulationJump('/logout')
                             }}
                         >

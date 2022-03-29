@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import Header from '@/components/Header'
 import ProjectLayout from '@/pages/Project/ProjectLayout'
 import { useCurrentThemeType } from '@/hooks/useCurrentThemeType'
@@ -154,8 +154,9 @@ const Routes = () => {
                     <Route>
                         <BaseLayout sidebar={undefined}>
                             <Switch>
-                                <Route exact path='/' component={Home} />
+                                {/* <Route exact path='/' component={Home} /> */}
                                 <Route exact path='/projects' component={ProjectListCard} />
+                                <Redirect from='/' to='/projects' />
                             </Switch>
                         </BaseLayout>
                     </Route>

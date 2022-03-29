@@ -6,7 +6,8 @@ export const useToken = () => {
 
     const key = 'token'
 
-    const setToken = (token: string) => {
+    const setToken = (token: string | undefined) => {
+        if (!token) return window.sessionStorage.removeItem(key)
         window.sessionStorage.setItem(key, token)
         setToken_(token)
     }
