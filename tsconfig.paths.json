@@ -8,6 +8,7 @@
       "@model/*": ["src/domain/model/*"],
       "@job/*": ["src/domain/job/*"],
       "@dataset/*": ["src/domain/dataset/*"],
+      "@env/*": ["src/domain/env/*"],
     }
   }
 }

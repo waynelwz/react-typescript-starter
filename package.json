@@ -83,7 +83,7 @@
     "xterm-addon-web-links": "^0.4.0"
   },
   "scripts": {
-    "start": "BROWSER=none craco start --verbose",
+    "start": "BROWSER=none craco start",
     "build": "craco build ",
     "test": "craco test",
     "eject": "craco eject",
