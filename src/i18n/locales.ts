@@ -1964,6 +1964,21 @@ const locales0 = {
     'Environment': {
         en: 'Environment',
     },
+    'BaseImage': {
+        en: 'Base Image',
+    },
+    'Device': {
+        en: 'Device',
+    },
+    'Selected Dataset': {
+        en: 'Selected Dataset',
+    },
+    'Result Output Path': {
+        en: 'Result Output Path',
+    },
+    'Device Count': {
+        en: 'Device Count',
+    },
 }
 
 export const locales: { [key in keyof typeof locales0]: ILocaleItem } = locales0

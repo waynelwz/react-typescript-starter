@@ -7,17 +7,11 @@ import { useParams } from 'react-router-dom'
 
 export interface IModelVersionSelectorProps {
     projectId: string
+    modelId?: string
     value?: string
     onChange?: (newValue: string) => void
     overrides?: SelectProps['overrides']
     disabled?: boolean
-}
-
-export interface IModelVersionSelectorWithModelIdProps extends IModelVersionSelectorProps {
-    modelId: string
-}
-export interface IModelVersionSelectorWithoutModelIdProps extends IModelVersionSelectorProps {
-    modelId?: string
 }
 
 export default function ModelVersionSelector({
@@ -27,7 +21,7 @@ export default function ModelVersionSelector({
     onChange,
     overrides,
     disabled,
-}: IModelVersionSelectorWithModelIdProps | IModelVersionSelectorWithoutModelIdProps) {
+}: IModelVersionSelectorProps) {
     const [keyword, setKeyword] = useState<string>()
     const [options, setOptions] = useState<{ id: string; label: React.ReactNode }[]>([])
     const modelVersionsInfo = useQuery(
@@ -49,7 +43,7 @@ export default function ModelVersionSelector({
         if (modelVersionsInfo.isSuccess) {
             setOptions(
                 modelVersionsInfo.data?.list.map((item) => ({
-                    id: item.name,
+                    id: item.id,
                     label: item.name,
                 })) ?? []
             )

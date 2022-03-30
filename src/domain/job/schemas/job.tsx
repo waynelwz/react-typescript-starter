@@ -3,7 +3,7 @@ import { IUserSchema } from '@user/schemas/user'
 import { IModelSchema } from '@model/schemas/model'
 import { IDatasetSchema } from '@dataset/schemas/dataset'
 import { IModelVersionSchema } from '@/domain/model/schemas/modelVersion'
-import { IBaseImageSchema, IDeviceSchema } from '../../env/schemas/env'
+import { IBaseImageSchema, IDeviceSchema } from '../../runtime/schemas/runtime'
 
 export type JobStatusType = 'preparing' | 'runnning' | 'completed' | 'cancelling' | 'cancelled' | 'failed'
 
@@ -29,10 +29,11 @@ export interface IUpdateJobSchema {}
 
 export interface ICreateJobSchema {
     modelVersionId: string
-    datasetVersionIds?: string
+    datasetVersionIds?: Array<string>
     baseImageId?: string
     deviceId?: string
     deviceCount?: number
+    resultOutputPath?: string
 }
 
 export interface IJobFormSchema extends IJobSchema {

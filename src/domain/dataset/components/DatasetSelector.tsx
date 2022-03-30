@@ -32,7 +32,7 @@ export default function DatasetSelector({ projectId, value, onChange, overrides,
         if (datasetsInfo.isSuccess) {
             setOptions(
                 datasetsInfo.data?.list.map((item) => ({
-                    id: item.name,
+                    id: item.id,
                     label: item.name,
                 })) ?? []
             )

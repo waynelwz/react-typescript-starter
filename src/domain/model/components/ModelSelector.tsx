@@ -32,7 +32,7 @@ export default function ModelSelector({ projectId, value, onChange, overrides, d
         if (modelsInfo.isSuccess) {
             setOptions(
                 modelsInfo.data?.list.map((item) => ({
-                    id: item.name,
+                    id: item.id,
                     label: item.name,
                 })) ?? []
             )
@@ -51,6 +51,7 @@ export default function ModelSelector({ projectId, value, onChange, overrides, d
                 if (!params.option) {
                     return
                 }
+                console.log('-', params)
                 onChange?.(params.option.id as string)
             }}
             onInputChange={(e) => {

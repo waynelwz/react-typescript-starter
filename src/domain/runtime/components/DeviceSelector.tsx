@@ -1,37 +1,24 @@
-import { listDatasetVersions } from '../services/datasetVersion'
-import { Select, SelectProps, OnChangeParams } from 'baseui/select'
+import { listDevices } from '../services/runtime'
+import { Select, SelectProps } from 'baseui/select'
 import _ from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
 
-export interface IDatasetVersionSelectorProps {
-    projectId: string
-    datasetId: string
+// todo refact runtime/env as baseSelector
+export interface IDeviceSelectorProps {
     value?: string
     onChange?: (newValue: string) => void
     overrides?: SelectProps['overrides']
     disabled?: boolean
 }
 
-export default function DatasetVersionSelector({
-    projectId,
-    datasetId,
-    value,
-    onChange,
-    overrides,
-    disabled,
-}: IDatasetVersionSelectorProps) {
+export default function DeviceSelector({ value, onChange, overrides, disabled }: IDeviceSelectorProps) {
     const [keyword, setKeyword] = useState<string>()
     const [options, setOptions] = useState<{ id: string; label: React.ReactNode }[]>([])
-    const datasetVersionsInfo = useQuery(
-        `listDatasetVersions:${keyword}`,
-        // todo the right way of datasetId ?? ''
-        () => listDatasetVersions(projectId, datasetId, { start: 0, count: 100, search: keyword }),
-        { enabled: !!datasetId }
-    )
+    const devicesInfo = useQuery(`listDevices:${keyword}`, () => listDevices({ start: 0, count: 100, search: keyword }))
 
-    const handleDatasetVersionInputChange = _.debounce((term: string) => {
+    const handleDeviceInputChange = _.debounce((term: string) => {
         if (!term) {
             setOptions([])
             return
@@ -40,33 +27,34 @@ export default function DatasetVersionSelector({
     })
 
     useEffect(() => {
-        if (datasetVersionsInfo.isSuccess) {
+        if (devicesInfo.isSuccess) {
             setOptions(
-                datasetVersionsInfo.data?.list.map((item) => ({
+                devicesInfo.data?.list.map((item) => ({
                     id: item.id,
-                    label: item.name + (item.tag ?? '/' + item.tag),
+                    label: item.name,
                 })) ?? []
             )
         } else {
             setOptions([])
         }
-    }, [datasetVersionsInfo.data?.list, datasetVersionsInfo.isSuccess])
+    }, [devicesInfo.data?.list, devicesInfo.isSuccess])
 
     return (
         <Select
             disabled={disabled}
             overrides={overrides}
-            isLoading={datasetVersionsInfo.isFetching}
+            isLoading={devicesInfo.isFetching}
             options={options}
             onChange={(params) => {
                 if (!params.option) {
                     return
                 }
+                console.log('-', params)
                 onChange?.(params.option.id as string)
             }}
             onInputChange={(e) => {
                 const target = e.target as HTMLInputElement
-                handleDatasetVersionInputChange(target.value)
+                handleDeviceInputChange(target.value)
             }}
             value={
                 value
