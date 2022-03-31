@@ -30,17 +30,17 @@ export default function ProjectSidebar({ style }: IComposedSidebarProps) {
                           title: t('models'),
                           path: `/projects/${project.id}/models`,
                           // icon: resourceIconMapping.model,
-                          activePathPattern: /^\/(models)\/?/,
+                          activePathPattern: /\/(models)\/?/,
                       },
                       {
                           title: t('datasets'),
                           path: `/projects/${project.id}/datasets`,
-                          activePathPattern: /^\/(datasets)\/?/,
+                          activePathPattern: /\/(datasets)\/?/,
                       },
                       {
                           title: t('jobs'),
                           path: `/projects/${project.id}/jobs`,
-                          activePathPattern: /^\/(jobs|new_job)\/?/,
+                          activePathPattern: /\/(jobs|new_job)\/?/,
                       },
                   ]
                 : [],
