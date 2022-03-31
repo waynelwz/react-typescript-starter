@@ -1874,6 +1874,9 @@ const locales0 = {
     'Job': {
         en: 'Job',
     },
+    'Job ID': {
+        en: 'Job ID',
+    },
     'Run Model': {
         en: 'Run Model',
     },
@@ -1978,6 +1981,15 @@ const locales0 = {
     },
     'Device Count': {
         en: 'Device Count',
+    },
+    'Run time': {
+        en: 'Run time',
+    },
+    'End time': {
+        en: 'End time',
+    },
+    'Status': {
+        en: 'Status',
     },
 }
 

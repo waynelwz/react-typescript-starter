@@ -4,7 +4,7 @@ import { createJob } from '@job/services/job'
 import { usePage } from '@/hooks/usePage'
 import { ICreateJobSchema } from '@job/schemas/job'
 import JobForm from '@job/components/JobForm'
-import { formatTimestampDateTime } from '@/utils/datetime'
+import { durationToStr, formatTimestampDateTime } from '@/utils/datetime'
 import useTranslation from '@/hooks/useTranslation'
 import { Button, SIZE as ButtonSize } from 'baseui/button'
 import User from '@/components/User'
@@ -48,18 +48,16 @@ export default function JobListCard() {
         >
             <Table
                 isLoading={jobsInfo.isLoading}
-                columns={
-                    [
-                        // t('Job ID', [t('sth name', [t('Model')])]),
-                        // t('Version'),
-                        // t('Created'),
-                        // t('Owner'),
-                        // t('Run time'),
-                        // t('End time'),
-                        // t('Status'),
-                        // t('Action'),
-                    ]
-                }
+                columns={[
+                    t('Job ID'),
+                    // t('Version'),
+                    t('Owner'),
+                    t('Created'),
+                    t('Run time'),
+                    t('End time'),
+                    t('Status'),
+                    t('Action'),
+                ]}
                 data={
                     jobsInfo.data?.list.map((job) => {
                         return [
@@ -68,7 +66,10 @@ export default function JobListCard() {
                             </Link>,
                             job.owner && <User user={job.owner} />,
                             job.createTime && formatTimestampDateTime(job.createTime),
-                            <Link key={job.id} to={`/projects/${projectId}/jobs/${job.id}/versions`}>
+                            typeof job.duration == 'string' ? '-' : durationToStr(job.duration),
+                            job.stopTime && formatTimestampDateTime(job.stopTime),
+                            job.status,
+                            <Link key={job.id} to={`/projects/${projectId}/jobs/${job.id}/tasks`}>
                                 {t('Version History')}
                             </Link>,
                         ]
