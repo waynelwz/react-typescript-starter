@@ -12,41 +12,40 @@ import { Link, useParams } from 'react-router-dom'
 import { useFetchTasks } from '@job/hooks/useFetchTasks'
 import { resourceIconMapping } from '@/consts'
 import { useJob } from '@job/hooks/useJob'
+import { JobStatusType } from '@/domain/job/schemas/job'
+import ReactNode from 'react'
+export interface ITaskListCardProps {
+    header: React.ReactNode
+}
 
-export default function TaskListCard() {
+export default function TaskListCard({ header }: ITaskListCardProps) {
     const [page] = usePage()
     const { jobId, projectId } = useParams<{ jobId: string; projectId: string }>()
-    const { job } = useJob()
-
-    const jobsInfo = useFetchTasks(projectId, jobId, page)
+    const tasksInfo = useFetchTasks(projectId, jobId, page)
     const [t] = useTranslation()
 
     return (
         <Card>
+            {header}
             <Table
-                isLoading={jobsInfo.isLoading}
-                // t('sth name', [t('Job Version')]),
-                columns={[t('Tag'), t('Created'), t('Owner'), t('Action')]}
+                isLoading={tasksInfo.isLoading}
+                columns={[t('Task ID'), t('IP'), t('Started'), t('Status')]}
                 data={
-                    // jobsInfo.data?.list.map((job) => {
-                    //     return [
-                    //         // job.Version,
-                    //         job.tag,
-                    //         job.createTime && formatTimestampDateTime(job.createTime),
-                    //         job.owner && <User user={job.owner} />,
-                    //         <Button size='mini' key={job.id} onClick={() => {}}>
-                    //             {t('Revert')}
-                    //         </Button>,
-                    //     ]
-                    // }) ??
-                    []
+                    tasksInfo.data?.list.map((task) => {
+                        return [
+                            task.uuid,
+                            task.ip,
+                            task.startTime && formatTimestampDateTime(task.startTime),
+                            task.status && JobStatusType[task.status],
+                        ]
+                    }) ?? []
                 }
                 paginationProps={{
-                    start: jobsInfo.data?.pageNum,
-                    count: jobsInfo.data?.size,
-                    total: jobsInfo.data?.total,
+                    start: tasksInfo.data?.pageNum,
+                    count: tasksInfo.data?.size,
+                    total: tasksInfo.data?.total,
                     afterPageChange: () => {
-                        jobsInfo.refetch()
+                        tasksInfo.refetch()
                     },
                 }}
             />

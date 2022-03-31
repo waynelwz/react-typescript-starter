@@ -5,14 +5,24 @@ import { IDatasetSchema } from '@dataset/schemas/dataset'
 import { IModelVersionSchema } from '@/domain/model/schemas/modelVersion'
 import { IBaseImageSchema, IDeviceSchema } from '../../runtime/schemas/runtime'
 
-export type JobStatusType = 'preparing' | 'runnning' | 'completed' | 'cancelling' | 'cancelled' | 'failed'
+export type JobActionType = 'cancel' | 'suspend' | 'resume'
+export enum JobStatusType {
+    preparing = 0,
+    runnning,
+    completed,
+    cancelling,
+    cancelled,
+    failed,
+}
 
 export interface IJobSchema extends IResourceSchema {
     uuid: string
     name: string
     owner?: IUserSchema
-    model?: IModelSchema
-    modelVersion?: IModelVersionSchema
+    // model?: IModelSchema
+    modelName?: string
+    // modelVersion?: IModelVersionSchema
+    modelVersion?: string
     dataset?: IDatasetSchema
     baseImage?: IBaseImageSchema
     device?: IDeviceSchema
@@ -20,7 +30,7 @@ export interface IJobSchema extends IResourceSchema {
     duration: number
     createTime: number
     stopTime: number
-    status: JobStatusType
+    jobStatus: JobStatusType
 }
 
 export interface IJobDetailSchema extends IJobSchema {}

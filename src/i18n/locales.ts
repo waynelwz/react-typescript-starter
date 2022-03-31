@@ -878,13 +878,6 @@ const locales0 = {
         ko: '{{0}} 업그레이드',
         vi: 'Nâng cấp đến {{0}}',
     },
-    'cancel': {
-        zh: '取消',
-        en: 'Cancel',
-        ja: 'キャンセル',
-        ko: '취소',
-        vi: 'Hủy',
-    },
     'ok': {
         zh: '确定',
         en: 'Okay',
@@ -1988,8 +1981,38 @@ const locales0 = {
     'End time': {
         en: 'End time',
     },
+    'Created time': {
+        en: 'Created time',
+    },
     'Status': {
         en: 'Status',
+    },
+    'Continue': {
+        en: 'Continue',
+    },
+    'Cancel': {
+        en: 'Cancel',
+    },
+    'cancel': {
+        en: 'cancel',
+    },
+    'Suspend': {
+        en: 'Suspend',
+    },
+    'View Results': {
+        en: 'View Results',
+    },
+    'job action done': {
+        en: 'job action done',
+    },
+    'Task ID': {
+        en: 'Task ID',
+    },
+    'IP': {
+        en: 'IP',
+    },
+    'Started': {
+        en: 'Started',
     },
 }
 

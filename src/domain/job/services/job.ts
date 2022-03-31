@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ICreateJobSchema, IJobSchema, IUpdateJobSchema, IJobDetailSchema } from '../schemas/job'
+import { ICreateJobSchema, IJobSchema, IUpdateJobSchema, IJobDetailSchema, JobActionType } from '../schemas/job'
 import { IListQuerySchema, IListSchema } from '@/schemas/list'
 import { IEventSchema } from '@/schemas/event'
 import { ResourceType } from '@/schemas/resource'
@@ -17,6 +17,11 @@ export async function fetchJob(projectId: string, jobId: string): Promise<any> {
 }
 
 export async function createJob(projectId: string, data: ICreateJobSchema): Promise<IJobSchema> {
-    const resp = await axios.post<IJobSchema>(`/api/v1/project/${projectId}/job`)
+    const resp = await axios.post<IJobSchema>(`/api/v1/project/${projectId}/job`, data)
+    return resp.data
+}
+
+export async function doJobAction(projectId: string, jobId: string, action: JobActionType): Promise<IJobSchema> {
+    const resp = await axios.post<IJobSchema>(`/api/v1/project/${projectId}/job/${jobId}/${action}`, {})
     return resp.data
 }

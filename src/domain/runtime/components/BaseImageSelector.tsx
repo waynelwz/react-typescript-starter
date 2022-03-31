@@ -30,7 +30,7 @@ export default function BaseImageSelector({ value, onChange, overrides, disabled
     useEffect(() => {
         if (baseImagesInfo.isSuccess) {
             setOptions(
-                baseImagesInfo.data?.list.map((item) => ({
+                baseImagesInfo.data?.map((item) => ({
                     id: item.id,
                     label: item.name,
                 })) ?? []
@@ -38,7 +38,7 @@ export default function BaseImageSelector({ value, onChange, overrides, disabled
         } else {
             setOptions([])
         }
-    }, [baseImagesInfo.data?.list, baseImagesInfo.isSuccess])
+    }, [baseImagesInfo.data, baseImagesInfo.isSuccess])
 
     return (
         <Select

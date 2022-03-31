@@ -4,7 +4,7 @@ import { JobStatusType } from './job'
 export interface ITaskSchema extends IResourceSchema {
     uuid: string
     ip: string
-    startTime: string
+    startTime: number
     status: JobStatusType
 }
 

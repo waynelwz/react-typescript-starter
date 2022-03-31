@@ -62,6 +62,7 @@ export default function JobForm({ job, onSubmit }: IJobFormProps) {
                     ...values_,
                     datasetVersionIds: values_.datasetVersionIds.join(','),
                 })
+                history.back()
             } finally {
                 setLoading(false)
             }

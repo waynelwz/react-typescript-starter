@@ -29,7 +29,7 @@ export default function DeviceSelector({ value, onChange, overrides, disabled }:
     useEffect(() => {
         if (devicesInfo.isSuccess) {
             setOptions(
-                devicesInfo.data?.list.map((item) => ({
+                devicesInfo.data?.map((item) => ({
                     id: item.id,
                     label: item.name,
                 })) ?? []
@@ -37,7 +37,7 @@ export default function DeviceSelector({ value, onChange, overrides, disabled }:
         } else {
             setOptions([])
         }
-    }, [devicesInfo.data?.list, devicesInfo.isSuccess])
+    }, [devicesInfo.data, devicesInfo.isSuccess])
 
     return (
         <Select
