@@ -1,15 +1,11 @@
 import { useJob, useJobLoading } from '@job/hooks/useJob'
 import useTranslation from '@/hooks/useTranslation'
-import { RiSurveyLine } from 'react-icons/ri'
 import React, { useEffect, useMemo } from 'react'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
 import { INavItem } from '@/components/BaseSidebar'
 import { fetchJob } from '@job/services/job'
-import { resourceIconMapping } from '@/consts'
-import { AiOutlineSetting } from 'react-icons/ai'
 import BaseSubLayout from '@/pages/BaseSubLayout'
-import { useProject } from '@/domain/project/hooks/useProject'
 import { useFetchProject } from '@/domain/project/hooks/useFetchProject'
 
 export interface IJobLayoutProps {

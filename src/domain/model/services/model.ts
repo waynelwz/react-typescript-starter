@@ -1,8 +1,6 @@
 import axios from 'axios'
 import { ICreateModelSchema, IModelSchema, IUpdateModelSchema, IModelDetailSchema } from '../schemas/model'
 import { IListQuerySchema, IListSchema } from '@/schemas/list'
-import { IEventSchema } from '@/schemas/event'
-import { ResourceType } from '@/schemas/resource'
 
 export async function listModels(projectId: string, query: IListQuerySchema): Promise<IListSchema<IModelSchema>> {
     const resp = await axios.get<IListSchema<IModelSchema>>(`/api/v1/project/${projectId}/model`, {
@@ -30,8 +28,3 @@ export async function createModel(projectId: string, data: ICreateModelSchema): 
     })
     return resp.data
 }
-
-// export async function updateModel(data: IUpdateModelSchema): Promise<IModelSchema> {
-//     const resp = await axios.patch<IModelSchema>('/api/v1/current_org', data)
-//     return resp.data
-// }

@@ -12,7 +12,6 @@ import { Modal, ModalHeader, ModalBody } from 'baseui/modal'
 import Table from '@/components/Table'
 import { Link, useHistory, useParams } from 'react-router-dom'
 import { useFetchJobs } from '@job/hooks/useFetchJobs'
-import { resourceIconMapping } from '@/consts'
 import { StyledLink } from 'baseui/link'
 import { toaster } from 'baseui/toast'
 

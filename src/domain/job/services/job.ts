@@ -1,8 +1,6 @@
 import axios from 'axios'
 import { ICreateJobSchema, IJobSchema, IUpdateJobSchema, IJobDetailSchema, JobActionType } from '../schemas/job'
 import { IListQuerySchema, IListSchema } from '@/schemas/list'
-import { IEventSchema } from '@/schemas/event'
-import { ResourceType } from '@/schemas/resource'
 
 export async function listJobs(projectId: string, query: IListQuerySchema): Promise<IListSchema<IJobSchema>> {
     const resp = await axios.get<IListSchema<IJobSchema>>(`/api/v1/project/${projectId}/job`, {

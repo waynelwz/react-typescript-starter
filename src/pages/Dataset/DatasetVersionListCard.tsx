@@ -12,7 +12,6 @@ import { Modal, ModalHeader, ModalBody } from 'baseui/modal'
 import Table from '@/components/Table'
 import { Link, useParams } from 'react-router-dom'
 import { useFetchDatasetVersions } from '@dataset/hooks/useFetchDatasetVersions'
-import { resourceIconMapping } from '@/consts'
 import { useDataset } from '@dataset/hooks/useDataset'
 
 export default function DatasetVersionListCard() {

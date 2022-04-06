@@ -1,15 +1,11 @@
 import { useProject, useProjectLoading } from '@project/hooks/useProject'
 import useTranslation from '@/hooks/useTranslation'
-import { RiSurveyLine } from 'react-icons/ri'
 import React, { useEffect, useMemo } from 'react'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
 import { INavItem } from '@/components/BaseSidebar'
 import { fetchProject } from '@project/services/project'
-import { resourceIconMapping } from '@/consts'
-import { AiOutlineSetting } from 'react-icons/ai'
 import BaseSubLayout from '@/pages/BaseSubLayout'
-import ProjectSidebar from './ProjectSidebar'
 
 export interface IProjectLayoutProps {
     children: React.ReactNode
@@ -39,7 +35,6 @@ export default function ProjectLayout({ children }: IProjectLayoutProps) {
             {
                 title: t('projects'),
                 path: '/projects',
-                // icon: resourceIconMapping.project,
             },
             {
                 title: projectName,

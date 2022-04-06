@@ -12,7 +12,6 @@ import { Modal, ModalHeader, ModalBody } from 'baseui/modal'
 import Table from '@/components/Table'
 import { Link, useParams } from 'react-router-dom'
 import { useFetchDatasets } from '@dataset/hooks/useFetchDatasets'
-import { resourceIconMapping } from '@/consts'
 
 export default function DatasetListCard() {
     const [page] = usePage()

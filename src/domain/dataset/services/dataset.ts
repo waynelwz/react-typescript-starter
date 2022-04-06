@@ -1,8 +1,6 @@
 import axios from 'axios'
-import { ICreateDatasetSchema, IDatasetSchema, IUpdateDatasetSchema, IDatasetDetailSchema } from '../schemas/dataset'
+import { ICreateDatasetSchema, IDatasetSchema, IDatasetDetailSchema } from '../schemas/dataset'
 import { IListQuerySchema, IListSchema } from '@/schemas/list'
-import { IEventSchema } from '@/schemas/event'
-import { ResourceType } from '@/schemas/resource'
 
 export async function listDatasets(projectId: string, query: IListQuerySchema): Promise<IListSchema<IDatasetSchema>> {
     const resp = await axios.get<IListSchema<IDatasetSchema>>(`/api/v1/project/${projectId}/dataset`, {
@@ -30,8 +28,3 @@ export async function createDataset(projectId: string, data: ICreateDatasetSchem
     })
     return resp.data
 }
-
-// export async function updateDataset(data: IUpdateDatasetSchema): Promise<IDatasetSchema> {
-//     const resp = await axios.patch<IDatasetSchema>('/api/v1/current_org', data)
-//     return resp.data
-// }

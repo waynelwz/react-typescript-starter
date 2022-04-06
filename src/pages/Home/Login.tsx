@@ -9,13 +9,8 @@ import { Button } from 'baseui/button'
 import { Input } from 'baseui/input'
 import qs from 'qs'
 import React, { useCallback, useState } from 'react'
-import logo from '@/assets/logo.svg'
-import logoDark from '@/assets/logo-dark.svg'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useStyletron } from 'baseui'
-import Text from '@/components/Text'
-import { createUseStyles } from 'react-jss'
-import { IThemedStyleProps } from '@/interfaces/IThemedStyle'
 import ZButton from '@/components/ZButton'
 
 const { Form, FormItem } = createForm<ILoginUserSchema>()
@@ -28,7 +23,6 @@ export default function Login() {
 
     // todo
     const [, theme] = useStyletron()
-    // const currentThemeType = useCurrentThemeType()
 
     const handleFinish = useCallback(
         async (data: ILoginUserSchema) => {

@@ -7,13 +7,11 @@ import { IDatasetDetailSchema } from '@/domain/dataset/schemas/dataset'
 import { IDatasetVersionDetailSchema } from '@/domain/dataset/schemas/datasetVersion'
 import { IJobSchema } from '@/domain/job/schemas/job'
 import { ITaskDetailSchema } from '@/domain/job/schemas/task'
-
-export type BaseThemeType = 'light' | 'dark' | 'deep'
-export type ThemeType = BaseThemeType | 'followTheSystem'
+import { ThemeType } from '@/theme'
 
 const initialState = {
     token: undefined as string | undefined,
-    themeType: 'light' as ThemeType,
+    themeType: 'deep' as ThemeType,
     currentUser: undefined as IUserSchema | undefined,
     user: undefined as IUserSchema | undefined,
     userLoading: false,

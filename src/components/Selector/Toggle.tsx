@@ -6,6 +6,7 @@ export interface IToggleProps {
     onChange?: (newView: boolean) => void
     overrides?: CheckboxOverrides
     disabled?: boolean
+    style?: React.CSSProperties
 }
 
 export default function Toggle({ value, onChange, overrides, disabled }: IToggleProps) {

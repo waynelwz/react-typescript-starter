@@ -6,8 +6,6 @@ import {
     IDatasetVersionDetailSchema,
 } from '../schemas/datasetVersion'
 import { IListQuerySchema, IListSchema } from '@/schemas/list'
-import { IEventSchema } from '@/schemas/event'
-import { ResourceType } from '@/schemas/resource'
 
 export async function listDatasetVersions(
     projectId: string,

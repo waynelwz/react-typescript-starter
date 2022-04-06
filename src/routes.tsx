@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import Header from '@/components/Header'
 import ProjectLayout from '@/pages/Project/ProjectLayout'
@@ -7,11 +7,9 @@ import { IThemedStyleProps } from '@/interfaces/IThemedStyle'
 import { useStyletron } from 'baseui'
 import { createUseStyles } from 'react-jss'
 import Login from '@/pages/Home/Login'
-import Home from '@/pages/Home/Home'
 import ProjectOverview from './pages/Project/Overview'
 import ProjectListCard from './pages/Project/ProjectListCard'
 import BaseLayout from './pages/BaseLayout'
-import ModelListCard from './pages/Model/ModelListCard'
 import ModelLayout from './pages/Model/ModelLayout'
 import ModelOverview from './pages/Model/Overview'
 import ProjectModels from './pages/Project/Models'
@@ -32,7 +30,7 @@ import JobNewCard from './pages/Project/JobNewCard'
 import axios from 'axios'
 
 const useStyles = createUseStyles({
-    'root': ({ theme }: IThemedStyleProps) => ({
+    root: ({ theme }: IThemedStyleProps) => ({
         '& path': {
             stroke: theme.colors.contentPrimary,
         },
@@ -43,17 +41,6 @@ const useStyles = createUseStyles({
             }
         }, {} as Record<string, string>),
     }),
-    '@global': {
-        '.react-lazylog': {
-            background: 'var(--color-backgroundPrimary)',
-        },
-        '.react-lazylog-searchbar': {
-            background: 'var(--color-backgroundPrimary)',
-        },
-        '.react-lazylog-searchbar-input': {
-            background: 'var(--color-backgroundPrimary)',
-        },
-    },
 })
 
 // todo refact

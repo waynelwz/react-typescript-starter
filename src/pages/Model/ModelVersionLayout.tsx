@@ -6,10 +6,7 @@ import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
 import { INavItem } from '@/components/BaseSidebar'
 import { fetchModel } from '@model/services/model'
-import { resourceIconMapping } from '@/consts'
-import { AiOutlineSetting } from 'react-icons/ai'
 import BaseSubLayout from '@/pages/BaseSubLayout'
-import { useProject } from '@/domain/project/hooks/useProject'
 import { useFetchProject } from '@/domain/project/hooks/useFetchProject'
 
 export interface IModelLayoutProps {

@@ -1,4 +1,4 @@
-import { BaseThemeType } from './global'
+import { BaseThemeType } from '@/theme'
 import { useThemeDetector } from './useThemeDetector'
 import { useThemeType } from './useThemeType'
 

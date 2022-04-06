@@ -2,7 +2,7 @@ import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { Modal, ModalBody } from 'baseui/modal'
 
-import Toggle from '@/components/Toggle'
+import Toggle from '@/components/selector/Toggle'
 
 export default {
     title: 'Example/Toggle',

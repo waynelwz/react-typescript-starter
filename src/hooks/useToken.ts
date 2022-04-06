@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import useGlobalState, { ThemeType } from '@/hooks/global'
+import useGlobalState from '@/hooks/global'
 
 export const useToken = () => {
     const [token, setToken_] = useGlobalState('token')

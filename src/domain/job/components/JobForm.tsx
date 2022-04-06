@@ -1,5 +1,5 @@
 import { ICreateJobFormSchema, ICreateJobSchema, IJobFormSchema, IJobSchema } from '../schemas/job'
-import React, { useCallback, useEffect, useState, useMemo, createRef } from 'react'
+import React, { useCallback, useEffect, useState, useMemo, createRef, useRef } from 'react'
 import { createForm } from '@/components/Form'
 import { Input } from 'baseui/input'
 import { Textarea } from 'baseui/textarea'
@@ -18,8 +18,7 @@ import DatasetSelector from '@/domain/dataset/components/DatasetSelector'
 import DatasetVersionSelector from '@/domain/dataset/components/DatasetVersionSelector'
 import BaseImageSelector from '@/domain/runtime/components/BaseImageSelector'
 import DeviceSelector from '../../runtime/components/DeviceSelector'
-import useRef from 'react'
-import NumberInput from '@/components/NumberInput'
+import NumberInput from '@/components/Input/NumberInput'
 
 const { Form, FormItem, useForm } = createForm<ICreateJobFormSchema>()
 

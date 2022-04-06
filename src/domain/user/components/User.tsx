@@ -1,7 +1,7 @@
 import React from 'react'
 import { IUserSchema } from '@user/schemas/user'
 import { Avatar } from 'baseui/avatar'
-import Text from '@/components/Text'
+import Text from './Text'
 
 export interface IUserProps {
     user: IUserSchema
@@ -21,7 +21,7 @@ export default function User({ user, size = 'scale800', style }: IUserProps) {
                 ...style,
             }}
         >
-            {/* <Avatar size={size} name={name} src={user.avatar_url} /> */}
+            {/* <Avatar size={size} name={name} src={} /> */}
             <Text>{name}</Text>
         </div>
     )

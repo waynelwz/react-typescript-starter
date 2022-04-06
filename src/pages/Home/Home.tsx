@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react'
 import { createUseStyles } from 'react-jss'
 import { useQuery } from 'react-query'
-import { INewsItem } from '@/schemas/news'
 import useTranslation from '@/hooks/useTranslation'
 import { useStyletron } from 'baseui'
 
@@ -15,8 +14,6 @@ const useStyles = createUseStyles({
         justifyContent: 'center',
     },
 })
-
-const makeNotificationReadedKey = (n: INewsItem) => `notification_readed:${n.title}`
 
 export default function Home() {
     const styles = useStyles()

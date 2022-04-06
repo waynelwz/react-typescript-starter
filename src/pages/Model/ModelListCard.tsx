@@ -12,7 +12,6 @@ import { Modal, ModalHeader, ModalBody } from 'baseui/modal'
 import Table from '@/components/Table'
 import { Link, useParams } from 'react-router-dom'
 import { useFetchModels } from '@model/hooks/useFetchModels'
-import { resourceIconMapping } from '@/consts'
 
 export default function ModelListCard() {
     const [page] = usePage()

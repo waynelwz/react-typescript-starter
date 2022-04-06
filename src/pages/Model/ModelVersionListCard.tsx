@@ -12,7 +12,6 @@ import { Modal, ModalHeader, ModalBody } from 'baseui/modal'
 import Table from '@/components/Table'
 import { Link, useParams } from 'react-router-dom'
 import { useFetchModelVersions } from '@model/hooks/useFetchModelVersions'
-import { resourceIconMapping } from '@/consts'
 import { useModel } from '@model/hooks/useModel'
 
 export default function ModelVersionListCard() {

@@ -12,7 +12,6 @@ import { Modal, ModalHeader, ModalBody } from 'baseui/modal'
 import Table from '@/components/Table'
 import { Link } from 'react-router-dom'
 import { useFetchProjects } from '@project/hooks/useFetchProjects'
-import { resourceIconMapping } from '@/consts'
 
 export default function ProjectListCard() {
     const [page] = usePage()

@@ -6,8 +6,6 @@ import {
     IModelVersionDetailSchema,
 } from '../schemas/modelVersion'
 import { IListQuerySchema, IListSchema } from '@/schemas/list'
-import { IEventSchema } from '@/schemas/event'
-import { ResourceType } from '@/schemas/resource'
 
 export async function listModelVersions(
     projectId: string,
