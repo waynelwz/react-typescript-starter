@@ -10,9 +10,17 @@ import Routes from '@/routes'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { useCurrentThemeType } from '@/hooks/useCurrentThemeType'
 import themes from '@/theme'
+import axios from 'axios'
 
 const engine = new Styletron()
 const queryClient = new QueryClient()
+
+// todo refact
+axios.interceptors.request.use(function (config) {
+    const token = sessionStorage?.token
+    config.headers.Authorization = token
+    return config
+})
 
 export default function Hello() {
     const sidebarData = useSidebar()

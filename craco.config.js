@@ -8,14 +8,6 @@ module.exports = {
         { plugin: CracoEsbuildPlugin },
     ],
     webpack: {
-        // devServer: {
-        //     client: {
-        //       overlay: {
-        //         errors: true,
-        //         warnings: false,
-        //       },
-        //     },
-        //   },
         alias: {
             '@user': path.resolve(__dirname, 'src/domain/user'),
             '@model': path.resolve(__dirname, 'src/domain/model'),
@@ -25,9 +17,11 @@ module.exports = {
             '@env': path.resolve(__dirname, 'src/domain/env'),
             '@': path.resolve(__dirname, 'src/'),
         },
-        plugins: [new SimpleProgressWebpackPlugin(),new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-          })
+        plugins: [
+            new SimpleProgressWebpackPlugin(),
+            new webpack.DefinePlugin({
+                'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+            })
         ],
         configure: (webpackConfig, { env, paths }) => {
             // https://github.com/pmndrs/react-spring/issues/1078#issuecomment-752143468

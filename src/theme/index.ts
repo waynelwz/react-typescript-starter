@@ -31,6 +31,7 @@ const overrides = {
     colors: {
       buttonPrimaryFill: '#007FFF',
       buttonBorderRadius: '14px',
+      brand1: ''
     },
     typography: {},
   }

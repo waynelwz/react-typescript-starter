@@ -31,23 +31,14 @@ import axios from 'axios'
 
 const useStyles = createUseStyles({
     root: ({ theme }: IThemedStyleProps) => ({
-        '& path': {
-            stroke: theme.colors.contentPrimary,
-        },
-        ...Object.entries(theme.colors).reduce((p: Record<string, string>, [k, v]) => {
+        '--color-brand-headerBackground': '',
+        ...Object.entries(theme.colors).reduce((p, [k, v]) => {
             return {
                 ...p,
                 [`--color-${k}`]: v,
             }
-        }, {} as Record<string, string>),
+        }, {}),
     }),
-})
-
-// todo refact
-axios.interceptors.request.use(function (config) {
-    const token = sessionStorage?.token
-    config.headers.Authorization = token
-    return config
 })
 
 const Routes = () => {
