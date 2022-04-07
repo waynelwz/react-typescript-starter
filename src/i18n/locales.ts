@@ -1,3 +1,4 @@
+import en from 'javascript-time-ago/locale/en.json';
 export interface ILocaleItem {
     en: string
 }
@@ -5,13 +6,15 @@ export interface ILocaleItem {
 const locales0 = {
     'create sth': {
         en: 'Create {{0}}',
-        // zh: '创建{{0}}',
     },
     'select sth': {
         en: 'Select {{0}}',
     },
     'sth name': {
         en: '{{0}} Name',
+    },
+    'sth required': {
+        en: '{{0}} is required',
     },
     'Model': {
         en: 'Model',
@@ -193,6 +196,33 @@ const locales0 = {
     'Started': {
         en: 'Started',
     },
+    'Password': {
+        en: 'Password',
+    },
+    'Password Changed': {
+        en: 'Password Changed',
+    },
+    'Logout': {
+        en: 'Logout',
+    },
+    'Change Password': {
+        en: 'Change Password',
+    },
+    'no data': {
+        en: 'no data',
+    },
+    'submit': {
+        en: 'submit',
+    },
+    'create': {
+        en: 'create',
+    },
+    'login': {
+        en: 'login',
+    },
+    'overview': {
+        en: 'overview'
+    }
 }
 
 export const locales: { [key in keyof typeof locales0]: ILocaleItem } = locales0

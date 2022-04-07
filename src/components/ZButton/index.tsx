@@ -2,8 +2,6 @@ import React from 'react'
 import { useStyletron } from 'baseui'
 import { createUseStyles } from 'react-jss'
 import { Button as BaseButton, ButtonProps } from 'baseui/button'
-import { colors } from '@/consts/theme'
-import { IThemedStyleProps } from '@/interfaces/IThemedStyle'
 
 export interface IButtonProps extends ButtonProps {
     className?: string
@@ -11,7 +9,6 @@ export interface IButtonProps extends ButtonProps {
 
 const useStyles = createUseStyles({
     baseButton: {
-        backgroundColor: colors.brand1,
         borderRadius: '4px',
         color: '#fff',
     },

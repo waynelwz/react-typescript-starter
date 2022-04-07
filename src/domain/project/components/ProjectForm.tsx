@@ -52,7 +52,7 @@ export default function ProjectForm({ project, onSubmit }: IProjectFormProps) {
 
     return (
         <Form initialValues={values} onFinish={handleFinish} onValuesChange={handleValuesChange}>
-            <FormItem name='projectName' label={t('name')}>
+            <FormItem name='projectName' label={t('sth name', [t('Project')])}>
                 <Input disabled={project !== undefined ? true : undefined} />
             </FormItem>
             <FormItem>

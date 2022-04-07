@@ -11,6 +11,7 @@ import qs from 'qs'
 import React, { useCallback, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useStyletron } from 'baseui'
+import Text from '@/components/Text'
 import ZButton from '@/components/ZButton'
 
 const { Form, FormItem } = createForm<ILoginUserSchema>()
@@ -91,7 +92,7 @@ export default function Login() {
                             <FormItem name='userName' label={t('Username')}>
                                 <Input />
                             </FormItem>
-                            <FormItem name='userPwd' label={t('password')}>
+                            <FormItem name='userPwd' label={t('Password')}>
                                 <Input type='password' />
                             </FormItem>
                             <FormItem>

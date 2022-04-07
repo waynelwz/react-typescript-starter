@@ -31,7 +31,6 @@ import axios from 'axios'
 
 const useStyles = createUseStyles({
     root: ({ theme }: IThemedStyleProps) => ({
-        '--color-brand-headerBackground': '',
         ...Object.entries(theme.colors).reduce((p, [k, v]) => {
             return {
                 ...p,

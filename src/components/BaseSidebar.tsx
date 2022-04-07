@@ -124,16 +124,6 @@ export default function BaseSidebar({ navItems, style, title, icon, settingsPath
 
     const [t] = useTranslation()
 
-    const bottomItemStyle = useMemo(() => {
-        return {
-            display: ctx.expanded ? 'flex' : 'none',
-            gap: 8,
-            alignItems: 'center',
-            padding: '14px 0 14px 28px',
-            fontSize: '11px',
-        }
-    }, [ctx.expanded])
-
     return (
         <div
             style={{
@@ -193,25 +183,6 @@ export default function BaseSidebar({ navItems, style, title, icon, settingsPath
                 }}
             />
             <div>
-                {/* todo fixme */}
-                {/* <div style={bottomItemStyle}>
-                    <CgCommunity />
-                    <Link href='https://join.slack.xxx.org' target='_blank'>
-                        {t('community')}
-                    </Link>
-                </div>
-                <div style={bottomItemStyle}>
-                    <CgFileDocument />
-                    <Link href='https://docs.xxx.org' target='_blank'>
-                        {t('docs')}
-                    </Link>
-                </div>
-                <div style={bottomItemStyle}>
-                    <GrContact />
-                    <Link href='mailto:contact@xxx.ai' target='_blank'>
-                        {t('contact')}
-                    </Link>
-                </div> */}
                 <div
                     style={{
                         display: 'flex',
@@ -241,7 +212,7 @@ export default function BaseSidebar({ navItems, style, title, icon, settingsPath
                                 borderLeftColor: isSettingsPage ? theme.colors.primary : 'transparent',
                                 background: isSettingsPage ? settingNavActiveBackground : 'transparent',
                             }}
-                            title={t('settings')}
+                            title={'settings'}
                             onClick={(e) => {
                                 e.preventDefault()
                                 history.push(settingsPath)
@@ -263,7 +234,7 @@ export default function BaseSidebar({ navItems, style, title, icon, settingsPath
                                     fontSize: 14,
                                 }}
                             >
-                                {t('settings')}
+                                {'settings'}
                             </div>
                         </div>
                     ) : (

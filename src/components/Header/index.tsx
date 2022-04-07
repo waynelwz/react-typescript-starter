@@ -20,25 +20,16 @@ import classNames from 'classnames'
 import User from '@/components/User'
 import Text from '@/components/Text'
 import { IChangePasswordSchema } from '@/domain/user/schemas/user'
-import i18n from '@/i18n'
 import { simulationJump } from '@/utils'
-import { colors } from '@/consts/theme'
 import { FiLogOut } from 'react-icons/fi'
-import { MdPassword } from 'react-icons/md'
-import PasswordForm from '@/components/PasswordForm'
-import ThemeToggle from './ThemeToggle'
 import HeaderLeftMenu from './HeaderLeftMenu'
-import { useProject, useProjectLoading } from '@/domain/project/hooks/useProject'
-import { fetchProject } from '@/domain/project/services/project'
 import { useToken } from '../../hooks/useToken'
 
 const useHeaderStyles = createUseStyles({
     headerWrapper: (props: IThemedStyleProps) => ({
         padding: '0 32px 0 0',
         position: 'fixed',
-        background: color(props.themeType === 'light' ? colors.brand2 : props.theme.colors.backgroundPrimary)
-            .fade(props.themeType === 'light' ? 0 : 0.5)
-            .string(),
+        background: 'var(--color-brandHeaderBackground)',
         borderBottom: `1px solid ${props.theme.borders.border300.borderColor}`,
         backdropFilter: 'blur(10px)',
         zIndex: 1000,
@@ -191,7 +182,7 @@ export default function Header() {
         async (data: IChangePasswordSchema) => {
             await changePassword(data)
             setIsChangePasswordOpen(false)
-            toaster.positive(t('password changed'), { autoHideDuration: 2000 })
+            toaster.positive(t('Password Changed'), { autoHideDuration: 2000 })
         },
         [t]
     )
@@ -252,19 +243,6 @@ export default function Header() {
             </Link>
             <div>{currentUser && <HeaderLeftMenu />}</div>
             <div style={{ flexGrow: 1 }} />
-            <div
-                className={css({
-                    'flexShrink': 0,
-                    'height': '100%',
-                    'font-size': '14px',
-                    'color': theme.colors.contentPrimary,
-                    'display': 'flex',
-                    'align-items': 'center',
-                    'gap': '30px',
-                })}
-            >
-                <ThemeToggle />
-            </div>
             {currentUser && (
                 <div className={styles.userWrapper}>
                     <div className={styles.userAvatarWrapper}>
@@ -292,7 +270,7 @@ export default function Header() {
                             }}
                         >
                             <FiLogOut size={12} />
-                            <span>{t('logout')}</span>
+                            <span>{t('Logout')}</span>
                         </div>
                     </div>
                 </div>
@@ -305,10 +283,8 @@ export default function Header() {
                 autoFocus
                 unstable_ModalBackdropScroll
             >
-                <ModalHeader>{t('change password')}</ModalHeader>
-                <ModalBody>
-                    <PasswordForm onSubmit={handleChangePassword} />
-                </ModalBody>
+                <ModalHeader>{t('Change Password')}</ModalHeader>
+                <ModalBody>{/* <PasswordForm onSubmit={handleChangePassword} /> */}</ModalBody>
             </Modal>
         </header>
     )
