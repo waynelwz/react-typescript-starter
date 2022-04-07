@@ -14,6 +14,7 @@ import { Link, useHistory, useParams } from 'react-router-dom'
 import { useFetchJobs } from '@job/hooks/useFetchJobs'
 import { StyledLink } from 'baseui/link'
 import { toaster } from 'baseui/toast'
+import ErrorBoundary from '@/components/ErrorBoundary/ErrorBoundary'
 
 export default function JobListCard() {
     const [page] = usePage()
@@ -42,84 +43,90 @@ export default function JobListCard() {
     const history = useHistory()
 
     return (
-        <Card
-            title={t('jobs')}
-            extra={
-                <Button
-                    size={ButtonSize.compact}
-                    onClick={() => {
-                        history.push('new_job')
-                    }}
-                    isLoading={jobsInfo.isLoading}
-                >
-                    {t('create')}
-                </Button>
-            }
-        >
-            <Table
-                isLoading={jobsInfo.isLoading}
-                columns={[
-                    t('Job ID'),
-                    t('sth name', [t('Model')]),
-                    t('Version'),
-                    t('Owner'),
-                    t('Created time'),
-                    t('Run time'),
-                    t('End time'),
-                    t('Status'),
-                    t('Action'),
-                ]}
-                data={
-                    jobsInfo.data?.list.map((job) => {
-                        const actions: Partial<Record<JobStatusType, React.ReactNode>> = {
-                            [JobStatusType.preparing]: (
-                                <StyledLink onClick={() => handleAction(job.id, 'cancel')}>{t('Cancel')}</StyledLink>
-                            ),
-                            [JobStatusType.runnning]: (
-                                <StyledLink onClick={() => handleAction(job.id, 'cancel')}>{t('Cancel')}</StyledLink>
-                            ),
-                            [JobStatusType.completed]: (
-                                <Link to={`/projects/${projectId}/jobs/${job.id}`}>{t('View Results')}</Link>
-                            ),
-                        }
-
-                        return [
-                            <Link key={job.id} to={`/projects/${projectId}/jobs/${job.id}`}>
-                                {job.uuid}
-                            </Link>,
-                            job.modelName,
-                            job.modelVersion,
-                            job.owner && <User user={job.owner} />,
-                            job.createTime && formatTimestampDateTime(job.createTime),
-                            typeof job.duration == 'string' ? '-' : durationToStr(job.duration),
-                            job.stopTime > 0 ? formatTimestampDateTime(job.stopTime) : '-',
-                            job.jobStatus && JobStatusType[job.jobStatus],
-                            actions[job.jobStatus] ?? '',
-                        ]
-                    }) ?? []
+        <ErrorBoundary>
+            <Card
+                title={t('jobs')}
+                extra={
+                    <Button
+                        size={ButtonSize.compact}
+                        onClick={() => {
+                            history.push('new_job')
+                        }}
+                        isLoading={jobsInfo.isLoading}
+                    >
+                        {t('create')}
+                    </Button>
                 }
-                paginationProps={{
-                    start: jobsInfo.data?.pageNum,
-                    count: jobsInfo.data?.size,
-                    total: jobsInfo.data?.total,
-                    afterPageChange: () => {
-                        jobsInfo.refetch()
-                    },
-                }}
-            />
-            <Modal
-                isOpen={isCreateJobOpen}
-                onClose={() => setIsCreateJobOpen(false)}
-                closeable
-                animate
-                autoFocus
-                unstable_ModalBackdropScroll
             >
-                <ModalHeader>{t('create sth', [t('Job')])}</ModalHeader>
-                <ModalBody>
-                    <JobForm onSubmit={handleCreateJob} />
-                </ModalBody>
-            </Modal>
-        </Card>
+                <Table
+                    isLoading={jobsInfo.isLoading}
+                    columns={[
+                        t('Job ID'),
+                        t('sth name', [t('Model')]),
+                        t('Version'),
+                        t('Owner'),
+                        t('Created time'),
+                        t('Run time'),
+                        t('End time'),
+                        t('Status'),
+                        t('Action'),
+                    ]}
+                    data={
+                        jobsInfo.data?.list.map((job) => {
+                            const actions: Partial<Record<JobStatusType, React.ReactNode>> = {
+                                [JobStatusType.preparing]: (
+                                    <StyledLink onClick={() => handleAction(job.id, 'cancel')}>
+                                        {t('Cancel')}
+                                    </StyledLink>
+                                ),
+                                [JobStatusType.runnning]: (
+                                    <StyledLink onClick={() => handleAction(job.id, 'cancel')}>
+                                        {t('Cancel')}
+                                    </StyledLink>
+                                ),
+                                [JobStatusType.completed]: (
+                                    <Link to={`/projects/${projectId}/jobs/${job.id}`}>{t('View Results')}</Link>
+                                ),
+                            }
+
+                            return [
+                                <Link key={job.id} to={`/projects/${projectId}/jobs/${job.id}`}>
+                                    {job.uuid}
+                                </Link>,
+                                job.modelName?.name,
+                                job.modelVersion?.name,
+                                job.owner && <User user={job.owner} />,
+                                job.createTime && formatTimestampDateTime(job.createTime),
+                                typeof job.duration == 'string' ? '-' : durationToStr(job.duration),
+                                job.stopTime > 0 ? formatTimestampDateTime(job.stopTime) : '-',
+                                job.jobStatus && JobStatusType[job.jobStatus],
+                                actions[job.jobStatus] ?? '',
+                            ]
+                        }) ?? []
+                    }
+                    paginationProps={{
+                        start: jobsInfo.data?.pageNum,
+                        count: jobsInfo.data?.size,
+                        total: jobsInfo.data?.total,
+                        afterPageChange: () => {
+                            jobsInfo.refetch()
+                        },
+                    }}
+                />
+                <Modal
+                    isOpen={isCreateJobOpen}
+                    onClose={() => setIsCreateJobOpen(false)}
+                    closeable
+                    animate
+                    autoFocus
+                    unstable_ModalBackdropScroll
+                >
+                    <ModalHeader>{t('create sth', [t('Job')])}</ModalHeader>
+                    <ModalBody>
+                        <JobForm onSubmit={handleCreateJob} />
+                    </ModalBody>
+                </Modal>
+            </Card>
+        </ErrorBoundary>
     )
 }
