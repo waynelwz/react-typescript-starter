@@ -1,5 +1,28 @@
 import _ from 'lodash'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const isPromise = (obj: any) =>
+    !!obj && (typeof obj === 'object' || typeof obj === 'function') && typeof obj.then === 'function'
+
+export function millisecondsToTimeStr(milliseconds: number): string {
+    let result = ''
+    let temp = Math.floor(milliseconds / 1000)
+    const hours = Math.floor(temp / 3600)
+    if (hours) {
+        result = `${hours}h`
+    }
+    const minutes = Math.floor((temp %= 3600) / 60)
+    if (minutes) {
+        result = `${result}${minutes}m`
+    }
+    const seconds = temp % 60
+    if (seconds) {
+        result = `${result}${seconds}s`
+    }
+    return result
+}
+
+
 export function getCookie(name: string): string {
     const regex = new RegExp(`(?:(?:^|.*;*)${name}*=*([^;]*).*$)|^.*$`)
     const global = typeof document !== 'undefined' ? document : null
@@ -36,57 +59,6 @@ export function processUrl(url: string) {
         newUrl = `//${pieces[1]}`
     }
     return newUrl
-}
-
-export interface IKubeServicePort {
-    name?: string
-    port: number
-    targetPort: number
-    protocol: 'TCP' | 'UDP'
-}
-
-export function parsePort(port: string): IKubeServicePort {
-    const [portPart, protocolStr, name] = port.split('/')
-    let protocol: IKubeServicePort['protocol'] = 'TCP'
-    if (protocolStr !== undefined) {
-        protocol = protocolStr.toUpperCase() as IKubeServicePort['protocol']
-    }
-    const [portStr, targetPortStr] = portPart.split(':')
-    if (targetPortStr === undefined) {
-        const portInt = parseInt(portStr, 10)
-        return {
-            name,
-            port: portInt,
-            targetPort: portInt,
-            protocol,
-        }
-    }
-    const portInt = parseInt(portStr, 10)
-    const targetPort = parseInt(targetPortStr, 10)
-    return {
-        name,
-        port: portInt,
-        targetPort,
-        protocol,
-    }
-}
-
-export function strToCPUMilliCores(value?: string): number {
-    let n = 0
-    if (value) {
-        const m = value.match(/(\d+)m/)
-        if (m) {
-            // eslint-disable-next-line prefer-destructuring
-            n = parseInt(m[1], 10)
-        } else {
-            const m0 = value.match(/([\\.\d]+)/)
-            if (m0) {
-                // eslint-disable-next-line prefer-destructuring
-                n = Math.round(parseFloat(m0[1]) * 1000)
-            }
-        }
-    }
-    return n
 }
 
 export function sizeStrToByteNum(sizeStr?: string): number | undefined {
@@ -232,72 +204,4 @@ export function getReadableStorageQuantityStr(bytes?: number): string {
 
 export function numberToPercentStr(v: number): string {
     return `${(v * 100).toFixed(2)}%`
-}
-
-const keyQKeywords = '__keywords'
-
-export type QKey = string
-export type QValue = string[] | boolean | undefined
-export type Q = Record<QKey, QValue>
-
-export function parseQ(q_: string): Q {
-    const q = _.trim(q_)
-    if (!q) {
-        return {}
-    }
-    return q.split(' ').reduce((acc, item_) => {
-        const item = _.trim(item_)
-        if (item === '') {
-            return acc
-        }
-        let key = ''
-        let value = ''
-        if (item.indexOf(':') < 0) {
-            key = keyQKeywords
-            value = item
-        } else {
-            ;[key, value] = item.split(':')
-        }
-        if (key === '' || value === '') {
-            return acc
-        }
-        if (key === 'is') {
-            return {
-                ...acc,
-                [value]: true,
-            }
-        }
-        if (key === 'not') {
-            return {
-                ...acc,
-                [value]: false,
-            }
-        }
-        const current = acc[key]
-        return {
-            ...acc,
-            [key]: Array.isArray(current) ? [...current, value] : [value],
-        }
-    }, {} as Q)
-}
-
-export function qToString(q: Q): string {
-    return _.trim(
-        Object.keys(q).reduce((acc, key) => {
-            const value = q[key]
-            if (value === undefined) {
-                return acc
-            }
-            if (value === true) {
-                return `${acc} is:${key}`
-            }
-            if (value === false) {
-                return `${acc} not:${key}`
-            }
-            if (key === keyQKeywords) {
-                return `${acc} ${value.join(' ')}`
-            }
-            return `${acc} ${value.map((v) => `${key}:${v}`).join(' ')}`
-        }, '')
-    )
 }

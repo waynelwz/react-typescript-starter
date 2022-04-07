@@ -14,7 +14,7 @@ const useStyles = createUseStyles({
     },
 })
 
-export default function ZButton({ children, ...props }: IButtonProps) {
+export default function Button({ children, ...props }: IButtonProps) {
     const [css, theme] = useStyletron()
     const styles = useStyles()
 
