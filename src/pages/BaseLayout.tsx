@@ -75,12 +75,11 @@ export default function BaseLayout({
     const history = useHistory()
     const themeType = useCurrentThemeType()
     const [, theme] = useStyletron()
-    const styles = useStyles({ themeType, theme })
+    const styles = useStyles({ themeType, theme })()
     console.log(styles)
     return (
         <main
             style={{
-                height: '100vh',
                 display: 'flex',
                 flexFlow: 'row nowrap',
                 justifyContent: 'space-between',

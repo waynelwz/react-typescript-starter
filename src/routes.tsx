@@ -50,7 +50,13 @@ const Routes = () => {
             <div
                 className={styles.root}
                 style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    zIndex: 1,
                     minHeight: '100vh',
+                    position: 'relative',
+                    minWidth: 'fit-content',
+                    width: '100%',
                     background: 'var(--color-brandRootBackground)',
                     // color: theme.colors.contentPrimary,
                 }}

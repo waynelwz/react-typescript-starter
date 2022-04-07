@@ -1,18 +1,12 @@
 import React, { useCallback, useState } from 'react'
 import Card from '@/components/Card'
 import { usePage } from '@/hooks/usePage'
-import { ICreateTaskSchema } from '@job/schemas/task'
 import { formatTimestampDateTime } from '@/utils/datetime'
 import useTranslation from '@/hooks/useTranslation'
-import { Button, SIZE as ButtonSize } from 'baseui/button'
-import User from '@/domain/user/components/User'
-import { Modal, ModalHeader, ModalBody } from 'baseui/modal'
 import Table from '@/components/Table/index'
 import { Link, useParams } from 'react-router-dom'
 import { useFetchTasks } from '@job/hooks/useFetchTasks'
-import { useJob } from '@job/hooks/useJob'
 import { JobStatusType } from '@/domain/job/schemas/job'
-import ReactNode from 'react'
 export interface ITaskListCardProps {
     header: React.ReactNode
 }
