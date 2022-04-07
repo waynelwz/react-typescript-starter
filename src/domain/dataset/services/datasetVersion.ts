@@ -5,7 +5,7 @@ import {
     IUpdateDatasetVersionSchema,
     IDatasetVersionDetailSchema,
 } from '../schemas/datasetVersion'
-import { IListQuerySchema, IListSchema } from '@/schemas/list'
+import { IListQuerySchema, IListSchema } from '@/domain/base/schemas/list'
 
 export async function listDatasetVersions(
     projectId: string,

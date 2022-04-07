@@ -5,7 +5,7 @@ import {
     IUpdateModelVersionSchema,
     IModelVersionDetailSchema,
 } from '../schemas/modelVersion'
-import { IListQuerySchema, IListSchema } from '@/schemas/list'
+import { IListQuerySchema, IListSchema } from '@/domain/base/schemas/list'
 
 export async function listModelVersions(
     projectId: string,

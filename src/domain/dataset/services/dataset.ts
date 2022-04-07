@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { ICreateDatasetSchema, IDatasetSchema, IDatasetDetailSchema } from '../schemas/dataset'
-import { IListQuerySchema, IListSchema } from '@/schemas/list'
+import { IListQuerySchema, IListSchema } from '@/domain/base/schemas/list'
 
 export async function listDatasets(projectId: string, query: IListQuerySchema): Promise<IListSchema<IDatasetSchema>> {
     const resp = await axios.get<IListSchema<IDatasetSchema>>(`/api/v1/project/${projectId}/dataset`, {

@@ -1,5 +1,6 @@
 import { IResourceSchema } from '@/domain/base/schemas/resource'
 import { IUserSchema } from '@user/schemas/user'
+
 // TODO fix dataset & dataset detail has different attrs
 export interface IDatasetSchema extends IResourceSchema {
     name: string

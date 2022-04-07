@@ -1,4 +1,4 @@
-import { IResourceSchema } from '@/schemas/resource'
+import { IResourceSchema } from '@/domain/base/schemas/resource'
 import { JobStatusType } from './job'
 
 export interface ITaskSchema extends IResourceSchema {

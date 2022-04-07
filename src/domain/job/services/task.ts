@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { ITaskSchema, ITaskDetailSchema } from '../schemas/task'
-import { IListQuerySchema, IListSchema } from '@/schemas/list'
+import { IListQuerySchema, IListSchema } from '@/domain/base/schemas/list'
 
 export async function listTasks(
     projectId: string,

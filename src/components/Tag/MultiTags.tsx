@@ -1,4 +1,3 @@
-import { IResourceSchema } from '@/schemas/resource'
 import { Select, SelectProps } from 'baseui/select'
 import React from 'react'
 

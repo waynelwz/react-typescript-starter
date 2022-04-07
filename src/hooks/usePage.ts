@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react'
-import { IListQuerySchema } from '@/schemas/list'
+import { IListQuerySchema } from '@/domain/base/schemas/list'
 import { IQueryArgs, IUpdateQueryArgs, useQueryArgs } from './useQueryArgs'
 
 export function usePage(opt?: {
@@ -45,10 +45,7 @@ export function usePage(opt?: {
             (newPage) => {
                 updateQuery?.({
                     page: Math.floor(newPage.start / newPage.count) + 1,
-                    search: newPage.search,
-                    q: newPage.q,
-                    sort_by: newPage.sort_by,
-                    sort_asc: newPage.sort_asc !== undefined ? String(newPage.sort_asc) : undefined,
+                    search: newPage.search
                 })
             },
             [updateQuery]

@@ -1,4 +1,4 @@
-import { IResourceSchema } from '@/schemas/resource'
+import { IResourceSchema } from '@/domain/base/schemas/resource'
 
 export interface IBaseImageSchema extends IResourceSchema {
     id: string

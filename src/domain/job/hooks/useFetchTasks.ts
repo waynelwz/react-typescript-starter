@@ -1,4 +1,4 @@
-import { IListQuerySchema } from '@/schemas/list'
+import { IListQuerySchema } from '@/domain/base/schemas/list'
 import { useQuery } from 'react-query'
 import { listTasks } from '../services/task'
 import qs from 'qs'

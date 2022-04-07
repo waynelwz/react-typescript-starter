@@ -1,12 +1,8 @@
 import React, { useCallback, useState } from 'react'
-import { RiSurveyLine } from 'react-icons/ri'
-import Table from '@/components/Table'
 import useTranslation from '@/hooks/useTranslation'
 import { useJob, useJobLoading } from '@job/hooks/useJob'
-import Card from '@/components/Card'
 import TaskListCard from './TaskListCard'
 import { durationToStr, formatTimestampDateTime } from '@/utils/datetime'
-import User from '@/components/User'
 
 export default function JobOverview() {
     const { job } = useJob()

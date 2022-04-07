@@ -12,7 +12,7 @@ import React, { useCallback, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useStyletron } from 'baseui'
 import Text from '@/components/Text'
-import ZButton from '@/components/ZButton'
+import ZButton from '@/components/Button'
 
 const { Form, FormItem } = createForm<ILoginUserSchema>()
 

@@ -1,4 +1,4 @@
-import { IResourceSchema } from '@/schemas/resource'
+import { IResourceSchema } from '@/domain/base/schemas/resource'
 import { IUserSchema } from '@user/schemas/user'
 import { IModelSchema } from '@model/schemas/model'
 import { IDatasetSchema } from '@dataset/schemas/dataset'

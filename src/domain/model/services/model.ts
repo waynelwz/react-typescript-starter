@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { ICreateModelSchema, IModelSchema, IUpdateModelSchema, IModelDetailSchema } from '../schemas/model'
-import { IListQuerySchema, IListSchema } from '@/schemas/list'
+import { IListQuerySchema, IListSchema } from '@/domain/base/schemas/list'
 
 export async function listModels(projectId: string, query: IListQuerySchema): Promise<IListSchema<IModelSchema>> {
     const resp = await axios.get<IListSchema<IModelSchema>>(`/api/v1/project/${projectId}/model`, {
