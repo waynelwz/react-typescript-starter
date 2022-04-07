@@ -1,5 +1,7 @@
 import useTranslation from '@/hooks/useTranslation'
-import { RiSurveyLine } from 'react-icons/ri'
+import { BsFolder2 } from 'react-icons/bs'
+import { RiSettingsLine } from 'react-icons/ri'
+
 import React, { useEffect, useMemo } from 'react'
 import BaseSidebar, { IComposedSidebarProps, INavItem } from '@/components/BaseSidebar'
 import { useParams } from 'react-router'
@@ -18,7 +20,7 @@ export default function ProjectSidebar({ style }: IComposedSidebarProps) {
                       {
                           title: project?.name ?? t('overview'),
                           path: `/projects/${project?.id}`,
-                          icon: RiSurveyLine,
+                          icon: BsFolder2,
                       },
                       {
                           title: t('models'),

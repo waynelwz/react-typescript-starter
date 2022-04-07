@@ -23,7 +23,7 @@ const useStyles = createUseStyles({
         const linkStyle = getLinkStyle(props.theme)
 
         return {
-            // todo multi theme
+            //TODO: multi theme
             // 'box-shadow': props.theme.lighting.shadow400,
             'background': props.theme.colors.backgroundPrimary,
             '& a': linkStyle,

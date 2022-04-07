@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
 
-// todo refact runtime/env as baseSelector
+//TODO: refact runtime/env as baseSelector
 export interface IDeviceSelectorProps {
     value?: string
     onChange?: (newValue: string) => void

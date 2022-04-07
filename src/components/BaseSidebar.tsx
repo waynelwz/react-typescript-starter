@@ -243,28 +243,7 @@ export default function BaseSidebar({ navItems, style, title, icon, settingsPath
                                 flexGrow: 1,
                                 width: ctx.expanded ? sidebarExpandedWidth - sidebarFoldedWidth : sidebarFoldedWidth,
                             }}
-                        >
-                            {/* todo version */}
-                            {/* <StatefulTooltip
-                                content={
-                                    <div>
-                                        Build at {versionInfo.data ? formatTimestampDateTime(versionInfo.data.build_date) : '-'}
-                                    </div>
-                                }
-                            >
-                                <div
-                                    style={{
-                                        fontSize: '11px',
-                                        display: ctx.expanded ? 'flex' : 'none',
-                                        paddingLeft: 28,
-                                    }}
-                                >
-                                    {versionInfo.isLoading
-                                        ? '-'
-                                        : `v${versionInfo.data?.version}-${versionInfo.data?.git_commit}`}
-                                </div>
-                            </StatefulTooltip> */}
-                        </div>
+                        ></div>
                     )}
                     <div
                         role='button'

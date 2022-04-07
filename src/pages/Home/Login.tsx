@@ -22,7 +22,6 @@ export default function Login() {
     const history = useHistory()
     const [isLoading, setIsLoading] = useState(false)
 
-    // todo
     const [, theme] = useStyletron()
 
     const handleFinish = useCallback(

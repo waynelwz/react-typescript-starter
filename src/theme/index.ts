@@ -22,11 +22,13 @@ export interface IThemedStyleProps {
 export interface IColors extends Partial<Colors> {
     brand1: string
     brand2: string
+    brandBackground: string
 }
 
 export const colors: IColors = {
     brand1: '#007fff',
     brand2: '#36425D',
+    brandBackground: '#F0F2F5',
 }
 
 // base ui primitives
@@ -53,14 +55,14 @@ const overrides = {
             buttonPrimaryFill: '#007FFF',
             buttonBorderRadius: '14px',
             // ----------- custom -----------
-            brandRootBackground: colors.brand2,
+            brandRootBackground: colors.brandBackground,
             brandHeaderBackground: colors.brand2,
         },
         typography: {},
     },
 }
 
-export const DeepTheme: Theme = createTheme(primitives, overrides.deep)
+export const DeepTheme: Theme = createLightTheme(primitives, overrides.deep)
 export const LightTheme: Theme = createLightTheme(primitives, overrides.light)
 export const DarkTheme: Theme = createDarkTheme(primitives, overrides.dark)
 

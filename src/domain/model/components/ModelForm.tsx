@@ -73,7 +73,7 @@ export default function ModelForm({ model, onSubmit }: IModelFormProps) {
                 </FormItem>
             )}
             {importBy == 'upload' && (
-                // todo beauty file upload plugin
+                //TODO: beauty file upload plugin
                 <FormItem name='zipFile' label={t('Upload')} valuePropName='files'>
                     <Input name='files' disabled={model !== undefined ? true : undefined} type='file' />
 

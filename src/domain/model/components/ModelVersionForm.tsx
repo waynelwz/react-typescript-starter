@@ -51,7 +51,7 @@ export default function ModelVersionForm({ model, onSubmit }: IModelVersionFormP
 
     return (
         <Form initialValues={values} onFinish={handleFinish} onValuesChange={handleValuesChange}>
-            {/* todo display curret model name */}
+            {/* //TODO: display curret model name */}
             {/* <FormItem name='modelName' label={t('sth name', [t('Model Version')])}>
                 <Input disabled={model !== undefined ? true : undefined} />
             </FormItem> */}
@@ -72,7 +72,7 @@ export default function ModelVersionForm({ model, onSubmit }: IModelVersionFormP
                 </FormItem>
             )}
             {importBy == 'upload' && (
-                // todo beauty file upload plugin
+                //TODO: beauty file upload plugin
                 <FormItem name='zipFile' label={t('Upload')} valuePropName='files'>
                     <Input name='files' disabled={model !== undefined ? true : undefined} type='file' />
 

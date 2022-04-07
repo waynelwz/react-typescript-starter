@@ -83,6 +83,8 @@ export default function BaseLayout({
                 display: 'flex',
                 flexFlow: 'row nowrap',
                 justifyContent: 'space-between',
+                minHeight: '100vh',
+                position: 'relative',
                 ...style,
             }}
         >

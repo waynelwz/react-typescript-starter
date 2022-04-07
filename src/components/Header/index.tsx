@@ -124,13 +124,12 @@ export default function Header() {
         lastLocationPathRef.current = location.pathname
     }, [location.pathname])
 
-    // todo refact move to sep file
+    //TODO:  refact move to sep file
     useEffect(() => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         if ((axios.interceptors.response as any).handlers.length > 0) {
             return
         }
-        // todo refact
         axios.interceptors.response.use(
             (response) => {
                 console.log(response)
@@ -207,7 +206,7 @@ export default function Header() {
                 }}
                 to='/'
             >
-                {/* todo logo */}
+                {/* //TODO: sep logo */}
                 {/* <div
                     style={{
                         flexShrink: 0,
