@@ -26,8 +26,6 @@ export default function DatasetForm({ dataset, onSubmit }: IDatasetFormProps) {
         }
         setValues({
             datasetName: dataset.name,
-            // description: dataset.description,
-            // config: dataset.config,
         })
     }, [dataset])
 

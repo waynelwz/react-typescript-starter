@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
-import { changePassword, fetchCurrentUser } from '@user/services/user'
+import { fetchCurrentUser } from '@user/services/user'
 import { useQuery } from 'react-query'
 import { useCurrentUser } from '@/hooks/useCurrentUser'
 import axios from 'axios'
@@ -19,7 +19,6 @@ import { useCurrentThemeType } from '@/hooks/useCurrentThemeType'
 import classNames from 'classnames'
 import User from '@/components/User'
 import Text from '@/components/Text'
-import { IChangePasswordSchema } from '@/domain/user/schemas/user'
 import { simulationJump } from '@/utils'
 import { FiLogOut } from 'react-icons/fi'
 import HeaderLeftMenu from './HeaderLeftMenu'
@@ -38,7 +37,7 @@ const useHeaderStyles = createUseStyles({
         width: '100%',
         display: 'flex',
         flexFlow: 'row nowrap',
-        boxSizing: 'border-box',
+        // boxSizing: 'border-box',
         alignItems: 'center',
         color: '#FFF',
     }),
@@ -178,14 +177,14 @@ export default function Header() {
     const [t] = useTranslation()
 
     const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false)
-    const handleChangePassword = useCallback(
-        async (data: IChangePasswordSchema) => {
-            await changePassword(data)
-            setIsChangePasswordOpen(false)
-            toaster.positive(t('Password Changed'), { autoHideDuration: 2000 })
-        },
-        [t]
-    )
+    // const handleChangePassword = useCallback(
+    //     async (data: IChangePasswordSchema) => {
+    //         await changePassword(data)
+    //         setIsChangePasswordOpen(false)
+    //         toaster.positive(t('Password Changed'), { autoHideDuration: 2000 })
+    //     },
+    //     [t]
+    // )
 
     // const currentThemeType = useCurrentThemeType()
     if (!!!currentUser) {

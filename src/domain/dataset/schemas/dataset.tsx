@@ -1,6 +1,6 @@
-import { IResourceSchema } from '@/schemas/resource'
+import { IResourceSchema } from '@/domain/base/schemas/resource'
 import { IUserSchema } from '@user/schemas/user'
-// todo fix dataset & dataset detail has different attrs
+// TODO fix dataset & dataset detail has different attrs
 export interface IDatasetSchema extends IResourceSchema {
     name: string
     createTime: number
@@ -26,7 +26,3 @@ export interface ICreateDatasetSchema {
     zipFile?: FileList
     importPath?: string
 }
-
-// export interface IDatasetFullSchema extends IDatasetSchema {
-//     config?: IDatasetConfigSchema
-// }

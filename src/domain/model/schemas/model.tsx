@@ -1,6 +1,6 @@
-import { IResourceSchema } from '@/schemas/resource'
+import { IResourceSchema } from '@/domain/base/schemas/resource'
 import { IUserSchema } from '@user/schemas/user'
-// todo fix model & model detail has different attrs
+
 export interface IModelSchema extends IResourceSchema {
     name: string
     createTime: number
@@ -25,7 +25,3 @@ export interface ICreateModelSchema {
     zipFile?: FileList
     importPath?: string
 }
-
-// export interface IModelFullSchema extends IModelSchema {
-//     config?: IModelConfigSchema
-// }

@@ -25,8 +25,6 @@ export default function ProjectForm({ project, onSubmit }: IProjectFormProps) {
         }
         setValues({
             projectName: project.name,
-            // description: project.description,
-            // config: project.config,
         })
     }, [project])
 

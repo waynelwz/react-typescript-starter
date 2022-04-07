@@ -3,7 +3,6 @@ import { Select, SelectProps } from 'baseui/select'
 import _ from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
-import { useParams } from 'react-router-dom'
 
 export interface IDatasetSelectorProps {
     projectId: string

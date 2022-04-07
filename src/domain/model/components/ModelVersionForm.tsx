@@ -2,7 +2,6 @@ import { ICreateModelVersionSchema, IModelVersionSchema } from '../schemas/model
 import React, { useCallback, useEffect, useState } from 'react'
 import { createForm } from '@/components/Form'
 import { Input } from 'baseui/input'
-import { Textarea } from 'baseui/textarea'
 import useTranslation from '@/hooks/useTranslation'
 import { Button, SIZE as ButtonSize } from 'baseui/button'
 import { isModified } from '@/utils'
@@ -26,8 +25,6 @@ export default function ModelVersionForm({ model, onSubmit }: IModelVersionFormP
         }
         setValues({
             modelName: model.name,
-            // description: model.description,
-            // config: model.config,
         })
     }, [model])
 

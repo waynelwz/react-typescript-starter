@@ -26,8 +26,6 @@ export default function ModelForm({ model, onSubmit }: IModelFormProps) {
         }
         setValues({
             modelName: model.name,
-            // description: model.description,
-            // config: model.config,
         })
     }, [model])
 

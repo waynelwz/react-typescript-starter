@@ -2,7 +2,6 @@ import { ICreateDatasetVersionSchema, IDatasetVersionSchema } from '../schemas/d
 import React, { useCallback, useEffect, useState } from 'react'
 import { createForm } from '@/components/Form'
 import { Input } from 'baseui/input'
-import { Textarea } from 'baseui/textarea'
 import useTranslation from '@/hooks/useTranslation'
 import { Button, SIZE as ButtonSize } from 'baseui/button'
 import { isModified } from '@/utils'
@@ -26,8 +25,6 @@ export default function DatasetVersionForm({ dataset, onSubmit }: IDatasetVersio
         }
         setValues({
             datasetName: dataset.name,
-            // description: dataset.description,
-            // config: dataset.config,
         })
     }, [dataset])
 
@@ -54,7 +51,7 @@ export default function DatasetVersionForm({ dataset, onSubmit }: IDatasetVersio
 
     return (
         <Form initialValues={values} onFinish={handleFinish} onValuesChange={handleValuesChange}>
-            {/* todo display curret dataset name */}
+            {/* TODO display curret dataset name */}
             {/* <FormItem name='datasetName' label={t('sth name', [t('Dataset Version')])}>
                 <Input disabled={dataset !== undefined ? true : undefined} />
             </FormItem> */}
@@ -75,7 +72,7 @@ export default function DatasetVersionForm({ dataset, onSubmit }: IDatasetVersio
                 </FormItem>
             )}
             {importBy == 'upload' && (
-                // todo beauty file upload plugin
+                // TODO beauty file upload plugin
                 <FormItem name='zipFile' label={t('Upload')} valuePropName='files'>
                     <Input name='files' disabled={dataset !== undefined ? true : undefined} type='file' />
 

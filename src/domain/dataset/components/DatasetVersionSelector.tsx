@@ -26,7 +26,6 @@ export default function DatasetVersionSelector({
     const [options, setOptions] = useState<{ id: string; label: React.ReactNode }[]>([])
     const datasetVersionsInfo = useQuery(
         `listDatasetVersions:${keyword}`,
-        // todo the right way of datasetId ?? ''
         () => listDatasetVersions(projectId, datasetId, { start: 0, count: 100, search: keyword }),
         { enabled: !!datasetId }
     )

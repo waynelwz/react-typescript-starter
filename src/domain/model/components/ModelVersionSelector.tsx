@@ -26,7 +26,7 @@ export default function ModelVersionSelector({
     const [options, setOptions] = useState<{ id: string; label: React.ReactNode }[]>([])
     const modelVersionsInfo = useQuery(
         `listModelVersions:${keyword}`,
-        // todo the right way of modelId ?? ''
+        // TODO the right way of modelId ?? ''
         () => listModelVersions(projectId, modelId ?? '', { start: 0, count: 100, search: keyword }),
         { enabled: !!modelId }
     )

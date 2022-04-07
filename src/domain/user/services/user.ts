@@ -3,10 +3,8 @@ import {
     IUserSchema,
     IRegisterUserSchema,
     ILoginUserSchema,
-    ICreateUserSchema,
-    IChangePasswordSchema,
 } from '../schemas/user'
-import { IListQuerySchema, IListSchema } from '@/schemas/list'
+import { IListQuerySchema, IListSchema } from '@/domain/base/schemas/list'
 
 export async function loginUser(data: ILoginUserSchema): Promise<IUserSchema> {
     const resp = await axios.post<IUserSchema>(`/api/v1/login`, data)
@@ -28,10 +26,5 @@ export async function listUsers(query: IListQuerySchema): Promise<IListSchema<IU
     const resp = await axios.get<IListSchema<IUserSchema>>('/api/v1/users', {
         params: query,
     })
-    return resp.data
-}
-
-export async function changePassword(data: IChangePasswordSchema): Promise<IUserSchema> {
-    const resp = await axios.patch('/api/v1/auth/reset_password', data)
     return resp.data
 }

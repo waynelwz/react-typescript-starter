@@ -2,12 +2,9 @@ import { ICreateJobFormSchema, ICreateJobSchema, IJobFormSchema, IJobSchema } fr
 import React, { useCallback, useEffect, useState, useMemo, createRef, useRef } from 'react'
 import { createForm } from '@/components/Form'
 import { Input } from 'baseui/input'
-import { Textarea } from 'baseui/textarea'
 import useTranslation from '@/hooks/useTranslation'
 import { Button, SIZE as ButtonSize } from 'baseui/button'
 import { isModified } from '@/utils'
-import { RadioGroup, Radio, ALIGN } from 'baseui/radio'
-import { Select, TYPE, Value } from 'baseui/select'
 import ModelSelector from '@/domain/model/components/ModelSelector'
 import { Label1, Label2 } from 'baseui/typography'
 import Divider from '@/components/Divider'
@@ -38,7 +35,7 @@ export default function JobForm({ job, onSubmit }: IJobFormProps) {
         if (!job) {
             return
         }
-        // todo job edit
+        // TODO job edit
         // setDatasetVersionIds(job.datasetVersionIds)
         // setValues({
         // })
@@ -154,16 +151,7 @@ export default function JobForm({ job, onSubmit }: IJobFormProps) {
             </div>
             <div style={{ width: '420px' }}>
                 <FormItem label={t('Selected Dataset')} name='datasetVersionIds' required>
-                    <MultiTags
-                        // value={datasetVersionIds}
-                        placeholder={''}
-                        // getValueLabel={(params) => {
-                        //     // todo with dataset name
-                        //     const id = params.option?.id
-                        //     return id + ''
-                        // }}
-                        // onChange={handleResetDataset}
-                    />
+                    <MultiTags placeholder={''} />
                 </FormItem>
             </div>
             <Divider orientation='left'>
