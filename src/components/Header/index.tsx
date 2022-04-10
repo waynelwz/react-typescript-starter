@@ -4,7 +4,7 @@ import { useQuery } from 'react-query'
 import { useCurrentUser } from '@/hooks/useCurrentUser'
 import axios from 'axios'
 import { toaster } from 'baseui/toast'
-import { getErrMsg } from '@/utils/error'
+import { getErrMsg, setToken } from '@/api'
 import qs from 'qs'
 import { Modal, ModalHeader, ModalBody } from 'baseui/modal'
 import { Link, useLocation, useParams } from 'react-router-dom'
@@ -14,7 +14,7 @@ import { SidebarContext } from '@/contexts/SidebarContext'
 import useTranslation from '@/hooks/useTranslation'
 import color from 'color'
 import { createUseStyles } from 'react-jss'
-import { IThemedStyleProps } from '@/interfaces/IThemedStyle'
+import { IThemedStyleProps } from '@/theme'
 import { useCurrentThemeType } from '@/hooks/useCurrentThemeType'
 import classNames from 'classnames'
 import User from '@/domain/user/components/User'
@@ -22,14 +22,13 @@ import Text from '@/components/Text'
 import { simulationJump } from '@/utils'
 import { FiLogOut } from 'react-icons/fi'
 import HeaderLeftMenu from './HeaderLeftMenu'
-import { useToken } from '../../hooks/useToken'
+import Logo from './Logo'
 
 const useHeaderStyles = createUseStyles({
     headerWrapper: (props: IThemedStyleProps) => ({
         padding: '0 32px 0 0',
         position: 'fixed',
         background: 'var(--color-brandHeaderBackground)',
-        borderBottom: `1px solid ${props.theme.borders.border300.borderColor}`,
         backdropFilter: 'blur(10px)',
         zIndex: 1000,
         top: 0,
@@ -37,9 +36,9 @@ const useHeaderStyles = createUseStyles({
         width: '100%',
         display: 'flex',
         flexFlow: 'row nowrap',
-        // boxSizing: 'border-box',
         alignItems: 'center',
-        color: '#FFF',
+        fontFamily: 'InterUI-Regular',
+        color: 'var(--color-contentPrimary)',
     }),
 })
 
@@ -59,9 +58,10 @@ const useStyles = createUseStyles({
             },
         },
     },
-    userAvatarWrapper: {
+    userNameWrapper: {
         'height': '100%',
         'display': 'flex',
+        'color': 'var(--color-brandBackground4)',
         'align-items': 'center',
     },
     userMenu: (props: IThemedStyleProps) => ({
@@ -112,7 +112,6 @@ export default function Header() {
     const styles = useStyles({ theme, themeType })
     const headerStyles = useHeaderStyles({ theme, themeType })
     const location = useLocation()
-    const { token, setToken } = useToken()
     const errMsgExpireTimeSeconds = 5
     const lastErrMsgRef = useRef<Record<string, number>>({})
     const lastLocationPathRef = useRef(location.pathname)
@@ -132,8 +131,6 @@ export default function Header() {
         }
         axios.interceptors.response.use(
             (response) => {
-                console.log(response)
-                // return response.data
                 response.headers.authorization && setToken(response.headers.authorization)
                 return response.data?.data ? response.data : response
             },
@@ -192,58 +189,12 @@ export default function Header() {
 
     return (
         <header className={headerStyles.headerWrapper}>
-            <Link
-                style={{
-                    flex: '0 0 200px',
-                    display: 'flex',
-                    flexDirection: 'row',
-                    textDecoration: 'none',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    boxSizing: 'border-box',
-                    transition: 'width 200ms cubic-bezier(0.7, 0.1, 0.33, 1) 0ms',
-                    gap: 12,
-                }}
-                to='/'
-            >
-                {/* //TODO: sep logo */}
-                {/* <div
-                    style={{
-                        flexShrink: 0,
-                        display: 'flex',
-                        justifyContent: 'center',
-                    }}
-                >
-                    <img
-                        style={{
-                            width: 26,
-                            height: 26,
-                            display: 'inline-flex',
-                            transition: 'all 250ms cubic-bezier(0.7, 0.1, 0.33, 1) 0ms',
-                        }}
-                        src={currentThemeType === 'light' ? logo : logoDark}
-                        alt='logo'
-                    />
-                </div> */}
-                {ctx.expanded && (
-                    <Text
-                        size='large'
-                        style={{
-                            display: 'flex',
-                            fontSize: '34px',
-                            fontFamily: 'Inter',
-                            color: '#fff',
-                        }}
-                    >
-                        LOGO
-                    </Text>
-                )}
-            </Link>
+            <Logo expanded={ctx.expanded}></Logo>
             <div>{currentUser && <HeaderLeftMenu />}</div>
             <div style={{ flexGrow: 1 }} />
             {currentUser && (
                 <div className={styles.userWrapper}>
-                    <div className={styles.userAvatarWrapper}>
+                    <div className={styles.userNameWrapper}>
                         <User user={currentUser} />
                     </div>
                     <div className={styles.userMenu}>

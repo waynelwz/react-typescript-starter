@@ -1,6 +1,6 @@
 import useTranslation from '@/hooks/useTranslation'
 import { BsFolder2 } from 'react-icons/bs'
-import { RiSettingsLine } from 'react-icons/ri'
+import { BiBarChartSquare, BiLayer, BiEqualizer } from 'react-icons/bi'
 
 import React, { useEffect, useMemo } from 'react'
 import BaseSidebar, { IComposedSidebarProps, INavItem } from '@/components/BaseSidebar'
@@ -18,25 +18,27 @@ export default function ProjectSidebar({ style }: IComposedSidebarProps) {
             project
                 ? [
                       {
-                          title: project?.name ?? t('overview'),
+                          title: project?.name ?? t('sth name', [t('Project')]),
                           path: `/projects/${project?.id}`,
                           icon: BsFolder2,
                       },
                       {
-                          title: t('models'),
+                          title: t('Model'),
                           path: `/projects/${project.id}/models`,
-                          // icon: ,
+                          icon: BiLayer,
                           activePathPattern: /^\/(models)\/?/,
                       },
                       {
-                          title: t('datasets'),
+                          title: t('Dataset'),
                           path: `/projects/${project.id}/datasets`,
                           activePathPattern: /^\/(datasets)\/?/,
+                          icon: BiBarChartSquare,
                       },
                       {
-                          title: t('jobs'),
+                          title: t('Job'),
                           path: `/projects/${project.id}/jobs`,
                           activePathPattern: /^\/(jobs|new_job)\/?/,
+                          icon: BiEqualizer,
                       },
                   ]
                 : [],

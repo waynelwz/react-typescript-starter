@@ -1,5 +1,5 @@
 import { useCurrentThemeType } from '@/hooks/useCurrentThemeType'
-import { IThemedStyleProps } from '@/interfaces/IThemedStyle'
+import { IThemedStyleProps } from '@/theme'
 import { useStyletron } from 'baseui'
 import classNames from 'classnames'
 import React from 'react'

@@ -1,7 +1,7 @@
 export interface IListSchema<T> {
-    total: number
-    pageNum: number
-    size: number
+    total?: number
+    pageNum?: number
+    size?: number
     list: T[]
 }
 

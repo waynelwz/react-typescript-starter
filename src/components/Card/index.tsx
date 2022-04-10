@@ -5,7 +5,7 @@ import { useStyletron } from 'baseui'
 import { Skeleton } from 'baseui/skeleton'
 import { createUseStyles } from 'react-jss'
 import { Theme } from 'baseui/theme'
-import { IThemedStyleProps } from '@/interfaces/IThemedStyle'
+import { IThemedStyleProps } from '@/theme'
 import { useCurrentThemeType } from '@/hooks/useCurrentThemeType'
 import Text from '@/components/Text'
 import type { IconType } from 'react-icons/lib'
@@ -14,7 +14,7 @@ import styles from './index.module.scss'
 
 const getLinkStyle = (theme: Theme) => {
     return {
-        color: theme.colors.contentPrimary,
+        color: 'var(--color-brandLink)',
     }
 }
 
@@ -23,8 +23,6 @@ const useStyles = createUseStyles({
         const linkStyle = getLinkStyle(props.theme)
 
         return {
-            //TODO: multi theme
-            // 'box-shadow': props.theme.lighting.shadow400,
             'background': props.theme.colors.backgroundPrimary,
             '& a': linkStyle,
             '& a:link': linkStyle,

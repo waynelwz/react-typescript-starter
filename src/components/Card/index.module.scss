@@ -17,6 +17,7 @@
     transition-delay: 0.4s;
     margin-bottom: 16px;
     display: flex;
+    padding: 33px;
     flex-direction: column;
 
     .card {
@@ -31,7 +32,7 @@
   }
 
 .cardHeadWrapper {
-    padding: 0 18px;
+    // padding: 0 18px;
     border-bottom: 1px solid #f0f0f0;
     border-radius: 2px 2px 0 0;
 }
@@ -41,7 +42,8 @@
     align-items: center;
     display: flex;
     gap: 20px;
-    padding: 6px 0;
+    margin-bottom: 31px;
+    // padding: 6px 0;
 }
 
 .cardHeadTitle {
@@ -57,7 +59,7 @@
 }
 
 .cardBody {
-    padding: 16px;
+    // padding: 16px;
 }
 
 .cardHeadTail {

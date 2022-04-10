@@ -6,7 +6,9 @@ import { FiInbox } from 'react-icons/fi'
 import useTranslation from '@/hooks/useTranslation'
 import Text from '@/components/Text'
 import { usePage } from '@/hooks/usePage'
-import { IPaginationProps } from '@/interfaces/IPaginationProps'
+import { IPaginationProps } from '@/components/Table/IPaginationProps'
+import { createUseStyles } from 'react-jss'
+import { useStyletron } from 'baseui'
 
 export interface ITableProps extends BaseTableProps {
     paginationProps?: IPaginationProps
@@ -15,6 +17,7 @@ export interface ITableProps extends BaseTableProps {
 export default function Table({ isLoading, columns, data, overrides, paginationProps }: ITableProps) {
     const [t] = useTranslation()
     const [page, setPage] = usePage()
+    const [css] = useStyletron()
 
     return (
         <>
@@ -33,6 +36,26 @@ export default function Table({ isLoading, columns, data, overrides, paginationP
                             },
                         },
                     },
+                    TableHeadCell: {
+                        style: {
+                            backgroundColor: 'var(--color-brandBackground2)',
+                            fontWeight: 'bold',
+                            borderBottom: 'none',
+                            fontSize: 14,
+                            lineHeight: '16px',
+                            padding: '16px 12px',
+                        },
+                    },
+                    TableHeadRow: {
+                        style: {
+                            backgroundColor: 'var(--color-brandBackground1)',
+                        },
+                    },
+                    TableBodyCell: {
+                        style: {
+                            padding: '12px',
+                        },
+                    },
                     ...overrides,
                 }}
                 loadingMessage={<Skeleton rows={3} height='100px' width='100%' animation />}
@@ -44,6 +67,7 @@ export default function Table({ isLoading, columns, data, overrides, paginationP
                             alignItems: 'center',
                             justifyContent: 'center',
                             gap: 8,
+                            height: 100,
                         }}
                     >
                         <FiInbox size={30} />

@@ -7,8 +7,7 @@ import { useStyletron } from 'baseui'
 import type { IconBaseProps } from 'react-icons/lib'
 import { SidebarContext } from '@/contexts/SidebarContext'
 import { sidebarExpandedWidth, sidebarFoldedWidth } from '@/consts'
-import { AiOutlineSetting, AiOutlineDoubleLeft, AiOutlineDoubleRight } from 'react-icons/ai'
-import { useCurrentThemeType } from '@/hooks/useCurrentThemeType'
+import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from 'react-icons/ai'
 import color from 'color'
 import Text from '@/components/Text'
 import useTranslation from '@/hooks/useTranslation'
@@ -39,14 +38,16 @@ function transformNavItems(navItems: INavItem[], expanded = true): Item[] {
                         display: 'flex',
                         alignItems: 'center',
                         gap: 12,
-                        lineHeight: '24px',
-                        height: 24,
+                        fontSize: 14,
+                        lineHeight: '40px',
+                        height: 40,
                         textOverflow: 'ellipsis',
                         whiteSpace: 'nowrap',
                         overflow: 'hidden',
+                        paddingLeft: expanded ? 15 : 12,
                     }}
                 >
-                    {Icon && <Icon size={12} />}
+                    {Icon && <Icon size={26} />}
                     {expanded && <span>{item.title}</span>}
                 </div>
             ),
@@ -59,10 +60,9 @@ export interface IBaseSideBarProps extends IComposedSidebarProps {
     title?: string
     icon?: React.ComponentType<IconBaseProps>
     navItems: INavItem[]
-    settingsPath?: string
 }
 
-export default function BaseSidebar({ navItems, style, title, icon, settingsPath }: IBaseSideBarProps) {
+export default function BaseSidebar({ navItems, style, title, icon }: IBaseSideBarProps) {
     const width = useSidebarWidth()
     const ctx = useContext(SidebarContext)
 
@@ -70,20 +70,8 @@ export default function BaseSidebar({ navItems, style, title, icon, settingsPath
     const location = useLocation()
 
     const baseuiNavItems = useMemo(() => transformNavItems(navItems, ctx.expanded), [ctx.expanded, navItems])
-    const checkIsSettingsPage = useCallback(
-        (currentPath: string) => {
-            if (!settingsPath) {
-                return false
-            }
-            return _.startsWith(currentPath, settingsPath)
-        },
-        [settingsPath]
-    )
 
     const activeItemId = useMemo(() => {
-        if (checkIsSettingsPage(location.pathname)) {
-            return undefined
-        }
         const items = baseuiNavItems.slice().reverse()
         let activeItem = items.find((item_) => {
             const item = navItems.find((item__) => item_.itemId === item__.path)
@@ -102,7 +90,7 @@ export default function BaseSidebar({ navItems, style, title, icon, settingsPath
             activeItem = items.find((item_) => _.startsWith(location.pathname, item_.itemId))
         }
         return activeItem?.itemId
-    }, [baseuiNavItems, checkIsSettingsPage, location.pathname, navItems])
+    }, [baseuiNavItems, location.pathname, navItems])
 
     const [, theme] = useStyletron()
 
@@ -113,14 +101,6 @@ export default function BaseSidebar({ navItems, style, title, icon, settingsPath
             ctx.setExpanded(true)
         }
     }, [ctx])
-
-    const isSettingsPage = checkIsSettingsPage(location.pathname)
-    const themeType = useCurrentThemeType()
-
-    const settingNavActiveBackground =
-        themeType === 'light'
-            ? color(theme.colors.background).darken(0.09).rgb().string()
-            : color(theme.colors.background).lighten(0.3).rgb().string()
 
     const [t] = useTranslation()
 
@@ -147,7 +127,7 @@ export default function BaseSidebar({ navItems, style, title, icon, settingsPath
                         gap: 14,
                         fontSize: '11px',
                         alignItems: 'center',
-                        padding: '8px 8px 8px 30px',
+                        padding: '8px 8px 8px 15px',
                         borderBottom: `1px solid ${theme.borders.border200.borderColor}`,
                         overflow: 'hidden',
                     }}
@@ -174,8 +154,18 @@ export default function BaseSidebar({ navItems, style, title, icon, settingsPath
                             fontWeight: 700,
                         },
                     },
+                    NavItem: {
+                        style: {
+                            padding: '8px 8px 8px 8px',
+                        },
+                    },
+                    NavLink: {
+                        style: {
+                            color: 'var(--color-brandIndicatorRegular)',
+                        },
+                    },
                 }}
-                activeItemId={activeItemId ?? (!isSettingsPage ? baseuiNavItems[0]?.itemId : '') ?? ''}
+                activeItemId={activeItemId ?? (baseuiNavItems[0]?.itemId as string)}
                 items={baseuiNavItems}
                 onChange={({ event, item }) => {
                     event.preventDefault()
@@ -188,63 +178,17 @@ export default function BaseSidebar({ navItems, style, title, icon, settingsPath
                         display: 'flex',
                         flexDirection: ctx.expanded ? 'row' : 'column',
                         alignItems: 'center',
-                        height: 48,
+                        height: 40,
                         position: 'relative',
                         borderTop: `1px solid ${theme.borders.border100.borderColor}`,
                     }}
                 >
-                    {settingsPath ? (
-                        <div
-                            role='button'
-                            tabIndex={0}
-                            style={{
-                                flexGrow: 1,
-                                display: 'flex',
-                                alignItems: 'center',
-                                flexDirection: 'row',
-                                height: 48,
-                                cursor: 'pointer',
-                                transition: 'all 250ms cubic-bezier(0.7, 0.1, 0.33, 1) 0ms',
-                                width: ctx.expanded ? sidebarExpandedWidth - sidebarFoldedWidth : sidebarFoldedWidth,
-                                overflow: 'hidden',
-                                borderLeftWidth: 4,
-                                borderLeftStyle: 'solid',
-                                borderLeftColor: isSettingsPage ? theme.colors.primary : 'transparent',
-                                background: isSettingsPage ? settingNavActiveBackground : 'transparent',
-                            }}
-                            title={'settings'}
-                            onClick={(e) => {
-                                e.preventDefault()
-                                history.push(settingsPath)
-                            }}
-                        >
-                            <div
-                                style={{
-                                    paddingLeft: 24,
-                                    marginRight: 12,
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                }}
-                            >
-                                <AiOutlineSetting />
-                            </div>
-                            <div
-                                style={{
-                                    display: ctx.expanded ? 'block' : 'none',
-                                    fontSize: 14,
-                                }}
-                            >
-                                {'settings'}
-                            </div>
-                        </div>
-                    ) : (
-                        <div
-                            style={{
-                                flexGrow: 1,
-                                width: ctx.expanded ? sidebarExpandedWidth - sidebarFoldedWidth : sidebarFoldedWidth,
-                            }}
-                        ></div>
-                    )}
+                    <div
+                        style={{
+                            flexGrow: 1,
+                            width: ctx.expanded ? sidebarExpandedWidth - sidebarFoldedWidth : sidebarFoldedWidth,
+                        }}
+                    ></div>
                     <div
                         role='button'
                         tabIndex={0}
@@ -258,7 +202,6 @@ export default function BaseSidebar({ navItems, style, title, icon, settingsPath
                             display: 'flex',
                             flexDirection: 'row',
                             alignItems: 'center',
-                            background: ctx.expanded && isSettingsPage ? settingNavActiveBackground : 'transparent',
                         }}
                     >
                         <div

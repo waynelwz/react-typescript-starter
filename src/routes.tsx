@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import Header from '@/components/Header'
 import ProjectLayout from '@/pages/Project/ProjectLayout'
 import { useCurrentThemeType } from '@/hooks/useCurrentThemeType'
-import { IThemedStyleProps } from '@/interfaces/IThemedStyle'
+import { IThemedStyleProps } from '@/theme'
 import { useStyletron } from 'baseui'
 import { createUseStyles } from 'react-jss'
 import Login from '@/pages/Home/Login'
@@ -31,6 +31,15 @@ import axios from 'axios'
 
 const useStyles = createUseStyles({
     root: ({ theme }: IThemedStyleProps) => ({
+        display: 'flex',
+        flexDirection: 'column',
+        zIndex: 1,
+        minHeight: '100vh',
+        position: 'relative',
+        minWidth: 'fit-content',
+        width: '100%',
+        background: 'var(--color-brandRootBackground)',
+        color: 'var(--color-contentPrimary)',
         ...Object.entries(theme.colors).reduce((p, [k, v]) => {
             return {
                 ...p,
@@ -47,20 +56,7 @@ const Routes = () => {
 
     return (
         <BrowserRouter>
-            <div
-                className={styles.root}
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    zIndex: 1,
-                    minHeight: '100vh',
-                    position: 'relative',
-                    minWidth: 'fit-content',
-                    width: '100%',
-                    background: 'var(--color-brandRootBackground)',
-                    // color: theme.colors.contentPrimary,
-                }}
-            >
+            <div className={styles.root}>
                 <Header />
                 <Switch>
                     {/* project */}

@@ -76,7 +76,6 @@ export default function BaseLayout({
     const themeType = useCurrentThemeType()
     const [, theme] = useStyletron()
     const styles = useStyles({ themeType, theme })()
-    console.log(styles)
     return (
         <main
             style={{
@@ -98,7 +97,7 @@ export default function BaseLayout({
             >
                 <div
                     style={{
-                        padding: '20px',
+                        padding: '48px',
                         height: '100%',
                         boxSizing: 'border-box',
                         ...contentStyle,

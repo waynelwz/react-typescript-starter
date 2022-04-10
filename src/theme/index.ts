@@ -19,16 +19,33 @@ export interface IThemedStyleProps {
 }
 
 // custom ui primitives
-export interface IColors extends Partial<Colors> {
-    brand1: string
-    brand2: string
-    brandBackground: string
-}
+// export interface IColors extends Partial<Colors>  {
+//     brand1: string
+//     brand2: string
+//     brandBackground: string
+// }
 
-export const colors: IColors = {
-    brand1: '#007fff',
-    brand2: '#36425D',
-    brandBackground: '#F0F2F5',
+export const colors = {
+    brand1: '#273343',
+    brand2: '#0C1B3E',
+    brandBackground1: '#F1F6FF',
+    brandBackground2: '#F3F6F9',
+    brandBackground3: '#E7EBF0',
+    brandBackground4: '#E0E3E7',
+    brandFontRmphasis: '#1A2027',
+    brandFontRegular: '#2D3843',
+    brandFontCaption: '#3E5060',
+    brandFontDisable: '#BEC2C2',
+    brandIndicatorAction1: '#A0AAB4',
+    brandIndicatorRegular: '#BFC7CF',
+    brandIndicatorDisabled: color('#000000').alpha(2.5).toString(),
+    brandIndicatorCaption: color('#000000').alpha(4.5).toString(),
+    brandIndicatorSuccess: '#34B576',
+    brandIndicatorError: '#E82037',
+    brandIndicatorWarning: '#FFCD00',
+    brandIndicatorSuspend: '#722ED1',
+    brandIndicatorCompleted: '#91D5FF',
+    brandLink: '#009BDE',
 }
 
 // base ui primitives
@@ -52,13 +69,16 @@ const overrides = {
     },
     deep: {
         colors: {
-            buttonPrimaryFill: '#007FFF',
-            buttonBorderRadius: '14px',
+            buttonPrimaryFill: '#273343',
             // ----------- custom -----------
-            brandRootBackground: colors.brandBackground,
+            brandRootBackground: colors.brandBackground1,
             brandHeaderBackground: colors.brand2,
+            ...colors,
         },
         typography: {},
+        borders: {
+            buttonBorderRadius: '4px',
+        },
     },
 }
 

@@ -29,7 +29,7 @@ export default function DeviceSelector({ value, onChange, overrides, disabled }:
     useEffect(() => {
         if (devicesInfo.isSuccess) {
             setOptions(
-                devicesInfo.data?.map((item) => ({
+                devicesInfo.data?.list?.map((item) => ({
                     id: item.id,
                     label: item.name,
                 })) ?? []
